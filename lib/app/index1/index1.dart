@@ -6,7 +6,6 @@ import 'package:gobotq_flutter/app/index1/robot_info/robot_info.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:gobotq_flutter/app/login/login.dart';
 import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
@@ -14,6 +13,7 @@ import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/popup/popupmenu.dart';
 import 'package:gobotq_flutter/tuuz/storage/storage.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class Index1 extends StatefulWidget {
   String _title;
