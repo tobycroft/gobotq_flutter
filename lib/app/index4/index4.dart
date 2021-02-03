@@ -64,7 +64,6 @@ class _Index4 extends State<Index4> {
       if (json["code"] == 0) {
         _user_balance = json["data"];
         setState(() {});
-        print(_user_info);
       } else {
         Alert().Error(context, json["data"], () {});
       }
