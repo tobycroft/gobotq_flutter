@@ -1,0 +1,19 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class Windows {
+  //关闭当前页面或者窗口
+  Close(BuildContext context) {
+    return Navigator.pop(context);
+  }
+
+  //用于打开动态页面
+  Open(BuildContext context, StatefulWidget any) {
+    return Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext contexts) => any));
+  }
+
+  //用于打开无动态页面
+  Open_static(BuildContext context, StatelessWidget any) {
+    return Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext contexts) => any));
+  }
+}
