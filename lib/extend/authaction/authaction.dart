@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AuthAction {
   LoginObject() async {
-    Map<String, String> post = {};
+    Map<String, dynamic> post = {};
     post["uid"] = await Storage().Get("__uid__");
     post["token"] = await Storage().Get("__token__");
     return post;
