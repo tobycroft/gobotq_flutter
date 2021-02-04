@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:gobotq_flutter/config/config.dart';
 
 class Net {
-  Future<String> Post(String url, path, Map<String, String> get, Map<String, dynamic> post, Map<String, String> header) async {
+  Future<String> Post(String url, path, Map<String, String> get, Map<String, String> post, Map<String, String> header) async {
     var http = new HttpClient();
     if (Config().Proxy_debug) {
       http.findProxy = (url) {

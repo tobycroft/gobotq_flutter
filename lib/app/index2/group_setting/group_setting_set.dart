@@ -7,9 +7,9 @@ import 'package:gobotq_flutter/app/index2/group_setting/url_group_setting.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/extend/authaction/authaction.dart';
-import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/net/ret.dart';
+import 'package:gobotq_flutter/tuuz/toasts/toast.dart';
 
 class GroupSettingSet extends StatefulWidget {
   var _pageparam;
@@ -28,6 +28,8 @@ List<Widget> _setting = [
   )
 ];
 
+Map _data = {};
+
 class _GroupSettingSet extends State<GroupSettingSet> {
   var _pageparam;
   String _title;
@@ -41,33 +43,40 @@ class _GroupSettingSet extends State<GroupSettingSet> {
   }
 
   Future<void> get_setting(BuildContext context) async {
-    Map<String, dynamic> post = await AuthAction().LoginObject();
+    Map<String, String> post = await AuthAction().LoginObject();
     post["gid"] = this._pageparam["gid"].toString();
     String ret = await Net().Post(Config().Url, Url_group_setting().Group_Setting_Get, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth().Return_login_check(context, json)) {
       if (Ret().Check_isok(context, json)) {
-        Map data = json["data"];
+        _data = json["data"];
         _setting.clear();
-        data.forEach((key, value) {
-          switch (value["type"].toString()) {
+        int i = 0;
+        _data.forEach((key, value) {
+          switch (_data[key]["type"].toString()) {
             case "bool":
               {
                 String str = "否";
-                bool onoff = false;
-                if (value["value"] == 1) {
+                if (_data[key]["value"] == 1) {
                   str = "是";
-                  onoff = true;
+                  _data[key]["value"] = true;
+                } else {
+                  _data[key]["value"] = false;
                 }
                 _setting.add(ListTile(
                   leading: Icon(Icons.build),
-                  title: Text(value["name"].toString()),
+                  title: Text(_data[key]["name"].toString()),
                   subtitle: Text(str),
                   trailing: Switch(
-                    value: onoff,
-                    onChanged: (value) {
-                      set_setting(context, key, value);
-                      // Alert().Confirm(context, "title", "content", () { });
+                    value: _data[key]["value"],
+                    onChanged: (value) async {
+                      if (value == false) {
+                        await set_setting(context, key, 0);
+                        get_setting(context);
+                      } else {
+                        await set_setting(context, key, 1);
+                        get_setting(context);
+                      }
                     },
                   ),
                 ));
@@ -78,8 +87,8 @@ class _GroupSettingSet extends State<GroupSettingSet> {
               {
                 _setting.add(ListTile(
                   leading: Icon(Icons.build),
-                  title: Text(value["name"].toString()),
-                  subtitle: Text(value["value"].toString()),
+                  title: Text(_data[key]["name"].toString()),
+                  subtitle: Text(_data[key]["value"].toString()),
                 ));
                 break;
               }
@@ -88,8 +97,8 @@ class _GroupSettingSet extends State<GroupSettingSet> {
               {
                 _setting.add(ListTile(
                   leading: Icon(Icons.build),
-                  title: Text(value["name"].toString()),
-                  subtitle: Text(value["value"].toString()),
+                  title: Text(_data[key]["name"].toString()),
+                  subtitle: Text(_data[key]["value"].toString()),
                 ));
                 break;
               }
@@ -98,8 +107,8 @@ class _GroupSettingSet extends State<GroupSettingSet> {
               {
                 _setting.add(ListTile(
                   leading: Icon(Icons.build),
-                  title: Text(value["name"].toString()),
-                  subtitle: Text(value["value"].toString()),
+                  title: Text(_data[key]["name"].toString()),
+                  subtitle: Text(_data[key]["value"].toString()),
                 ));
                 break;
               }
@@ -111,7 +120,7 @@ class _GroupSettingSet extends State<GroupSettingSet> {
   }
 
   Future<void> set_setting(BuildContext context, String key, dynamic value) async {
-    Map<String, dynamic> post = await AuthAction().LoginObject();
+    Map<String, String> post = await AuthAction().LoginObject();
     post["gid"] = this._pageparam["gid"].toString();
     post["key"] = key.toString();
     post["value"] = value.toString();
@@ -119,7 +128,7 @@ class _GroupSettingSet extends State<GroupSettingSet> {
     Map json = jsonDecode(ret);
     if (Auth().Return_login_check(context, json)) {
       if (Ret().Check_isok(context, json)) {
-        print(json);
+        Toasts().Show(json["echo"].toString());
       }
     }
   }
