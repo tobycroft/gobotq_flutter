@@ -85,7 +85,7 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
     BottomNavigationBarItem(
       backgroundColor: Colors.blue[800],
       icon: Icon(Icons.add_circle_outline),
-      title: Text("插件"),
+      title: Text("发现"),
     ),
     BottomNavigationBarItem(
       backgroundColor: Colors.blue[900],
@@ -95,7 +95,7 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
   ];
 
   //点击导航项是要显示的页面
-  final pages = [Index1("机器人列表"), Index2("群列表"), ChildItemView("插件编写中"), Index4("我的")];
+  final pages = [Index1("机器人列表"), Index2("群列表"), ChildItemView("发现"), Index4("我的")];
 
   Widget buildBottomTabScaffold() {
     return Scaffold(
