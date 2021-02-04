@@ -193,7 +193,7 @@ class _login extends State<Login> {
                 shape: RoundedRectangleBorder(side: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(50))),
                 child: Text('登录'),
                 onPressed: () async {
-                  Map<String, dynamic> post = {
+                  Map<String, String> post = {
                     "qq": this.qq,
                     "password": this.password,
                   };

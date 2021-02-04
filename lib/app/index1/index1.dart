@@ -43,7 +43,7 @@ class _Index1 extends State<Index1> {
     var ret = await Net().Post(Config().Url, "/v1/bot/list/owned", null, post, null);
 
     var json = jsonDecode(ret);
-    if (Auth().Return_login_check(context, json)) {
+    if (Auth().Return_login_check_and_Goto(context, json)) {
       if (json["code"] == 0) {
         setState(() {
           bot_datas = [];
