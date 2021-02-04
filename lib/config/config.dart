@@ -22,11 +22,12 @@ class Config {
   TextStyle Text_style_title = TextStyle(
     fontSize: 20,
   );
-  // bool Proxy_debug = true;
-  bool Proxy_debug = false;
 
   String ProxyURL = "http://10.0.0.100:9000";
 
-  String Url = "api.tuuz.cn:15088";
-  // String Url = "127.0.0.1";
+  bool Proxy_debug = true;
+  // bool Proxy_debug = false;
+
+  // String Url = "api.tuuz.cn:15088";
+  String Url = "127.0.0.1";
 }
