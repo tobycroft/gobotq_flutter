@@ -85,7 +85,7 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
     ),
     BottomNavigationBarItem(
       backgroundColor: Colors.blue[800],
-      icon: Icon(Icons.settings_cell),
+      icon: Icon(Icons.camera),
       title: Text("发现"),
     ),
     BottomNavigationBarItem(
