@@ -21,6 +21,11 @@ class Config {
 
   TextStyle Text_style_title = TextStyle(
     fontSize: 20,
+    color: Colors.white,
+  );
+
+  TextStyle Text_style_main_page = TextStyle(
+    fontSize: 24,
   );
 
   String ProxyURL = "http://10.0.0.100:9000";

@@ -1,5 +1,6 @@
 import 'package:gobotq_flutter/app/index1/index1.dart';
 import 'package:gobotq_flutter/app/index2/index2.dart';
+import 'package:gobotq_flutter/app/index3/index3.dart';
 import 'package:gobotq_flutter/app/index4/index4.dart';
 import 'package:flutter/material.dart';
 import 'package:gobotq_flutter/config/auth.dart';
@@ -84,7 +85,7 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
     ),
     BottomNavigationBarItem(
       backgroundColor: Colors.blue[800],
-      icon: Icon(Icons.add_circle_outline),
+      icon: Icon(Icons.settings_cell),
       title: Text("发现"),
     ),
     BottomNavigationBarItem(
@@ -95,7 +96,7 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
   ];
 
   //点击导航项是要显示的页面
-  final pages = [Index1("机器人列表"), Index2("群列表"), ChildItemView("发现"), Index4("我的")];
+  final pages = [Index1("机器人列表"), Index2("群列表"), Index3("发现"), Index4("我的")];
 
   Widget buildBottomTabScaffold() {
     return Scaffold(
