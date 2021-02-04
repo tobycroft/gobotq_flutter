@@ -7,6 +7,7 @@ class Config {
 
   TextStyle Text_Style_default = TextStyle(
     fontSize: 16,
+    color: Colors.black,
   );
 
   TextStyle Text_style_notimportant_auto = TextStyle(
@@ -18,6 +19,9 @@ class Config {
     fontSize: 16,
   );
 
+  TextStyle Text_style_title = TextStyle(
+    fontSize: 20,
+  );
   bool Proxy_debug = true;
 
   String ProxyURL = "http://10.0.0.100:9000";

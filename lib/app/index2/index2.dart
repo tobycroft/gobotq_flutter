@@ -2,12 +2,15 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:gobotq_flutter/app/index2/group_setting/group_setting_get.dart';
+import 'package:gobotq_flutter/app/index2/group_setting/group_setting_set.dart';
 import 'package:gobotq_flutter/app/index2/url_index2.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/extend/authaction/authaction.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/net/ret.dart';
+import 'package:gobotq_flutter/tuuz/win/close.dart';
 
 class Index2 extends StatefulWidget {
   String _title;
@@ -61,7 +64,7 @@ class _Index2 extends State<Index2> {
     final _kTabPages = <Widget>[
       EasyRefresh(
         child: ListView.builder(
-          itemBuilder: (BuildContext con, int index) => _group_list_widget(context, _group_control[index]),
+          itemBuilder: (BuildContext con, int index) => _group_list_widget(context, _group_control[index], _widget_type.set),
           itemCount: _group_control.length,
         ),
         onRefresh: () async {
@@ -71,7 +74,7 @@ class _Index2 extends State<Index2> {
       ),
       EasyRefresh(
         child: ListView.builder(
-          itemBuilder: (BuildContext con, int index) => _group_list_widget(context, _group_joined[index]),
+          itemBuilder: (BuildContext con, int index) => _group_list_widget(context, _group_joined[index], _widget_type.get),
           itemCount: _group_joined.length,
         ),
         onRefresh: () async {
@@ -110,11 +113,14 @@ class _Index2 extends State<Index2> {
 List _group_control = [];
 List _group_joined = [];
 
+enum _widget_type { set, get }
+
 class _group_list_widget extends StatelessWidget {
   var _pageparam;
   BuildContext _context;
+  _widget_type _wgtype;
 
-  _group_list_widget(this._context, this._pageparam);
+  _group_list_widget(this._context, this._pageparam, this._wgtype);
 
   Widget _buildTiles(Map ret) {
     if (ret == null) return ListTile();
@@ -132,7 +138,13 @@ class _group_list_widget extends StatelessWidget {
         ret["gid"].toString(),
         style: Config().Text_Style_default,
       ),
-      onTap: () {},
+      onTap: () {
+        if (this._wgtype == _widget_type.get) {
+          Windows().Open(this._context, GroupSettingGet("查看本群设定", this._pageparam));
+        } else if (this._wgtype == _widget_type.set) {
+          Windows().Open(this._context, GroupSettingSet("群机器人设定", this._pageparam));
+        }
+      },
       trailing: Icon(Icons.keyboard_arrow_right),
     );
   }
