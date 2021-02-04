@@ -26,12 +26,12 @@ class _help extends State<Help> {
             "    如果你没有添加机器人为好友，你可以在有Acfur智能姬的群中直接发起私聊，如果你所有加入的群中都没有Acfur智能姬存在，你也可以直接添加智能姬为好友。\r\n",
             style: TextStyle(fontSize: Config().Font_size_text),
           ),
-          Text("2.发送登录",
+          Text("2.发送acfur登录",
               style: TextStyle(
                 fontSize: Config().Font_Size,
               )),
           Text(
-            "    在与机器人的私聊界面中发送“登录”，机器人就会返回“登录码”给您，登录码一般为9-12位的CRC加密数字\r\n",
+            "    在与机器人的私聊界面中发送“acfur登录”，机器人就会返回“登录码”给您，登录码一般为9-12位的CRC加密数字\r\n",
             style: TextStyle(fontSize: Config().Font_size_text),
           ),
           Text("3.填写登录码",
