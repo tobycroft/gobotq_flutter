@@ -72,11 +72,10 @@ class _GroupSettingSet extends State<GroupSettingSet> {
                     onChanged: (value) async {
                       if (value == false) {
                         await set_setting(context, key, 0);
-                        get_setting(context);
                       } else {
                         await set_setting(context, key, 1);
-                        get_setting(context);
                       }
+                      get_setting(context);
                     },
                   ),
                 ));
@@ -85,11 +84,32 @@ class _GroupSettingSet extends State<GroupSettingSet> {
 
             case "int":
               {
-                _setting.add(ListTile(
-                  leading: Icon(Icons.build),
-                  title: Text(_data[key]["name"].toString()),
-                  subtitle: Text(_data[key]["value"].toString()),
-                ));
+                _setting.add(
+                  ListTile(
+                    leading: Icon(Icons.build),
+                    title: Text(_data[key]["name"].toString()),
+                    subtitle: TextField(
+                      keyboardType: TextInputType.number,
+                      // style: Theme.of(context).textTheme.headline4,
+                      decoration: InputDecoration(hintText: "输入一个数字"),
+                      controller: TextEditingController.fromValue(TextEditingValue(text: _data[key]["value"].toString())),
+                      onChanged: (value) async {
+                        _data[key]["value"] = value.toString();
+                      },
+                    ),
+                    trailing: RaisedButton(
+                      color: Colors.green,
+                      textColor: Colors.white,
+                      child: Text(
+                        "修改",
+                      ),
+                      onPressed: () async {
+                        await set_setting(context, key, _data[key]["value"]);
+                        get_setting(context);
+                      },
+                    ),
+                  ),
+                );
                 break;
               }
 
@@ -98,7 +118,31 @@ class _GroupSettingSet extends State<GroupSettingSet> {
                 _setting.add(ListTile(
                   leading: Icon(Icons.build),
                   title: Text(_data[key]["name"].toString()),
-                  subtitle: Text(_data[key]["value"].toString()),
+                  subtitle: TextField(
+                    maxLines: 3,
+                    keyboardType: TextInputType.number,
+                    // style: Theme.of(context).textTheme.headline4,
+                    decoration: InputDecoration(
+                        hintText: "输入一个数字",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        )),
+                    controller: TextEditingController.fromValue(TextEditingValue(text: _data[key]["value"].toString())),
+                    onChanged: (value) async {
+                      _data[key]["value"] = value.toString();
+                    },
+                  ),
+                  trailing: RaisedButton(
+                    color: Colors.green,
+                    textColor: Colors.white,
+                    child: Text(
+                      "修改",
+                    ),
+                    onPressed: () async {
+                      await set_setting(context, key, _data[key]["value"]);
+                      get_setting(context);
+                    },
+                  ),
                 ));
                 break;
               }
@@ -136,21 +180,16 @@ class _GroupSettingSet extends State<GroupSettingSet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            this._title,
-            style: Config().Text_style_title,
-          ),
+      appBar: AppBar(
+        title: Text(
+          this._title,
+          style: Config().Text_style_title,
         ),
-        body: EasyRefresh(
-          child: ListView.builder(
-            itemBuilder: (BuildContext con, int index) => _setting[index],
-            itemCount: _setting.length,
-          ),
-          onRefresh: () async {
-            get_setting(context);
-          },
-          firstRefresh: false,
-        ));
+      ),
+      body: ListView.builder(
+        itemBuilder: (BuildContext con, int index) => _setting[index],
+        itemCount: _setting.length,
+      ),
+    );
   }
 }
