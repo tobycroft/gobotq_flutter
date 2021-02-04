@@ -1,0 +1,13 @@
+import 'package:flutter/cupertino.dart';
+import 'package:gobotq_flutter/tuuz/alert/ios.dart';
+
+class Ret {
+  bool Check(BuildContext context, Map json) {
+    if (json["code"] != 0) {
+      Alert().Confirm(context, "错误提示", json["echo"], () {});
+      return false;
+    } else {
+      return true;
+    }
+  }
+}

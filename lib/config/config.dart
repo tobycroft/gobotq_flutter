@@ -18,9 +18,10 @@ class Config {
     fontSize: 16,
   );
 
-  bool Proxy_debug = false;
+  bool Proxy_debug = true;
 
   String ProxyURL = "http://10.0.0.100:9000";
 
-  String Url = "api.tuuz.cn:15088";
+  // String Url = "api.tuuz.cn:15088";
+  String Url = "127.0.0.1";
 }

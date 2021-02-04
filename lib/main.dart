@@ -1,4 +1,5 @@
 import 'package:gobotq_flutter/app/index1/index1.dart';
+import 'package:gobotq_flutter/app/index2/index2.dart';
 import 'package:gobotq_flutter/app/index4/index4.dart';
 import 'package:flutter/material.dart';
 import 'package:gobotq_flutter/config/auth.dart';
@@ -13,9 +14,7 @@ void main() {
 class Init {
   void init() async {}
 
-  void is_login() async {
-
-  }
+  void is_login() async {}
 }
 
 class MyApp extends StatelessWidget {
@@ -96,7 +95,7 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
   ];
 
   //点击导航项是要显示的页面
-  final pages = [Index1("机器人列表"), ChildItemView("群管理编写中"), ChildItemView("插件编写中"), Index4("我的")];
+  final pages = [Index1("机器人列表"), Index2("群列表"), ChildItemView("插件编写中"), Index4("我的")];
 
   Widget buildBottomTabScaffold() {
     return Scaffold(
