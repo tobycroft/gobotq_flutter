@@ -1,30 +1,90 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:gobotq_flutter/app/index2/url_index2.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/extend/authaction/authaction.dart';
-import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
+import 'package:gobotq_flutter/tuuz/net/ret.dart';
 
-class Index2 extends StatelessWidget {
+class Index2 extends StatefulWidget {
   String _title;
 
   Index2(this._title);
 
   @override
+  _Index2 createState() => _Index2(this._title);
+}
+
+class _Index2 extends State<Index2> {
+  String _title;
+
+  _Index2(this._title);
+
+  @override
+  void initState() {
+    group_control(context);
+    group_joined(context);
+    super.initState();
+  }
+
+  Future<void> group_control(BuildContext context) async {
+    Map post = await AuthAction().LoginObject();
+    String ret = await Net().Post(Config().Url, Url_Index2().Group_list_control, null, post, null);
+    Map json = jsonDecode(ret);
+    if (Auth().Return_login_check(context, json)) {
+      if (Ret().Check_isok(context, json)) {
+        setState(() {
+          _group_control = json["data"];
+        });
+      }
+    }
+  }
+
+  Future<void> group_joined(BuildContext context) async {
+    Map post = await AuthAction().LoginObject();
+    String ret = await Net().Post(Config().Url, Url_Index2().Group_list_joined, null, post, null);
+    Map json = jsonDecode(ret);
+    if (Auth().Return_login_check(context, json)) {
+      if (Ret().Check_isok(context, json)) {
+        setState(() {
+          _group_joined = json["data"];
+        });
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final _kTabPages = <Widget>[
-      ListView(
-        children: [],
+      EasyRefresh(
+        child: ListView.builder(
+          itemBuilder: (BuildContext con, int index) => _group_list_widget(context, _group_control[index]),
+          itemCount: _group_control.length,
+        ),
+        onRefresh: () async {
+          group_control(this.context);
+        },
+        firstRefresh: false,
       ),
-      const Center(child: Icon(Icons.add_box, size: 64.0, color: Colors.cyan)),
+      EasyRefresh(
+        child: ListView.builder(
+          itemBuilder: (BuildContext con, int index) => _group_list_widget(context, _group_joined[index]),
+          itemCount: _group_joined.length,
+        ),
+        onRefresh: () async {
+          group_joined(this.context);
+        },
+        firstRefresh: false,
+      ),
     ];
     final _kTabs = <Tab>[
       const Tab(icon: Icon(Icons.check_box), text: '可控制'),
       const Tab(icon: Icon(Icons.check_box_outline_blank), text: '仅查看'),
     ];
+
     return DefaultTabController(
       length: _kTabs.length,
       child: Scaffold(
@@ -50,17 +110,35 @@ class Index2 extends StatelessWidget {
 List _group_control = [];
 List _group_joined = [];
 
-void group_control(BuildContext context) async {
-  Map post = await AuthAction().LoginObject();
-  String ret = await Net().Post(Config().Url, Url_Index2().Group_list_control, null, post, null);
-  Map json = jsonDecode(ret);
-  if (Auth().Return_login_check(context, json)) {
-    if (json["code"] == 0) {
+class _group_list_widget extends StatelessWidget {
+  var _pageparam;
+  BuildContext _context;
 
-    }else{
-      Alert()
-    }
+  _group_list_widget(this._context, this._pageparam);
+
+  Widget _buildTiles(Map ret) {
+    if (ret == null) return ListTile();
+    return ListTile(
+      leading: Icon(
+        Icons.group,
+        size: 32,
+      ),
+      contentPadding: EdgeInsets.only(left: 20),
+      title: Text(
+        ret["group_name"].toString(),
+        style: Config().Text_Style_default,
+      ),
+      subtitle: Text(
+        ret["gid"].toString(),
+        style: Config().Text_Style_default,
+      ),
+      onTap: () {},
+      trailing: Icon(Icons.keyboard_arrow_right),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildTiles(this._pageparam);
   }
 }
-
-void group_joined(BuildContext context) async {}
