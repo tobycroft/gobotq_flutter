@@ -28,11 +28,25 @@ class Config {
     fontSize: 24,
   );
 
+  InputDecoration Inputdecoration_default_input_box(IconData icon, String labelText) {
+    InputDecoration(
+      contentPadding: EdgeInsets.only(top: 10, bottom: 10),
+      icon: Icon(
+        icon,
+        size: 32,
+      ),
+      labelText: labelText,
+      border: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+      ),
+    );
+  }
+
   String ProxyURL = "http://10.0.0.100:9000";
 
   // bool Proxy_debug = true;
   bool Proxy_debug = false;
 
   String Url = "api.tuuz.cn:15088";
-  // String Url = "127.0.0.1";
+// String Url = "127.0.0.1";
 }
