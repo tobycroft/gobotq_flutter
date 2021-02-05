@@ -29,7 +29,7 @@ class Config {
   );
 
   InputDecoration Inputdecoration_default_input_box(IconData icon, String labelText) {
-    InputDecoration(
+    return InputDecoration(
       contentPadding: EdgeInsets.only(top: 10, bottom: 10),
       icon: Icon(
         icon,

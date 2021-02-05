@@ -47,19 +47,12 @@ class _Upload_robot extends State<Upload_robot> {
         ],
       ),
       body: ListView(
-        padding: EdgeInsets.only(top: 20,left: 20,right: 20),
+        padding: EdgeInsets.only(top: 20, left: 20, right: 20),
         children: [
           TextField(
             keyboardType: TextInputType.number,
             style: Theme.of(context).textTheme.headline4,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.only(top: 10,bottom: 10),
-              icon: Icon(Icons.account_circle,size: 32,),
-              labelText: "输入机器人的QQ号码",
-              border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(1.0)),
-              ),
-            ),
+            decoration: Config().Inputdecoration_default_input_box(Icons.account_circle, "输入机器人的QQ号码"),
           ),
         ],
       ),
