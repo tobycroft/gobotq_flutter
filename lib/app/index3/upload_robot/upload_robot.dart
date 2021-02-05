@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gobotq_flutter/app/index3/upload_robot/url_upload_robot.dart';
 import 'package:gobotq_flutter/config/config.dart';
+import 'package:gobotq_flutter/extend/authaction/authaction.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/ui/ui_button.dart';
 
@@ -18,9 +20,10 @@ class _Upload_robot extends State<Upload_robot> {
   _Upload_robot(this._title);
 
   String qq;
+  bool _qq = false;
   String password;
   String secret;
-  String time;
+  double month = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +43,8 @@ class _Upload_robot extends State<Upload_robot> {
                   Text(
                     "提交记录",
                     style: Config().Text_style_title.copyWith(
-                      fontSize: 17,
-                    ),
+                          fontSize: 17,
+                        ),
                   ),
                   Icon(
                     Icons.format_list_bulleted,
@@ -59,58 +62,85 @@ class _Upload_robot extends State<Upload_robot> {
             child: Text("您需要积分才能提交机器人，请关注您的积分剩余"),
           ),
           SizedBox(
-            height: 10,
+            height: 25,
           ),
           TextField(
             keyboardType: TextInputType.number,
-            style: Theme
-                .of(context)
-                .textTheme
-                .headline4,
-            decoration: Config().Inputdecoration_default_input_box(Icons.account_circle, "输入机器人的QQ号码"),
+            style: Theme.of(context).textTheme.headline4,
+            decoration: Config().Inputdecoration_default_input_box(Icons.account_circle, "输入机器人的QQ号码", this._qq, "请输入数字"),
             onChanged: (String val) {
+              setState(() {
+                if (int.tryParse(val) == null) {
+                  this._qq = true;
+                } else {
+                  this._qq = false;
+                }
+              });
               this.qq = val.toString();
             },
           ),
           SizedBox(
-            height: 10,
+            height: 25,
           ),
           TextField(
             keyboardType: TextInputType.text,
-            style: Theme
-                .of(context)
-                .textTheme
-                .headline4,
-            decoration: Config().Inputdecoration_default_input_box(Icons.security, "输入机器人QQ密码"),
+            style: Theme.of(context).textTheme.headline4,
+            decoration: Config().Inputdecoration_default_input_box(Icons.security, "输入机器人QQ密码", false, "请输入数字"),
             onChanged: (String val) {
               this.password = val.toString();
             },
           ),
           SizedBox(
-            height: 10,
+            height: 25,
           ),
           Container(
             child: Text("你可以设定一个密钥，用于后期使用acfur绑定功能"),
           ),
           SizedBox(
-            height: 10,
+            height: 25,
           ),
           TextField(
             keyboardType: TextInputType.text,
-            style: Theme
-                .of(context)
-                .textTheme
-                .headline4,
-            decoration: Config().Inputdecoration_default_input_box(Icons.security_outlined, "设定绑定密钥"),
+            style: Theme.of(context).textTheme.headline4,
+            decoration: Config().Inputdecoration_default_input_box(Icons.security_outlined, "设定绑定密钥", false, ""),
             onChanged: (String val) {
               this.secret = val.toString();
             },
           ),
           SizedBox(
-            height: 10,
+            height: 40,
+          ),
+          Text(
+            "预定时长:${month.round()}个月",
+            style: Config().Text_style_main_page,
+          ),
+          SizedBox(
+            height: 40,
+          ),
+          Slider(
+            min: 1,
+            max: 12,
+            divisions: 11,
+            label: '${month.round()}个月',
+            value: month,
+            onChanged: (double val) {
+              setState(() {
+                month = val;
+                // month = double.parse(val.round().toString());
+                // print(month);
+              });
+            },
+          ),
+          SizedBox(
+            height: 80,
           ),
           UI_button().Button_submit(context, () async {
-            Net().Post(Config().Url, path, get, post, header)
+            Map post = await AuthAction().LoginObject();
+            post["bot"] = this.qq.toString();
+            post["password"] = this.password.toString();
+            post["secret"] = this.secret.toString();
+            post["month"] = month.toString();
+            Net().Post(Config().Url, Url_upload_robot().Upload_robot, null, post, null);
           }),
         ],
       ),

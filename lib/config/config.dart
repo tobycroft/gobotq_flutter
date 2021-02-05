@@ -43,7 +43,7 @@ class Config {
     ),
   );
 
-  InputDecoration Inputdecoration_default_input_box(IconData icon, String labelText) {
+  InputDecoration Inputdecoration_default_input_box(IconData icon, String labelText, bool error, String errorText) {
     return InputDecoration(
       contentPadding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
       prefixIcon: Icon(
@@ -52,6 +52,7 @@ class Config {
       ),
       labelText: labelText,
       labelStyle: Text_style_input_box,
+      errorText: error ? errorText : null,
       border: const OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
       ),
