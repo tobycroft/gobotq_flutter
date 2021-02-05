@@ -1,10 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gobotq_flutter/app/index3/upload_robot/upload_list.dart';
 import 'package:gobotq_flutter/app/index3/upload_robot/url_upload_robot.dart';
+import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/extend/authaction/authaction.dart';
+import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
+import 'package:gobotq_flutter/tuuz/net/ret.dart';
 import 'package:gobotq_flutter/tuuz/ui/ui_button.dart';
+import 'package:gobotq_flutter/tuuz/win/close.dart';
 
 class Upload_robot extends StatefulWidget {
   String _title;
@@ -35,7 +42,9 @@ class _Upload_robot extends State<Upload_robot> {
         ),
         actions: [
           FlatButton(
-              onPressed: () async {},
+              onPressed: () async {
+                Windows().Open(context, Upload_list("机器人提交记录"));
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -139,8 +148,16 @@ class _Upload_robot extends State<Upload_robot> {
             post["bot"] = this.qq.toString();
             post["password"] = this.password.toString();
             post["secret"] = this.secret.toString();
-            post["month"] = month.toString();
-            Net().Post(Config().Url, Url_upload_robot().Upload_robot, null, post, null);
+            post["month"] = month.round().toString();
+            String ret = await Net().Post(Config().Url, Url_upload_robot().Upload_robot, null, post, null);
+            Map json = jsonDecode(ret);
+            if (Auth().Return_login_check(context, json)) {
+              if (Ret().Check_isok(context, json)) {
+                Alert().Confirm(context, json["echo"], json["echo"], () {
+                  Windows().Close(this.context);
+                });
+              }
+            }
           }),
         ],
       ),
