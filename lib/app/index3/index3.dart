@@ -30,8 +30,9 @@ class _Index3 extends State<Index3> {
         crossAxisCount: 2,
         children: [
           FlatButton(
-            color: Colors.lightGreen,
+            color: Colors.black87,
             splashColor: Colors.white,
+            textColor: Colors.white,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

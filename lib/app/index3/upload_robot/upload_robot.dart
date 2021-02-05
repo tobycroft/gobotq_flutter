@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gobotq_flutter/config/config.dart';
+import 'package:gobotq_flutter/tuuz/ui/ui_input.dart';
 
 class Upload_robot extends StatefulWidget {
   String _title;
@@ -43,6 +44,11 @@ class _Upload_robot extends State<Upload_robot> {
                   ),
                 ],
               )),
+        ],
+      ),
+      body: ListView(
+        children: [
+          Ui_input().TextBox(context, TextInputType.number, Icon(Icons.account_box), "label"),
         ],
       ),
     );
