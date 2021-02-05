@@ -28,14 +28,19 @@ class Config {
     fontSize: 24,
   );
 
+  TextStyle Text_style_input_box = TextStyle(
+    fontSize: 24,
+  );
+
   InputDecoration Inputdecoration_default_input_box(IconData icon, String labelText) {
     return InputDecoration(
-      contentPadding: EdgeInsets.only(top: 10, bottom: 10),
-      icon: Icon(
+      contentPadding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
+      prefixIcon: Icon(
         icon,
         size: 32,
       ),
       labelText: labelText,
+      labelStyle: Text_style_input_box,
       border: const OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
       ),
