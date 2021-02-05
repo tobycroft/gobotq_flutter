@@ -32,6 +32,18 @@ class Config {
     fontSize: 24,
   );
 
+
+  TextStyle Text_button_default = TextStyle(
+    fontSize: 24,
+  );
+
+  ShapeBorder Shape_button_default = const RoundedRectangleBorder(
+    side: BorderSide.none,
+    borderRadius: BorderRadius.all(
+      Radius.circular(20),
+    ),
+  );
+
   InputDecoration Inputdecoration_default_input_box(IconData icon, String labelText) {
     return InputDecoration(
       contentPadding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),

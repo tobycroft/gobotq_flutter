@@ -16,6 +16,11 @@ class _Upload_robot extends State<Upload_robot> {
 
   _Upload_robot(this._title);
 
+  String qq;
+  String password;
+  String secret;
+  String time;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,11 +54,61 @@ class _Upload_robot extends State<Upload_robot> {
       body: ListView(
         padding: EdgeInsets.only(top: 20, left: 20, right: 20),
         children: [
+          Container(
+            child: Text("您需要积分才能提交机器人，请关注您的积分剩余"),
+          ),
+          SizedBox(
+            height: 10,
+          ),
           TextField(
             keyboardType: TextInputType.number,
             style: Theme.of(context).textTheme.headline4,
             decoration: Config().Inputdecoration_default_input_box(Icons.account_circle, "输入机器人的QQ号码"),
+            onChanged: (String val) {
+              this.qq = val.toString();
+            },
           ),
+          SizedBox(
+            height: 10,
+          ),
+          TextField(
+            keyboardType: TextInputType.text,
+            style: Theme.of(context).textTheme.headline4,
+            decoration: Config().Inputdecoration_default_input_box(Icons.security, "输入机器人QQ密码"),
+            onChanged: (String val) {
+              this.password = val.toString();
+            },
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            child: Text("你可以设定一个密钥，用于后期使用acfur绑定功能"),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          TextField(
+            keyboardType: TextInputType.text,
+            style: Theme.of(context).textTheme.headline4,
+            decoration: Config().Inputdecoration_default_input_box(Icons.security_outlined, "设定绑定密钥"),
+            onChanged: (String val) {
+              this.secret = val.toString();
+            },
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          RaisedButton(
+            padding: EdgeInsets.all(10),
+            color: Colors.lightGreen,
+            child: Text(
+              "提交",
+              style: Config().Text_button_default,
+            ),
+            onPressed: () async {},
+            shape: Config().Shape_button_default,
+          )
         ],
       ),
     );
