@@ -25,10 +25,12 @@ class Alert {
                       Navigator.pop(context);
                     },
                     child: Text("取消")),
-                CupertinoButton(onPressed: (){
-                  onPressed_yes();
-                  Navigator.pop(context);
-                }, child: Text("确定")),
+                CupertinoButton(
+                    onPressed: () {
+                      onPressed_yes();
+                      Navigator.pop(context);
+                    },
+                    child: Text("确定")),
               ],
             ));
   }
@@ -46,7 +48,7 @@ class Alert {
                         Windows().Close(context);
                       } else {
                         Windows().Close(context);
-                        on_press;
+                        on_press();
                       }
                     },
                     child: Text("确认")),
@@ -67,7 +69,7 @@ class Alert {
                         Windows().Close(context);
                       } else {
                         Windows().Close(context);
-                        on_press;
+                        on_press();
                       }
                     },
                     child: Text("确认")),
