@@ -1,24 +1,48 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:gobotq_flutter/app/index1/robot_info/url_robot_info.dart';
+import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
+import 'package:gobotq_flutter/extend/authaction/authaction.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
+import 'package:gobotq_flutter/tuuz/net/net.dart';
+import 'package:gobotq_flutter/tuuz/net/ret.dart';
 
 class Robot_info_index extends StatefulWidget {
-  var robot_info;
+  var _page_param;
 
-  Robot_info_index(this.robot_info);
+  Robot_info_index(this._page_param);
 
   @override
-  State<StatefulWidget> createState() => _robot_info_index(this.robot_info);
+  State<StatefulWidget> createState() => _robot_info_index(this._page_param);
 }
 
-class _robot_info_index extends State<Robot_info_index> {
-  var robot_info;
+Map _robot_info = {};
 
-  _robot_info_index(this.robot_info);
+class _robot_info_index extends State<Robot_info_index> {
+  var _page_param;
+
+  _robot_info_index(this._page_param);
 
   @override
   void initState() {
+    get_robot_info();
     super.initState();
+  }
+
+  Future<void> get_robot_info() async {
+    Map post = await AuthAction().LoginObject();
+    post["gid"] = this._page_param["bot"].toString();
+    String ret = await Net().Post(Config().Url, Url_robot_info().Robot_info, null, post, null);
+    Map json = jsonDecode(ret);
+    if (Auth().Return_login_check(context, json)) {
+      if (Ret().Check_isok(context, json)) {
+        setState(() {
+          _robot_info = json["data"];
+        });
+      }
+    }
   }
 
   @override
@@ -43,7 +67,7 @@ class _robot_info_index extends State<Robot_info_index> {
                   child: ClipOval(
                     //圆形头像
                     child: Image.network(
-                      this.robot_info["img"].toString(),
+                      this._page_param["img"].toString(),
                       width: 100,
                     ),
                   ),
@@ -64,13 +88,13 @@ class _robot_info_index extends State<Robot_info_index> {
             leading: ClipOval(
               //圆形头像
               child: Image.network(
-                this.robot_info["img"].toString(),
+                _robot_info["img"].toString(),
                 width: 40,
               ),
             ),
             title: Text("机器人账号"),
             subtitle: Text(
-              this.robot_info["bot"].toString(),
+              _robot_info["bot"].toString(),
               style: Config().Text_style_notimportant_auto,
             ),
             // trailing: Icon(Icons.chevron_right),
