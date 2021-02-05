@@ -32,7 +32,6 @@ class Config {
     fontSize: 24,
   );
 
-
   TextStyle Text_button_default = TextStyle(
     fontSize: 24,
   );
@@ -61,9 +60,9 @@ class Config {
 
   String ProxyURL = "http://10.0.0.100:9000";
 
-  // bool Proxy_debug = true;
-  bool Proxy_debug = false;
+  bool Proxy_debug = true;
+  String Url = "127.0.0.1";
 
-  String Url = "api.tuuz.cn:15088";
-// String Url = "127.0.0.1";
+// bool Proxy_debug = false;
+// String Url = "api.tuuz.cn:15088";
 }

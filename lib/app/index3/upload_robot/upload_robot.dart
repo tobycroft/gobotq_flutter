@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gobotq_flutter/config/config.dart';
-import 'package:gobotq_flutter/tuuz/ui/ui_input.dart';
+import 'package:gobotq_flutter/tuuz/net/net.dart';
+import 'package:gobotq_flutter/tuuz/ui/ui_button.dart';
 
 class Upload_robot extends StatefulWidget {
   String _title;
@@ -39,8 +40,8 @@ class _Upload_robot extends State<Upload_robot> {
                   Text(
                     "提交记录",
                     style: Config().Text_style_title.copyWith(
-                          fontSize: 17,
-                        ),
+                      fontSize: 17,
+                    ),
                   ),
                   Icon(
                     Icons.format_list_bulleted,
@@ -62,7 +63,10 @@ class _Upload_robot extends State<Upload_robot> {
           ),
           TextField(
             keyboardType: TextInputType.number,
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme
+                .of(context)
+                .textTheme
+                .headline4,
             decoration: Config().Inputdecoration_default_input_box(Icons.account_circle, "输入机器人的QQ号码"),
             onChanged: (String val) {
               this.qq = val.toString();
@@ -73,7 +77,10 @@ class _Upload_robot extends State<Upload_robot> {
           ),
           TextField(
             keyboardType: TextInputType.text,
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme
+                .of(context)
+                .textTheme
+                .headline4,
             decoration: Config().Inputdecoration_default_input_box(Icons.security, "输入机器人QQ密码"),
             onChanged: (String val) {
               this.password = val.toString();
@@ -90,7 +97,10 @@ class _Upload_robot extends State<Upload_robot> {
           ),
           TextField(
             keyboardType: TextInputType.text,
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme
+                .of(context)
+                .textTheme
+                .headline4,
             decoration: Config().Inputdecoration_default_input_box(Icons.security_outlined, "设定绑定密钥"),
             onChanged: (String val) {
               this.secret = val.toString();
@@ -99,16 +109,9 @@ class _Upload_robot extends State<Upload_robot> {
           SizedBox(
             height: 10,
           ),
-          RaisedButton(
-            padding: EdgeInsets.all(10),
-            color: Colors.lightGreen,
-            child: Text(
-              "提交",
-              style: Config().Text_button_default,
-            ),
-            onPressed: () async {},
-            shape: Config().Shape_button_default,
-          )
+          UI_button().Button_submit(context, () async {
+            Net().Post(Config().Url, path, get, post, header)
+          }),
         ],
       ),
     );
