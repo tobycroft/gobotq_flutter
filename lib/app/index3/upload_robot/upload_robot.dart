@@ -68,7 +68,13 @@ class _Upload_robot extends State<Upload_robot> {
         padding: EdgeInsets.only(top: 20, left: 20, right: 20),
         children: [
           Container(
-            child: Text("您需要积分才能提交机器人，请关注您的积分剩余"),
+            child: Text("可以自助提交机器人，提交后请在开发群542749156中联系管理告知"),
+          ),
+          Container(
+            child: Text("每个用于允许一次性提交3个机器人，如果需要更大量，请联系管理"),
+          ),
+          Container(
+            child: Text("如果需要清除提交记录，请联系管理员"),
           ),
           SizedBox(
             height: 25,
