@@ -1,7 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:gobotq_flutter/app/index1/robot_info/white/bot_white_list_add.dart';
+import 'package:gobotq_flutter/app/index1/robot_info/white/url_white.dart';
+import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/extend/authaction/authaction.dart';
+import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
+import 'package:gobotq_flutter/tuuz/net/ret.dart';
+import 'package:gobotq_flutter/tuuz/win/close.dart';
 
 class BotWhiteList extends StatefulWidget {
   String _title;
@@ -18,13 +28,28 @@ class _BotWhiteList extends State<BotWhiteList> {
 
   _BotWhiteList(this._title, this._pageparam);
 
-  Future<void> get_data() async {
-    Map post =AuthAction().LoginObject();
-    post["bot"]=this._pageparam["bot"];
-    
-    String ret=Net().Post(Config().Url, , get, post, header)
-    
-    
+  @override
+  void initState() {
+    setState(() {
+      get_data(context, this._pageparam["bot"].toString());
+    });
+    super.initState();
+  }
+
+  Future<void> get_data(BuildContext context, String bot) async {
+    Map post = await AuthAction().LoginObject();
+    post["bot"] = bot;
+
+    String ret = await Net().Post(Config().Url, Url_white().white_list, null, post, null);
+    Map json = jsonDecode(ret);
+    if (Auth().Return_login_check(context, json)) {
+      if (Ret().Check_isok(context, json)) {
+        _white_group = json["data"];
+        setState(() {
+          _white_group = json["data"];
+        });
+      }
+    }
   }
 
   @override
@@ -37,7 +62,9 @@ class _BotWhiteList extends State<BotWhiteList> {
         ),
         actions: [
           FlatButton(
-            onPressed: () async {},
+            onPressed: () async {
+              Windows().Open(context, Bot_white_list_add(this._title, this._pageparam));
+            },
             child: Icon(
               Icons.add_circle_outline,
               color: Colors.white,
@@ -45,31 +72,114 @@ class _BotWhiteList extends State<BotWhiteList> {
           ),
         ],
       ),
-      body: null,
+      body: EasyRefresh(
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            String groupname = "";
+            var _data = _white_group[index];
+            if (_data["group_info"] != null) {
+              groupname = _data["group_info"]["group_name"].toString();
+            } else {
+              groupname = "暂时还未拉入这个群";
+            }
+
+            return new Slidable(
+              actionPane: SlidableScrollActionPane(),
+              //滑出选项的面板 动画
+              actionExtentRatio: 0.25,
+              child: ListTile(
+                leading: null,
+                title: Text(groupname),
+                subtitle: Text(_data["gid"].toString()),
+                trailing: null,
+                onTap: () async {},
+              ),
+              secondaryActions: [
+                IconSlideAction(
+                  caption: '删除',
+                  color: Colors.red,
+                  icon: Icons.delete_forever,
+                  onTap: () async {
+                    bool ret = await delete_data(context, _data["bot"].toString(), _data["gid"].toString());
+                    if (ret) {
+                      setState(() {
+                        _white_group.removeAt(index);
+                      });
+                    }
+                  },
+                )
+              ],
+            );
+          },
+          itemCount: _white_group.length,
+        ),
+        onRefresh: () async {
+          get_data(context, this._pageparam["bot"].toString());
+        },
+      ),
     );
+  }
+}
+
+Future<bool> delete_data(BuildContext context, String bot, gid) async {
+  Map post = await AuthAction().LoginObject();
+  post["bot"] = bot;
+  post["gid"] = gid;
+
+  String ret = await Net().Post(Config().Url, Url_white().white_delete, null, post, null);
+  Map json = jsonDecode(ret);
+  if (Auth().Return_login_check(context, json)) {
+    if (Ret().Check_isok(context, json)) {
+      Alert().Confirm(context, json["echo"], json["data"], () {});
+    }
   }
 }
 
 List _white_group = [];
 
-class _list_builder extends StatelessWidget {
-  BuildContext context;
-  var _index;
-  var _pageparam;
-
-  _list_builder(this.context, this._index, this._pageparam);
-
-  @override
-  Widget build(BuildContext context) {
-    return Dismissible(
-      key: Key(this._index.toString()),
-      child: ListTile(
-        leading: null,
-        title: this._pageparam,
-        subtitle: this._pageparam,
-        trailing: null,
-        onTap: () async {},
-      ),
-    );
-  }
-}
+// class _list_builder extends State {
+//   BuildContext context;
+//   var _index;
+//   var _data;
+//
+//   _list_builder(this.context, this._index, this._data);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     String groupname = "";
+//     if (this._data["group_info"] != null) {
+//       groupname = this._data["group_info"]["group_name"].toString();
+//     } else {
+//       groupname = "暂时还未拉入这个群";
+//     }
+//
+//     return Slidable(
+//       actionPane: SlidableScrollActionPane(),
+//       //滑出选项的面板 动画
+//       actionExtentRatio: 0.25,
+//       key: Key(this._index.toString()),
+//       child: ListTile(
+//         leading: null,
+//         title: Text(groupname),
+//         subtitle: Text(this._data["gid"].toString()),
+//         trailing: null,
+//         onTap: () async {},
+//       ),
+//       secondaryActions: [
+//         IconSlideAction(
+//           caption: '删除',
+//           color: Colors.red,
+//           icon: Icons.delete_forever,
+//           onTap: () async {
+//             _white_group.removeAt(this._index);
+//
+//             bool ret = await delete_data(context, this._data["bot"].toString(), this._data["gid"].toString());
+//             if (ret) {
+//               setState(() {});
+//             }
+//           },
+//         )
+//       ],
+//     );
+//   }
+// }
