@@ -1,6 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:gobotq_flutter/app/index1/robot_info/friend/friend_white_list.dart';
+import 'package:gobotq_flutter/app/index1/robot_info/list/bot_friend_list.dart';
+import 'package:gobotq_flutter/app/index1/robot_info/list/bot_group_list.dart';
 import 'package:gobotq_flutter/app/index1/robot_info/url_robot_info.dart';
 import 'package:gobotq_flutter/app/index1/robot_info/white/bot_white_list.dart';
 import 'package:gobotq_flutter/config/auth.dart';
@@ -166,7 +169,7 @@ class _robot_info_index extends State<Robot_info_index> {
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),
             onTap: () async {
-              Alert().Confirm(context, "title", "content", () {});
+              Windows().Open(context, BotGroupList("已加入的群", this._page_param));
             },
           ),
           ListTile(
@@ -202,7 +205,7 @@ class _robot_info_index extends State<Robot_info_index> {
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),
             onTap: () async {
-              Alert().Confirm(context, "title", "content", () {});
+             Windows().Open(context, BotFriendList("机器人好友列表", this._page_param));
             },
           ),
           ListTile(
@@ -220,7 +223,7 @@ class _robot_info_index extends State<Robot_info_index> {
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),
             onTap: () async {
-              Alert().Confirm(context, "title", "content", () {});
+              Windows().Open(context, FriendWhiteList("可被添加的白名单", this._page_param));
             },
           ),
         ],

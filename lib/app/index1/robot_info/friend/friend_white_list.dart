@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:gobotq_flutter/app/index1/robot_info/list/bot_group_list_add.dart';
-import 'package:gobotq_flutter/app/index1/robot_info/list/url_list.dart';
+import 'package:gobotq_flutter/app/index1/robot_info/friend/friend_white_list_add.dart';
+import 'package:gobotq_flutter/app/index1/robot_info/friend/url_friend.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/extend/authaction/authaction.dart';
@@ -13,26 +13,24 @@ import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/net/ret.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
 
-class BotGroupList extends StatefulWidget {
+class FriendWhiteList extends StatefulWidget {
   String _title;
   var _pageparam;
 
-  BotGroupList(this._title, this._pageparam);
+  FriendWhiteList(this._title, this._pageparam);
 
-  _BotGroupList createState() => _BotGroupList(this._title, this._pageparam);
+  _FriendWhiteList createState() => _FriendWhiteList(this._title, this._pageparam);
 }
 
-class _BotGroupList extends State<BotGroupList> {
+class _FriendWhiteList extends State<FriendWhiteList> {
   String _title;
   var _pageparam;
 
-  _BotGroupList(this._title, this._pageparam);
+  _FriendWhiteList(this._title, this._pageparam);
 
   @override
   void initState() {
-    setState(() {
-      get_data(context, this._pageparam["bot"].toString());
-    });
+    get_data(context, this._pageparam["bot"].toString());
     super.initState();
   }
 
@@ -40,13 +38,17 @@ class _BotGroupList extends State<BotGroupList> {
     Map post = await AuthAction().LoginObject();
     post["bot"] = bot;
 
-    String ret = await Net().Post(Config().Url, Url_List().group_list, null, post, null);
+    String ret = await Net().Post(Config().Url, Url_friend().white_list, null, post, null);
     Map json = jsonDecode(ret);
+
     if (Auth().Return_login_check(context, json)) {
       if (Ret().Check_isok(context, json)) {
-        _white_group = json["data"];
         setState(() {
-          _white_group = json["data"];
+          if (json["data"] != null) {
+            _white_list = json["data"];
+          } else {
+            _white_list = [];
+          }
         });
       }
     }
@@ -63,7 +65,7 @@ class _BotGroupList extends State<BotGroupList> {
         actions: [
           FlatButton(
             onPressed: () async {
-              Windows().Open(context, Bot_group_list_add(this._title, this._pageparam));
+              Windows().Open(context, FriendWhiteListAdd(this._title, this._pageparam));
             },
             child: Icon(
               Icons.add_circle_outline,
@@ -75,16 +77,22 @@ class _BotGroupList extends State<BotGroupList> {
       body: EasyRefresh(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            var _data = _white_group[index];
+            String username = "";
+            var _data = _white_list[index];
+            if (_data["user_info"] != null) {
+              username = _data["user_info"]["nickname"].toString();
+            } else {
+              username = "该好友暂时还未添加你的机器人";
+            }
 
-            return new Slidable(
+            return Slidable(
               actionPane: SlidableScrollActionPane(),
               //滑出选项的面板 动画
               actionExtentRatio: 0.25,
               child: ListTile(
                 leading: null,
-                title: Text(_data["group_name"].toString()),
-                subtitle: Text(_data["gid"].toString()),
+                title: Text(username),
+                subtitle: Text(_data["uid"].toString()),
                 trailing: null,
                 onTap: () async {},
               ),
@@ -94,10 +102,10 @@ class _BotGroupList extends State<BotGroupList> {
                   color: Colors.red,
                   icon: Icons.delete_forever,
                   onTap: () async {
-                    bool ret = await delete_data(context, _data["bot"].toString(), _data["gid"].toString());
+                    bool ret = await delete_data(context, _data["bot"].toString(), _data["uid"].toString());
                     if (ret) {
                       setState(() {
-                        _white_group.removeAt(index);
+                        _white_list.removeAt(index);
                       });
                     }
                   },
@@ -105,7 +113,7 @@ class _BotGroupList extends State<BotGroupList> {
               ],
             );
           },
-          itemCount: _white_group.length,
+          itemCount: _white_list.length,
         ),
         onRefresh: () async {
           get_data(context, this._pageparam["bot"].toString());
@@ -115,12 +123,12 @@ class _BotGroupList extends State<BotGroupList> {
   }
 }
 
-Future<bool> delete_data(BuildContext context, String bot, gid) async {
+Future<bool> delete_data(BuildContext context, String bot, qq) async {
   Map post = await AuthAction().LoginObject();
   post["bot"] = bot;
-  post["gid"] = gid;
+  post["qq"] = qq;
 
-  String ret = await Net().Post(Config().Url, Url_List().group_exit, null, post, null);
+  String ret = await Net().Post(Config().Url, Url_friend().white_delete, null, post, null);
   Map json = jsonDecode(ret);
   if (Auth().Return_login_check(context, json)) {
     if (Ret().Check_isok(context, json)) {
@@ -131,4 +139,4 @@ Future<bool> delete_data(BuildContext context, String bot, gid) async {
   return false;
 }
 
-List _white_group = [];
+List _white_list = [];

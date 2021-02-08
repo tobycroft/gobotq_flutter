@@ -28,6 +28,7 @@ class _Bot_group_list_add extends State<Bot_group_list_add> {
   _Bot_group_list_add(this._title, this._pageparam);
 
   String gid;
+  String text;
   bool _gid = false;
 
   @override
@@ -70,11 +71,23 @@ class _Bot_group_list_add extends State<Bot_group_list_add> {
             },
           ),
           SizedBox(
+            height: 25,
+          ),
+          TextField(
+            keyboardType: TextInputType.number,
+            style: Theme.of(context).textTheme.headline4,
+            decoration: Config().Inputdecoration_default_input_box(Icons.account_circle, "加群验证", false, "请输入数字"),
+            onChanged: (String val) {
+              this.text = val.toString();
+            },
+          ),
+          SizedBox(
             height: 50,
           ),
           UI_button().Button_submit(context, () async {
             Map post = await AuthAction().LoginObject();
             post["gid"] = this.gid.toString();
+            post["text"] = this.text.toString();
             post["bot"] = this._pageparam["bot"].toString();
             String ret = await Net().Post(Config().Url, Url_List().group_add, null, post, null);
             Map json = jsonDecode(ret);
