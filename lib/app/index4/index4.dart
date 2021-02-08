@@ -15,7 +15,9 @@ import 'package:gobotq_flutter/extend/authaction/authaction.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
+import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:package_info/package_info.dart';
+import 'package:r_upgrade/r_upgrade.dart';
 
 class Index4 extends StatefulWidget {
   String _title;
@@ -26,6 +28,8 @@ class Index4 extends StatefulWidget {
   _Index4 createState() => _Index4(this._title);
 }
 
+double _percent = 0;
+
 class _Index4 extends State<Index4> {
   String _title;
 
@@ -35,7 +39,13 @@ class _Index4 extends State<Index4> {
   void initState() {
     get_user_info();
     get_user_balance();
+
     super.initState();
+    RUpgrade.stream.listen((DownloadInfo info) {
+      setState(() {
+        _percent = info.percent;
+      });
+    });
   }
 
   @override
@@ -160,8 +170,7 @@ class _Index4 extends State<Index4> {
               //增加
               crossAxisCount: 3,
               children: <Widget>[
-                Container(
-                  width: 100,
+                FlatButton(
                   color: Colors.deepPurpleAccent,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -176,6 +185,7 @@ class _Index4 extends State<Index4> {
                       )
                     ],
                   ),
+                  onPressed: () {},
                 ),
                 FlatButton(
                   color: Colors.green,
@@ -193,28 +203,35 @@ class _Index4 extends State<Index4> {
                     ],
                   ),
                   onPressed: () async {
-//                     var ret = await RUpgrade.upgrade('http://pandorabox.tuuz.cc:8000/app/app-release.apk',
-//                         fileName: 'app-release.apk', isAutoRequestInstall: true, notificationStyle: NotificationStyle.speechAndPlanTime, useDownloadManager: false);
-//                     setState(() {});
-//                     print(ret);
                     PackageInfo info = await PackageInfo.fromPlatform();
-
+                    int version_code = int.tryParse(info.buildNumber);
                     Map<String, String> post = {
                       "platform": Platform.operatingSystem.toString(),
                       "dart": Platform.version.toString(),
                       "system": Platform.operatingSystemVersion.toString(),
                       "version": info.version,
-                      "version_code": info.buildNumber,
+                      "version_code": version_code.toString(),
                       "package_name": info.packageName,
                       "appname": info.appName,
                     };
-                    // if (Platform.isAndroid) {
-                    //   post["version_code"] = (await DeviceInfoPlugin().androidInfo).version.release;
-                    // } else {
-                    //   post["version_code"] = "1";
-                    // }
+
                     String ret = await Net().Post(Config().Url, Url().Update_path, null, post, null);
-                    print(ret);
+                    Map json = jsonDecode(ret);
+                    if (json["code"] == 0) {
+                      Map data = json["data"];
+
+                      if (version_code < int.parse(data["version"])) {
+                        int id = await RUpgrade.upgrade(
+                          'http://pandorabox.tuuz.cc:8000/app/app-release.apk',
+                          fileName: 'app-release.apk',
+                          isAutoRequestInstall: true,
+                          notificationStyle: NotificationStyle.speechAndPlanTime,
+                          useDownloadManager: false,
+                        );
+                      } else {
+                        Alert().Confirm(context, "没有新的更新了", "", () {});
+                      }
+                    }
                   },
                 ),
                 FlatButton(
@@ -239,6 +256,20 @@ class _Index4 extends State<Index4> {
               ]),
           Column(
             children: [
+              LiquidLinearProgressIndicator(
+                value: _percent,
+                // Defaults to 0.5.
+                valueColor: AlwaysStoppedAnimation(Colors.green),
+                // Defaults to the current Theme's accentColor.
+                backgroundColor: Colors.transparent,
+                // Defaults to the current Theme's backgroundColor.
+                borderColor: Colors.blue,
+                borderWidth: 0.0,
+                borderRadius: 12.0,
+                direction: Axis.vertical,
+                // The direction the liquid moves (Axis.vertical = bottom to top, Axis.horizontal = left to right). Defaults to Axis.horizontal.
+                center: Text(_percent.toString()),
+              ),
               ListTile(
                 leading: Icon(
                   Icons.account_balance_wallet,
