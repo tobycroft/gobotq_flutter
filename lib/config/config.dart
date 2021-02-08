@@ -12,7 +12,7 @@ class Config {
 
   TextStyle Text_style_notimportant_auto = TextStyle(
     // fontSize: 16,
-    color: Colors.black12,
+    color: Colors.black38,
   );
 
   TextStyle Text_style_Name = TextStyle(
@@ -61,9 +61,9 @@ class Config {
 
   String ProxyURL = "http://10.0.0.100:9000";
 
-  // bool Proxy_debug = true;
-  // String Url = "127.0.0.1";
-  //
-  bool Proxy_debug = false;
-  String Url = "api.tuuz.cn:15088";
+  bool Proxy_debug = true;
+  String Url = "127.0.0.1";
+
+// bool Proxy_debug = false;
+// String Url = "api.tuuz.cn:15088";
 }

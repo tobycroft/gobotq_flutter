@@ -1,17 +1,18 @@
 import 'dart:convert';
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:gobotq_flutter/app/index4/about/about.dart';
 import 'package:gobotq_flutter/app/index4/balance_record/balance_record.dart';
 import 'package:gobotq_flutter/app/index4/url_index4.dart';
 import 'package:gobotq_flutter/config/auth.dart';
+import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/config/res.dart';
 import 'package:gobotq_flutter/extend/authaction/authaction.dart';
-import 'package:gobotq_flutter/tuuz/win/close.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
+import 'package:gobotq_flutter/tuuz/win/close.dart';
 
 class Index4 extends StatefulWidget {
   String _title;
@@ -190,22 +191,24 @@ class _Index4 extends State<Index4> {
                     ],
                   ),
                 ),
-                Container(
-                  width: 100,
+                FlatButton(
                   color: Colors.red,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        Icons.restore_page,
+                        Icons.weekend,
                         size: 80,
                       ),
                       Text(
-                        "编写中",
+                        "关于我们",
                         style: Config().Text_Style_default,
                       )
                     ],
                   ),
+                  onPressed: () async {
+                    Windows().Open(context, Index4_about());
+                  },
                 ),
               ]),
           Column(

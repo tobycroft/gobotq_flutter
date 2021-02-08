@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/url_group_setting.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
@@ -64,7 +63,7 @@ class _GroupSettingSet extends State<GroupSettingSet> {
                   _data[key]["value"] = false;
                 }
                 _setting.add(ListTile(
-                  leading: Icon(Icons.build),
+                  leading: Icon(Icons.offline_pin),
                   title: Text(_data[key]["name"].toString()),
                   subtitle: Text(str),
                   trailing: Switch(
@@ -86,7 +85,7 @@ class _GroupSettingSet extends State<GroupSettingSet> {
               {
                 _setting.add(
                   ListTile(
-                    leading: Icon(Icons.build),
+                    leading: Icon(Icons.confirmation_number),
                     title: Text(_data[key]["name"].toString()),
                     subtitle: TextField(
                       keyboardType: TextInputType.number,
@@ -116,7 +115,7 @@ class _GroupSettingSet extends State<GroupSettingSet> {
             case "string":
               {
                 _setting.add(ListTile(
-                  leading: Icon(Icons.build),
+                  leading: Icon(Icons.textsms),
                   title: Text(_data[key]["name"].toString()),
                   subtitle: TextField(
                     maxLines: 3,

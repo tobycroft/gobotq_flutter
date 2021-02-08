@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:gobotq_flutter/app/index1/help/help.dart';
-import 'package:gobotq_flutter/app/index1/robot_info/robot_info.dart';
-import 'package:gobotq_flutter/config/auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:gobotq_flutter/app/index1/help/help.dart';
+import 'package:gobotq_flutter/app/index1/robot_info/robot_info.dart';
 import 'package:gobotq_flutter/app/login/login.dart';
+import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/popup/popupmenu.dart';
 import 'package:gobotq_flutter/tuuz/storage/storage.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class Index1 extends StatefulWidget {
   String _title;
@@ -75,10 +75,10 @@ class _Index1 extends State<Index1> {
             icon: Icon(Icons.menu),
             offset: Offset(100, 100),
             itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
-              Tuuz_Popup().MenuItem(Icons.login, "登录", "login"),
-              Tuuz_Popup().MenuItem(Icons.logout, "退出登录", "logout"),
+              // Tuuz_Popup().MenuItem(Icons.login, "登录", "login"),
+              // Tuuz_Popup().MenuItem(Icons.logout, "退出登录", "logout"),
               Tuuz_Popup().MenuItem(Icons.help_center, "首页帮助", "index_help"),
-              Tuuz_Popup().MenuItem(Icons.qr_code, "扫码", "scanner"),
+              // Tuuz_Popup().MenuItem(Icons.qr_code, "扫码", "scanner"),
             ],
             onSelected: (String value) {
               print(value);
@@ -153,32 +153,22 @@ class BotItem extends StatelessWidget {
       leading: CircleAvatar(
         child: Image(image: NetworkImage(ret["img"])),
       ),
-      title: FlatButton(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              ret["cname"].toString(),
-              style: Config().Text_Style_default,
-            ),
-            Text(
-              ret["bot"].toString(),
-              style: Config().Text_Style_default,
-            )
-          ],
-        ),
-        onPressed: () {
-          //Todo：短按进入机器人信息
-          Windows().Open(this._context, Robot_info_index(this.item));
-        },
-        onLongPress: () {
-          //Todo：长按弹出菜单
-        },
+      contentPadding: EdgeInsets.only(left: 20, right: 20),
+      title: Text(
+        ret["cname"].toString(),
+        style: Config().Text_Style_default,
+      ),
+      subtitle: Text(
+        ret["bot"].toString(),
+        style: Config().Text_Style_default,
       ),
       trailing: Text(
         ret["date"].toString(),
         style: Config().Text_Style_default,
       ),
+      onTap: () async {
+        Windows().Open(this._context, Robot_info_index(this.item));
+      },
     );
   }
 

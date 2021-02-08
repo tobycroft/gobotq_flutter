@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gobotq_flutter/app/index1/robot_info/friend/friend_white_list.dart';
 import 'package:gobotq_flutter/app/index1/robot_info/list/bot_friend_list.dart';
 import 'package:gobotq_flutter/app/index1/robot_info/list/bot_group_list.dart';
@@ -12,6 +13,7 @@ import 'package:gobotq_flutter/extend/authaction/authaction.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/net/ret.dart';
+import 'package:gobotq_flutter/tuuz/toasts/toast.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
 
 class Robot_info_index extends StatefulWidget {
@@ -102,16 +104,23 @@ class _robot_info_index extends State<Robot_info_index> {
               _robot_info["bot"].toString(),
               style: Config().Text_style_notimportant_auto,
             ),
-            // trailing: Icon(Icons.chevron_right),
+            onLongPress: () async {
+              Toasts().Show("已经将账号复制到剪贴板");
+              Clipboard.setData(
+                ClipboardData(
+                  text: _robot_info["bot"].toString(),
+                ),
+              );
+            },
           ),
           ListTile(
             leading: Icon(
               Icons.timer_off,
               size: 40,
             ),
-            title: Text("机器人剩余使用时间"),
+            title: Text("机器人到期时间"),
             subtitle: Text(
-              "",
+              DateTime.fromMillisecondsSinceEpoch(double.parse((_robot_info["end_time"] * 1000).toString()).round()).toString(),
               style: Config().Text_style_notimportant_auto,
             ),
             trailing: Icon(Icons.chevron_right),
@@ -127,25 +136,7 @@ class _robot_info_index extends State<Robot_info_index> {
             ),
             title: Text("修改机器人名称"),
             subtitle: Text(
-              "修改机器人的显示名称",
-              style: Config().Text_style_notimportant_auto,
-            ),
-            trailing: Icon(Icons.chevron_right),
-            // trailing: Icon(Icons.chevron_right),
-            onTap: () async {
-              Alert().Confirm(context, "title", "content", () {});
-            },
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.image,
-              size: 40,
-            ),
-            title: Text(
-              "修改机器人头像",
-            ),
-            subtitle: Text(
-              "这将会修改机器人的头像",
+              _robot_info["cname"].toString(),
               style: Config().Text_style_notimportant_auto,
             ),
             trailing: Icon(Icons.chevron_right),
@@ -205,7 +196,7 @@ class _robot_info_index extends State<Robot_info_index> {
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),
             onTap: () async {
-             Windows().Open(context, BotFriendList("机器人好友列表", this._page_param));
+              Windows().Open(context, BotFriendList("机器人好友列表", this._page_param));
             },
           ),
           ListTile(

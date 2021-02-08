@@ -8,10 +8,9 @@ class Toasts {
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 1,
-      backgroundColor: Colors.black87,
+      backgroundColor: Colors.black54,
       textColor: Colors.white,
       fontSize: 16.0,
     );
   }
-
 }
