@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gobotq_flutter/config/config.dart';
+import 'package:gobotq_flutter/tuuz/toasts/toast.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
 
 class Index4_about extends StatefulWidget {
@@ -74,6 +76,14 @@ class _Index4_about extends State<Index4_about> {
           Text(
             "    你可以加入反馈群：542749156，有任何问题可以在群中向我们反馈！\r\n",
             style: TextStyle(fontSize: Config().Font_size_text),
+          ),
+          RaisedButton(
+            color: Colors.blue,
+            child: Text("点击复制群号"),
+            onPressed: () async {
+              Clipboard.setData(ClipboardData(text: "542749156"));
+              Toasts().Show("群号已经复制");
+            },
           ),
           RaisedButton(
             color: Colors.blue,
