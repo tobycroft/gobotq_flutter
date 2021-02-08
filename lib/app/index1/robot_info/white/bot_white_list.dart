@@ -130,9 +130,11 @@ Future<bool> delete_data(BuildContext context, String bot, gid) async {
   Map json = jsonDecode(ret);
   if (Auth().Return_login_check(context, json)) {
     if (Ret().Check_isok(context, json)) {
-      Alert().Confirm(context, json["echo"], json["data"], () {});
+      Alert().Confirm(context, json["echo"], json["echo"], () {});
+      return true;
     }
   }
+  return false;
 }
 
 List _white_group = [];
