@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -9,10 +10,12 @@ import 'package:gobotq_flutter/app/index4/url_index4.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/config/res.dart';
+import 'package:gobotq_flutter/config/url.dart';
 import 'package:gobotq_flutter/extend/authaction/authaction.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
+import 'package:package_info/package_info.dart';
 
 class Index4 extends StatefulWidget {
   String _title;
@@ -174,8 +177,7 @@ class _Index4 extends State<Index4> {
                     ],
                   ),
                 ),
-                Container(
-                  width: 100,
+                FlatButton(
                   color: Colors.green,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -185,11 +187,35 @@ class _Index4 extends State<Index4> {
                         size: 80,
                       ),
                       Text(
-                        "编写中",
+                        "版本",
                         style: Config().Text_Style_default,
                       )
                     ],
                   ),
+                  onPressed: () async {
+//                     var ret = await RUpgrade.upgrade('http://pandorabox.tuuz.cc:8000/app/app-release.apk',
+//                         fileName: 'app-release.apk', isAutoRequestInstall: true, notificationStyle: NotificationStyle.speechAndPlanTime, useDownloadManager: false);
+//                     setState(() {});
+//                     print(ret);
+                    PackageInfo info = await PackageInfo.fromPlatform();
+
+                    Map<String, String> post = {
+                      "platform": Platform.operatingSystem.toString(),
+                      "dart": Platform.version.toString(),
+                      "system": Platform.operatingSystemVersion.toString(),
+                      "version": info.version,
+                      "version_code": info.buildNumber,
+                      "package_name": info.packageName,
+                      "appname": info.appName,
+                    };
+                    // if (Platform.isAndroid) {
+                    //   post["version_code"] = (await DeviceInfoPlugin().androidInfo).version.release;
+                    // } else {
+                    //   post["version_code"] = "1";
+                    // }
+                    String ret = await Net().Post(Config().Url, Url().Update_path, null, post, null);
+                    print(ret);
+                  },
                 ),
                 FlatButton(
                   color: Colors.red,

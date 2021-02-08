@@ -1,11 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:gobotq_flutter/app/index1/index1.dart';
 import 'package:gobotq_flutter/app/index2/index2.dart';
 import 'package:gobotq_flutter/app/index3/index3.dart';
 import 'package:gobotq_flutter/app/index4/index4.dart';
-import 'package:flutter/material.dart';
-import 'package:gobotq_flutter/config/auth.dart';
-import 'package:gobotq_flutter/route.dart';
-import 'package:gobotq_flutter/tuuz/storage/storage.dart';
 
 void main() {
   Init().init();
@@ -13,7 +10,11 @@ void main() {
 }
 
 class Init {
-  void init() async {}
+  void init() async {
+    // PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    // print(packageInfo.appName);
+    // print(packageInfo.version);
+  }
 
   void is_login() async {}
 }

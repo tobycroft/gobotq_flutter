@@ -58,7 +58,7 @@ packages:
     source: hosted
     version: "1.0.0"
   device_info:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: device_info
       url: "https://pub.dartlang.org"
@@ -171,7 +171,7 @@ packages:
     source: hosted
     version: "1.3.0-nullsafety.3"
   package_info:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: package_info
       url: "https://pub.dartlang.org"
@@ -212,6 +212,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.2"
+  permission_handler:
+    dependency: "direct main"
+    description:
+      name: permission_handler
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.0+2"
+  permission_handler_platform_interface:
+    dependency: transitive
+    description:
+      name: permission_handler_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
   petitparser:
     dependency: transitive
     description:
@@ -240,6 +254,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.13"
+  r_upgrade:
+    dependency: "direct main"
+    description:
+      name: r_upgrade
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.2+3"
   shared_preferences:
     dependency: "direct main"
     description:
