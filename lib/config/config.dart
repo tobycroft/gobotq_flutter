@@ -64,6 +64,6 @@ class Config {
   // bool Proxy_debug = true;
   // String Url = "127.0.0.1";
 //
-bool Proxy_debug = false;
-String Url = "api.tuuz.cn:15088";
+  bool Proxy_debug = false;
+  String Url = "api.tuuz.cn:15088";
 }
