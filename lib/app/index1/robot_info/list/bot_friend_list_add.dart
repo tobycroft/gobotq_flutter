@@ -44,13 +44,16 @@ class _BotFriendListAdd extends State<BotFriendListAdd> {
         padding: EdgeInsets.only(top: 20, left: 20, right: 20),
         children: [
           Container(
-            child: Text("这里填写机器人可以加入的群"),
+            child: Text("这里填写机器人将要添加的QQ号码"),
           ),
           Container(
-            child: Text("如果不填写，机器人将无法拉入这个群"),
+            child: Text("请不要过于频繁的使用本功能，否则有可能被TXBan号"),
           ),
           Container(
-            child: Text("机器人会定期退群，机器人将会自动退出未加入白名单的群"),
+            child: Text("如果被Ban号，你将会被TX当成垃圾用户，后续将被限制添加好友"),
+          ),
+          Container(
+            child: Text("请尽量使用白名单功能，并让对方添加机器人而不是让机器人主动加人，建议每天只添加1-2人"),
           ),
           SizedBox(
             height: 25,
