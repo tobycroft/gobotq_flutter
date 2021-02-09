@@ -12,11 +12,9 @@ import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/config/res.dart';
 import 'package:gobotq_flutter/config/url.dart';
 import 'package:gobotq_flutter/extend/authaction/authaction.dart';
-import 'package:gobotq_flutter/main.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
-import 'package:jpush_flutter/jpush_flutter.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:package_info/package_info.dart';
 import 'package:r_upgrade/r_upgrade.dart';
@@ -187,21 +185,7 @@ class _Index4 extends State<Index4> {
                       )
                     ],
                   ),
-                  onPressed: () async {
-                    var fireDate = DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch + 1000);
-                    var localNotification = LocalNotification(
-                      id: 234,
-                      title: '我是推送测试标题wwwwwwwww',
-                      buildId: 1,
-                      content: '看到了说明已经成功了hahahaha',
-                      fireTime: fireDate,
-                      subtitle: '一个测试qqqqqqqq',
-                    );
-                    jpush.sendLocalNotification(localNotification).then((res) {
-                      print('sddd');
-                      setState(() {});
-                    });
-                  },
+                  onPressed: () async {},
                 ),
                 FlatButton(
                   color: Colors.green,
@@ -213,7 +197,7 @@ class _Index4 extends State<Index4> {
                         size: 80,
                       ),
                       Text(
-                        "版本",
+                        "更新版本",
                         style: Config.Text_Style_default,
                       )
                     ],
