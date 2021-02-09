@@ -221,13 +221,26 @@ class _Index4 extends State<Index4> {
                       Map data = json["data"];
 
                       if (version_code < int.parse(data["version"])) {
-                        int id = await RUpgrade.upgrade(
-                          'http://pandorabox.tuuz.cc:8000/app/app-release.apk',
-                          fileName: 'app-release.apk',
-                          isAutoRequestInstall: true,
-                          notificationStyle: NotificationStyle.speechAndPlanTime,
-                          useDownloadManager: false,
-                        );
+                        String upgrade_text = "";
+                        upgrade_text += "当权版本：";
+                        upgrade_text += info.version.toString() + "\r\n";
+                        upgrade_text += "有新版本：";
+                        upgrade_text += data["show_ver"].toString() + "\r\n";
+
+                        upgrade_text += "更新内容：\r\n";
+                        upgrade_text += data["upgrade_text"].toString() + "\r\n";
+
+                        upgrade_text += "更新日期:" + data["date"].toString();
+
+                        Alert.Simple(context, "有新的更新", upgrade_text, () {
+                          RUpgrade.upgrade(
+                            data["url"].toString(),
+                            fileName: data["file"].toString(),
+                            isAutoRequestInstall: true,
+                            notificationStyle: NotificationStyle.speechAndPlanTime,
+                            useDownloadManager: false,
+                          );
+                        });
                       } else {
                         Alert.Confirm(context, "没有新的更新了", "", () {});
                       }
