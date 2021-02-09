@@ -25,7 +25,7 @@ class Robot_info_index extends StatefulWidget {
   State<StatefulWidget> createState() => _robot_info_index(this._page_param);
 }
 
-Map _robot_info = {};
+Map _robot_info = {"end_time": 0};
 
 class _robot_info_index extends State<Robot_info_index> {
   var _page_param;

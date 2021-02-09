@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:gobotq_flutter/app/index1/bind_bot/bind_bot.dart';
 import 'package:gobotq_flutter/app/index1/help/help.dart';
 import 'package:gobotq_flutter/app/index1/robot_info/robot_info.dart';
 import 'package:gobotq_flutter/app/login/login.dart';
@@ -75,10 +76,10 @@ class _Index1 extends State<Index1> {
             icon: Icon(Icons.menu),
             offset: Offset(100, 100),
             itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
-              // Tuuz_Popup().MenuItem(Icons.login, "登录", "login"),
-              // Tuuz_Popup().MenuItem(Icons.logout, "退出登录", "logout"),
+              // Tuuz_Popup.MenuItem(Icons.login, "登录", "login"),
+              Tuuz_Popup.MenuItem(Icons.add_box, "绑定机器人", "bind_bot"),
               Tuuz_Popup.MenuItem(Icons.help_center, "首页帮助", "index_help"),
-              // Tuuz_Popup().MenuItem(Icons.qr_code, "扫码", "scanner"),
+              // Tuuz_Popup.MenuItem(Icons.qr_code, "扫码", "scanner"),
             ],
             onSelected: (String value) {
               print(value);
@@ -102,9 +103,9 @@ class _Index1 extends State<Index1> {
                     break;
                   }
 
-                case "scanner":
+                case "bind_bot":
                   {
-                    Alert.Simple(context, "扫码测试", "Scanner", () {});
+                    Windows.Open(context, BindBot("绑定一个机器人", null));
                     break;
                   }
 
