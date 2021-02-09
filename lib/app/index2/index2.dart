@@ -40,7 +40,9 @@ class _Index2 extends State<Index2> {
     if (Auth.Return_login_check(context, json)) {
       if (Ret.Check_isok(context, json)) {
         setState(() {
-          _group_control = json["data"];
+          if (json["data"] != null) {
+            _group_control = json["data"];
+          }
         });
       }
     }
@@ -53,7 +55,9 @@ class _Index2 extends State<Index2> {
     if (Auth.Return_login_check(context, json)) {
       if (Ret.Check_isok(context, json)) {
         setState(() {
-          _group_joined = json["data"];
+          if (json["data"] != null) {
+            _group_joined = json["data"];
+          }
         });
       }
     }

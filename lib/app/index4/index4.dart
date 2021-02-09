@@ -14,6 +14,7 @@ import 'package:gobotq_flutter/config/url.dart';
 import 'package:gobotq_flutter/extend/authaction/authaction.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
+import 'package:gobotq_flutter/tuuz/storage/storage.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:package_info/package_info.dart';
@@ -146,12 +147,23 @@ class _Index4 extends State<Index4> {
                         _user_info["qq"].toString(),
                         style: Config.Text_style_Name,
                       ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "长按>退出账号",
+                        style: Config.Text_style_Name,
+                      ),
                     ],
                   ),
                 ),
                 FlatButton(
                   onPressed: () {
                     Auth.Check_and_goto_login(context);
+                  },
+                  onLongPress: () async {
+                    Storage.Delete("__token__");
+                    Alert.Confirm(context, "成功退出", "", () {});
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: 20),
