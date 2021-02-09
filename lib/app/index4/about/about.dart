@@ -31,51 +31,51 @@ class _Index4_about extends State<Index4_about> {
           ),
           Text("1.和Acfur相比GobotQ有什么优势？",
               style: TextStyle(
-                fontSize: Config().Font_Size,
+                fontSize: Config.Font_Size,
               )),
           Text(
             "    程序更加先进，Acfur只能姬基于PHP开发，GobotQ如其名，采用Golang作为程序语言开发，在APP上，Acfur使用H5开发，GobotQ采用Flutter开发，性能更好，也更加安全\r\n",
-            style: TextStyle(fontSize: Config().Font_size_text),
+            style: TextStyle(fontSize: Config.Font_size_text),
           ),
           Text("2.软件要付钱吗？？",
               style: TextStyle(
-                fontSize: Config().Font_Size,
+                fontSize: Config.Font_Size,
               )),
           Text(
             "    不用！！！GobotQ的软件是完全免费的，也是永久免费的，可以放心使用\r\n",
-            style: TextStyle(fontSize: Config().Font_size_text),
+            style: TextStyle(fontSize: Config.Font_size_text),
           ),
           Text("3.程序会一直更新吗？",
               style: TextStyle(
-                fontSize: Config().Font_Size,
+                fontSize: Config.Font_Size,
               )),
           Text(
             "    如果有新的需求就会一直更新的\r\n",
-            style: TextStyle(fontSize: Config().Font_size_text),
+            style: TextStyle(fontSize: Config.Font_size_text),
           ),
           Text("4.如果我选择三方机器人是否要付费？",
               style: TextStyle(
-                fontSize: Config().Font_Size,
+                fontSize: Config.Font_Size,
               )),
           Text(
             "    共享机器人来自玩家提供的，本平台不支持付费也不对三方机器人提供支持\r\n",
-            style: TextStyle(fontSize: Config().Font_size_text),
+            style: TextStyle(fontSize: Config.Font_size_text),
           ),
           Text("5.有停机的可能吗？",
               style: TextStyle(
-                fontSize: Config().Font_Size,
+                fontSize: Config.Font_Size,
               )),
           Text(
             "    一般情况不会停，如果出现特殊大环境因素导致停机，那么从停机起机器人会开始计算停机时间，等后面恢复了停机时间会全部补，可以放心！\r\n",
-            style: TextStyle(fontSize: Config().Font_size_text),
+            style: TextStyle(fontSize: Config.Font_size_text),
           ),
           Text("6.软件如果出现BUG要如何反馈呢？",
               style: TextStyle(
-                fontSize: Config().Font_Size,
+                fontSize: Config.Font_Size,
               )),
           Text(
             "    你可以加入反馈群：542749156，有任何问题可以在群中向我们反馈！\r\n",
-            style: TextStyle(fontSize: Config().Font_size_text),
+            style: TextStyle(fontSize: Config.Font_size_text),
           ),
           RaisedButton(
             color: Colors.blue,

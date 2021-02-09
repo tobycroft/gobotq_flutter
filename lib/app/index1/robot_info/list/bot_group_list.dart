@@ -40,7 +40,7 @@ class _BotGroupList extends State<BotGroupList> {
     Map post = await AuthAction().LoginObject();
     post["bot"] = bot;
 
-    String ret = await Net().Post(Config().Url, Url_List().group_list, null, post, null);
+    String ret = await Net().Post(Config.Url, Url_List.group_list, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth().Return_login_check(context, json)) {
       if (Ret().Check_isok(context, json)) {
@@ -58,7 +58,7 @@ class _BotGroupList extends State<BotGroupList> {
       appBar: AppBar(
         title: Text(
           this._title,
-          style: Config().Text_style_title,
+          style: Config.Text_style_title,
         ),
         actions: [
           FlatButton(
@@ -120,7 +120,7 @@ Future<bool> delete_data(BuildContext context, String bot, gid) async {
   post["bot"] = bot;
   post["gid"] = gid;
 
-  String ret = await Net().Post(Config().Url, Url_List().group_exit, null, post, null);
+  String ret = await Net().Post(Config.Url, Url_List.group_exit, null, post, null);
   Map json = jsonDecode(ret);
   if (Auth().Return_login_check(context, json)) {
     if (Ret().Check_isok(context, json)) {

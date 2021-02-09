@@ -36,7 +36,7 @@ class _Bot_white_list_add extends State<Bot_white_list_add> {
       appBar: AppBar(
         title: Text(
           this._title,
-          style: Config().Text_style_title,
+          style: Config.Text_style_title,
         ),
       ),
       body: ListView(
@@ -57,7 +57,7 @@ class _Bot_white_list_add extends State<Bot_white_list_add> {
           TextField(
             keyboardType: TextInputType.number,
             style: Theme.of(context).textTheme.headline4,
-            decoration: Config().Inputdecoration_default_input_box(Icons.account_circle, "输入机器人可以加入的群", this._gid, "请输入数字"),
+            decoration: Config.Inputdecoration_default_input_box(Icons.account_circle, "输入机器人可以加入的群", this._gid, "请输入数字"),
             onChanged: (String val) {
               setState(() {
                 if (int.tryParse(val) == null) {
@@ -76,7 +76,7 @@ class _Bot_white_list_add extends State<Bot_white_list_add> {
             Map post = await AuthAction().LoginObject();
             post["gid"] = this.gid.toString();
             post["bot"] = this._pageparam["bot"].toString();
-            String ret = await Net().Post(Config().Url, Url_white().white_add, null, post, null);
+            String ret = await Net().Post(Config.Url, Url_white.white_add, null, post, null);
             Map json = jsonDecode(ret);
             if (Auth().Return_login_check(context, json)) {
               if (Ret().Check_isok(context, json)) {

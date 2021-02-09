@@ -1,12 +1,11 @@
 import 'dart:convert';
 
-import 'package:gobotq_flutter/config/url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gobotq_flutter/app/login/help/help.dart';
-import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/config/res.dart';
+import 'package:gobotq_flutter/config/url.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/button/button.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
@@ -176,7 +175,7 @@ class _login extends State<Login> {
                   Text(
                     "用户守则",
                     style: TextStyle(
-                      fontSize: Config().Font_size_text,
+                      fontSize: Config.Font_size_text,
                       color: Colors.white,
                     ),
                   ),
@@ -197,7 +196,7 @@ class _login extends State<Login> {
                     "qq": this.qq,
                     "password": this.password,
                   };
-                  String ret = await Net().Post(Config().Url, Url().login, null, post, null);
+                  String ret = await Net().Post(Config.Url, Url().login, null, post, null);
                   var json = jsonDecode(ret);
                   if (json["code"] == 0) {
                     Storage().Set("__uid__", json["data"]["uid"].toString());

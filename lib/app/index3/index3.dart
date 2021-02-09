@@ -23,7 +23,7 @@ class _Index3 extends State<Index3> {
       appBar: AppBar(
         title: Text(
           this._title,
-          style: Config().Text_style_title,
+          style: Config.Text_style_title,
         ),
       ),
       body: GridView.count(
@@ -42,7 +42,7 @@ class _Index3 extends State<Index3> {
                 ),
                 Text(
                   "提交一个机器人",
-                  style: Config().Text_style_main_page,
+                  style: Config.Text_style_main_page,
                 ),
               ],
             ),

@@ -41,7 +41,7 @@ class _robot_info_index extends State<Robot_info_index> {
   Future<void> get_robot_info() async {
     Map post = await AuthAction().LoginObject();
     post["bot"] = this._page_param["bot"].toString();
-    String ret = await Net().Post(Config().Url, Url_robot_info().Robot_info, null, post, null);
+    String ret = await Net().Post(Config.Url, Url_robot_info.Robot_info, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth().Return_login_check(context, json)) {
       if (Ret().Check_isok(context, json)) {
@@ -84,7 +84,7 @@ class _robot_info_index extends State<Robot_info_index> {
                 //   children: [
                 //     Text(
                 //       "123",
-                //       style: TextStyle(color: Colors.white, fontSize: Config().Font_Size),
+                //       style: TextStyle(color: Colors.white, fontSize: Config.Font_Size),
                 //     ),
                 //   ],
                 // )
@@ -102,7 +102,7 @@ class _robot_info_index extends State<Robot_info_index> {
             title: Text("机器人账号"),
             subtitle: Text(
               _robot_info["bot"].toString(),
-              style: Config().Text_style_notimportant_auto,
+              style: Config.Text_style_notimportant_auto,
             ),
             onLongPress: () async {
               Toasts().Show("已经将账号复制到剪贴板");
@@ -121,7 +121,7 @@ class _robot_info_index extends State<Robot_info_index> {
             title: Text("机器人到期时间"),
             subtitle: Text(
               DateTime.fromMillisecondsSinceEpoch(double.parse((_robot_info["end_time"] * 1000).toString()).round()).toString(),
-              style: Config().Text_style_notimportant_auto,
+              style: Config.Text_style_notimportant_auto,
             ),
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),
@@ -137,7 +137,7 @@ class _robot_info_index extends State<Robot_info_index> {
             title: Text("修改机器人名称"),
             subtitle: Text(
               _robot_info["cname"].toString(),
-              style: Config().Text_style_notimportant_auto,
+              style: Config.Text_style_notimportant_auto,
             ),
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),
@@ -155,7 +155,7 @@ class _robot_info_index extends State<Robot_info_index> {
             ),
             subtitle: Text(
               "你可以在这里加群或者退群",
-              style: Config().Text_style_notimportant_auto,
+              style: Config.Text_style_notimportant_auto,
             ),
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),
@@ -173,7 +173,7 @@ class _robot_info_index extends State<Robot_info_index> {
             ),
             subtitle: Text(
               "机器人只能被邀请进入白名单中的群",
-              style: Config().Text_style_notimportant_auto,
+              style: Config.Text_style_notimportant_auto,
             ),
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),
@@ -191,7 +191,7 @@ class _robot_info_index extends State<Robot_info_index> {
             ),
             subtitle: Text(
               "你可以在这里让机器人删除某个好友",
-              style: Config().Text_style_notimportant_auto,
+              style: Config.Text_style_notimportant_auto,
             ),
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),
@@ -209,7 +209,7 @@ class _robot_info_index extends State<Robot_info_index> {
             ),
             subtitle: Text(
               "允许添加机器人的账号",
-              style: Config().Text_style_notimportant_auto,
+              style: Config.Text_style_notimportant_auto,
             ),
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),

@@ -31,7 +31,7 @@ class _Upload_list extends State<Upload_list> {
 
   Future<void> get_bot_request() async {
     Map post = await AuthAction().LoginObject();
-    String ret = await Net().Post(Config().Url, Url_upload_robot().Upload_list, null, post, null);
+    String ret = await Net().Post(Config.Url, Url_upload_robot.Upload_list, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth().Return_login_check(context, json)) {
       if (Ret().Check_isok(context, json)) {
@@ -48,7 +48,7 @@ class _Upload_list extends State<Upload_list> {
       appBar: AppBar(
         title: Text(
           this._title,
-          style: Config().Text_style_title,
+          style: Config.Text_style_title,
         ),
       ),
       body: EasyRefresh(

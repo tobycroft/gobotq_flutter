@@ -26,11 +26,11 @@ class UI_Friendlist extends StatelessWidget {
           children: [
             Text(
               ret[this._title_keyname].toString(),
-              style: Config().Text_Style_default,
+              style: Config.Text_Style_default,
             ),
             Text(
               ret[this._subtitle_keyname].toString(),
-              style: Config().Text_Style_default,
+              style: Config.Text_Style_default,
             )
           ],
         ),
@@ -42,7 +42,7 @@ class UI_Friendlist extends StatelessWidget {
       ),
       trailing: Text(
         ret[this._rightsub_keyname].toString(),
-        style: Config().Text_Style_default,
+        style: Config.Text_Style_default,
       ),
     );
   }
@@ -72,11 +72,11 @@ class UI_Friendlist_without_img extends StatelessWidget {
           children: [
             Text(
               ret[this._title_keyname].toString(),
-              style: Config().Text_Style_default,
+              style: Config.Text_Style_default,
             ),
             Text(
               ret[this._subtitle_keyname].toString(),
-              style: Config().Text_Style_default,
+              style: Config.Text_Style_default,
             )
           ],
         ),
@@ -88,7 +88,7 @@ class UI_Friendlist_without_img extends StatelessWidget {
       ),
       trailing: Text(
         ret[this._rightsub_keyname].toString(),
-        style: Config().Text_Style_default,
+        style: Config.Text_Style_default,
       ),
     );
   }

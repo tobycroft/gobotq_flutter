@@ -37,7 +37,7 @@ class _BotFriendListAdd extends State<BotFriendListAdd> {
       appBar: AppBar(
         title: Text(
           this._title,
-          style: Config().Text_style_title,
+          style: Config.Text_style_title,
         ),
       ),
       body: ListView(
@@ -61,7 +61,7 @@ class _BotFriendListAdd extends State<BotFriendListAdd> {
           TextField(
             keyboardType: TextInputType.number,
             style: Theme.of(context).textTheme.headline4,
-            decoration: Config().Inputdecoration_default_input_box(Icons.account_circle, "输入可以添加机器人的QQ号", this._qq, "请输入数字"),
+            decoration: Config.Inputdecoration_default_input_box(Icons.account_circle, "输入可以添加机器人的QQ号", this._qq, "请输入数字"),
             onChanged: (String val) {
               setState(() {
                 if (int.tryParse(val) == null) {
@@ -79,7 +79,7 @@ class _BotFriendListAdd extends State<BotFriendListAdd> {
           TextField(
             keyboardType: TextInputType.number,
             style: Theme.of(context).textTheme.headline4,
-            decoration: Config().Inputdecoration_default_input_box(Icons.account_circle, "添加好友的验证问题", false, "请输入数字"),
+            decoration: Config.Inputdecoration_default_input_box(Icons.account_circle, "添加好友的验证问题", false, "请输入数字"),
             onChanged: (String val) {
               this.text = val.toString();
             },
@@ -92,7 +92,7 @@ class _BotFriendListAdd extends State<BotFriendListAdd> {
             post["qq"] = this.qq.toString();
             post["text"] = this.text.toString();
             post["bot"] = this._pageparam["bot"].toString();
-            String ret = await Net().Post(Config().Url, Url_List().friend_add, null, post, null);
+            String ret = await Net().Post(Config.Url, Url_List.friend_add, null, post, null);
             Map json = jsonDecode(ret);
             if (Auth().Return_login_check(context, json)) {
               if (Ret().Check_isok(context, json)) {

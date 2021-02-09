@@ -40,7 +40,7 @@ class _Index1 extends State<Index1> {
     Map<String, String> post = {};
     post["uid"] = await Storage().Get("__uid__");
     post["token"] = await Storage().Get("__token__");
-    var ret = await Net().Post(Config().Url, "/v1/bot/list/owned", null, post, null);
+    var ret = await Net().Post(Config.Url, "/v1/bot/list/owned", null, post, null);
 
     var json = jsonDecode(ret);
     if (Auth().Return_login_check_and_Goto(context, json)) {
@@ -156,15 +156,15 @@ class BotItem extends StatelessWidget {
       contentPadding: EdgeInsets.only(left: 20, right: 20),
       title: Text(
         ret["cname"].toString(),
-        style: Config().Text_Style_default,
+        style: Config.Text_Style_default,
       ),
       subtitle: Text(
         ret["bot"].toString(),
-        style: Config().Text_Style_default,
+        style: Config.Text_Style_default,
       ),
       trailing: Text(
         ret["date"].toString(),
-        style: Config().Text_Style_default,
+        style: Config.Text_Style_default,
       ),
       onTap: () async {
         Windows().Open(this._context, Robot_info_index(this.item));

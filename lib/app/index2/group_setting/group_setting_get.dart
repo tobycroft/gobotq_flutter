@@ -7,7 +7,6 @@ import 'package:gobotq_flutter/app/index2/group_setting/url_group_setting.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/extend/authaction/authaction.dart';
-import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/net/ret.dart';
 
@@ -43,7 +42,7 @@ class _GroupSettingGet extends State<GroupSettingGet> {
   Future<void> get_setting(BuildContext context) async {
     Map<String, dynamic> post = await AuthAction().LoginObject();
     post["gid"] = this._pageparam["gid"].toString();
-    String ret = await Net().Post(Config().Url, Url_group_setting().Group_Setting_Get, null, post, null);
+    String ret = await Net().Post(Config.Url, Url_group_setting.Group_Setting_Get, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth().Return_login_check(context, json)) {
       if (Ret().Check_isok(context, json)) {
@@ -107,7 +106,7 @@ class _GroupSettingGet extends State<GroupSettingGet> {
         appBar: AppBar(
           title: Text(
             this._title,
-            style: Config().Text_style_title,
+            style: Config.Text_style_title,
           ),
         ),
         body: EasyRefresh(

@@ -38,7 +38,7 @@ class _FriendWhiteList extends State<FriendWhiteList> {
     Map post = await AuthAction().LoginObject();
     post["bot"] = bot;
 
-    String ret = await Net().Post(Config().Url, Url_friend().white_list, null, post, null);
+    String ret = await Net().Post(Config.Url, Url_friend.white_list, null, post, null);
     Map json = jsonDecode(ret);
 
     if (Auth().Return_login_check(context, json)) {
@@ -60,7 +60,7 @@ class _FriendWhiteList extends State<FriendWhiteList> {
       appBar: AppBar(
         title: Text(
           this._title,
-          style: Config().Text_style_title,
+          style: Config.Text_style_title,
         ),
         actions: [
           FlatButton(
@@ -128,7 +128,7 @@ Future<bool> delete_data(BuildContext context, String bot, qq) async {
   post["bot"] = bot;
   post["qq"] = qq;
 
-  String ret = await Net().Post(Config().Url, Url_friend().white_delete, null, post, null);
+  String ret = await Net().Post(Config.Url, Url_friend.white_delete, null, post, null);
   Map json = jsonDecode(ret);
   if (Auth().Return_login_check(context, json)) {
     if (Ret().Check_isok(context, json)) {

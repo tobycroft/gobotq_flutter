@@ -35,7 +35,7 @@ class _Index2 extends State<Index2> {
 
   Future<void> group_control(BuildContext context) async {
     Map post = await AuthAction().LoginObject();
-    String ret = await Net().Post(Config().Url, Url_Index2().Group_list_control, null, post, null);
+    String ret = await Net().Post(Config.Url, Url_Index2.Group_list_control, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth().Return_login_check(context, json)) {
       if (Ret().Check_isok(context, json)) {
@@ -48,7 +48,7 @@ class _Index2 extends State<Index2> {
 
   Future<void> group_joined(BuildContext context) async {
     Map post = await AuthAction().LoginObject();
-    String ret = await Net().Post(Config().Url, Url_Index2().Group_list_joined, null, post, null);
+    String ret = await Net().Post(Config.Url, Url_Index2.Group_list_joined, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth().Return_login_check(context, json)) {
       if (Ret().Check_isok(context, json)) {
@@ -132,11 +132,11 @@ class _group_list_widget extends StatelessWidget {
       contentPadding: EdgeInsets.only(left: 20),
       title: Text(
         ret["group_name"].toString(),
-        style: Config().Text_Style_default,
+        style: Config.Text_Style_default,
       ),
       subtitle: Text(
         ret["gid"].toString(),
-        style: Config().Text_Style_default,
+        style: Config.Text_Style_default,
       ),
       onTap: () {
         if (this._wgtype == _widget_type.get) {

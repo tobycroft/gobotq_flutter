@@ -40,7 +40,7 @@ class _BotWhiteList extends State<BotWhiteList> {
     Map post = await AuthAction().LoginObject();
     post["bot"] = bot;
 
-    String ret = await Net().Post(Config().Url, Url_white().white_list, null, post, null);
+    String ret = await Net().Post(Config.Url, Url_white.white_list, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth().Return_login_check(context, json)) {
       if (Ret().Check_isok(context, json)) {
@@ -58,7 +58,7 @@ class _BotWhiteList extends State<BotWhiteList> {
       appBar: AppBar(
         title: Text(
           this._title,
-          style: Config().Text_style_title,
+          style: Config.Text_style_title,
         ),
         actions: [
           FlatButton(
@@ -126,7 +126,7 @@ Future<bool> delete_data(BuildContext context, String bot, gid) async {
   post["bot"] = bot;
   post["gid"] = gid;
 
-  String ret = await Net().Post(Config().Url, Url_white().white_delete, null, post, null);
+  String ret = await Net().Post(Config.Url, Url_white.white_delete, null, post, null);
   Map json = jsonDecode(ret);
   if (Auth().Return_login_check(context, json)) {
     if (Ret().Check_isok(context, json)) {

@@ -9,10 +9,10 @@ class UI_button extends UI {
       color: Colors.lightGreen,
       child: Text(
         "提交",
-        style: Config().Text_button_default,
+        style: Config.Text_button_default,
       ),
       onPressed: func,
-      shape: Config().Shape_button_default,
+      shape: Config.Shape_button_default,
     );
   }
 
@@ -22,10 +22,10 @@ class UI_button extends UI {
       color: Colors.lightGreen,
       child: Text(
         text,
-        style: Config().Text_button_default,
+        style: Config.Text_button_default,
       ),
       onPressed: func,
-      shape: Config().Shape_button_default,
+      shape: Config.Shape_button_default,
     );
   }
 }

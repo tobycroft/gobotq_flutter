@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:gobotq_flutter/app/index4/balance_record/url_balance_record.dart';
-import 'package:gobotq_flutter/config/auth.dart';
-import 'package:gobotq_flutter/extend/authaction/authaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:gobotq_flutter/app/index4/balance_record/url_balance_record.dart';
+import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
+import 'package:gobotq_flutter/extend/authaction/authaction.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class Balance_record extends StatefulWidget {
   String _title;
@@ -34,7 +34,7 @@ class _Balance_record extends State<Balance_record> {
   @override
   Future<void> get_balance_record() async {
     Map<String, String> post = await AuthAction().LoginObject();
-    var ret = await Net().Post(Config().Url, Url_balance_record().User_balance_record, null, post, null);
+    var ret = await Net().Post(Config.Url, Url_balance_record.User_balance_record, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth().Return_login_check(context, json)) {
       if (json["code"] == 0) {
@@ -86,11 +86,11 @@ class BotItem extends StatelessWidget {
           children: [
             Text(
               ret["cname"].toString(),
-              style: Config().Text_Style_default,
+              style: Config.Text_Style_default,
             ),
             Text(
               ret["bot"].toString(),
-              style: Config().Text_Style_default,
+              style: Config.Text_Style_default,
             )
           ],
         ),
@@ -104,7 +104,7 @@ class BotItem extends StatelessWidget {
       ),
       trailing: Text(
         ret["date"].toString(),
-        style: Config().Text_Style_default,
+        style: Config.Text_Style_default,
       ),
     );
   }

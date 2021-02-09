@@ -12,9 +12,11 @@ import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/config/res.dart';
 import 'package:gobotq_flutter/config/url.dart';
 import 'package:gobotq_flutter/extend/authaction/authaction.dart';
+import 'package:gobotq_flutter/main.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:package_info/package_info.dart';
 import 'package:r_upgrade/r_upgrade.dart';
@@ -51,7 +53,7 @@ class _Index4 extends State<Index4> {
   @override
   Future<void> get_user_info() async {
     Map<String, String> post = await AuthAction().LoginObject();
-    var ret = await Net().Post(Config().Url, Url_Index4().User_info, null, post, null);
+    var ret = await Net().Post(Config.Url, Url_Index4.User_info, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth().Return_login_check(context, json)) {
       if (json["code"] == 0) {
@@ -72,7 +74,7 @@ class _Index4 extends State<Index4> {
 
   Future<void> get_user_balance() async {
     Map<String, String> post = await AuthAction().LoginObject();
-    var ret = await Net().Post(Config().Url, Url_Index4().User_balance, null, post, null);
+    var ret = await Net().Post(Config.Url, Url_Index4.User_balance, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth().Return_login_check(context, json)) {
       if (json["code"] == 0) {
@@ -137,14 +139,14 @@ class _Index4 extends State<Index4> {
                     children: [
                       Text(
                         _user_info["uname"].toString(),
-                        style: Config().Text_style_Name,
+                        style: Config.Text_style_Name,
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       Text(
                         _user_info["qq"].toString(),
-                        style: Config().Text_style_Name,
+                        style: Config.Text_style_Name,
                       ),
                     ],
                   ),
@@ -181,11 +183,25 @@ class _Index4 extends State<Index4> {
                       ),
                       Text(
                         "编写中",
-                        style: Config().Text_Style_default,
+                        style: Config.Text_Style_default,
                       )
                     ],
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    var fireDate = DateTime.fromMillisecondsSinceEpoch(DateTime.now().millisecondsSinceEpoch + 1000);
+                    var localNotification = LocalNotification(
+                      id: 234,
+                      title: '我是推送测试标题wwwwwwwww',
+                      buildId: 1,
+                      content: '看到了说明已经成功了hahahaha',
+                      fireTime: fireDate,
+                      subtitle: '一个测试qqqqqqqq',
+                    );
+                    jpush.sendLocalNotification(localNotification).then((res) {
+                      print('sddd');
+                      setState(() {});
+                    });
+                  },
                 ),
                 FlatButton(
                   color: Colors.green,
@@ -198,7 +214,7 @@ class _Index4 extends State<Index4> {
                       ),
                       Text(
                         "版本",
-                        style: Config().Text_Style_default,
+                        style: Config.Text_Style_default,
                       )
                     ],
                   ),
@@ -215,7 +231,7 @@ class _Index4 extends State<Index4> {
                       "appname": info.appName,
                     };
 
-                    String ret = await Net().Post(Config().Url, Url().Update_path, null, post, null);
+                    String ret = await Net().Post(Config.Url, Url().Update_path, null, post, null);
                     Map json = jsonDecode(ret);
                     if (json["code"] == 0) {
                       Map data = json["data"];
@@ -245,7 +261,7 @@ class _Index4 extends State<Index4> {
                       ),
                       Text(
                         "关于我们",
-                        style: Config().Text_Style_default,
+                        style: Config.Text_Style_default,
                       )
                     ],
                   ),
@@ -265,8 +281,8 @@ class _Index4 extends State<Index4> {
                 // Defaults to the current Theme's backgroundColor.
                 borderColor: Colors.blue,
                 borderWidth: 0.0,
-                borderRadius: 12.0,
-                direction: Axis.vertical,
+                borderRadius: 0.0,
+                direction: Axis.horizontal,
                 // The direction the liquid moves (Axis.vertical = bottom to top, Axis.horizontal = left to right). Defaults to Axis.horizontal.
                 center: Text(_percent.toString()),
               ),
