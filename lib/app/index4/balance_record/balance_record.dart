@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -78,18 +77,18 @@ class BotItem extends StatelessWidget {
     if (ret == null) return ListTile();
     return ListTile(
       leading: CircleAvatar(
-        child: Image(image: NetworkImage(ret["img"])),
+        child: Icon(Icons.wallet_giftcard),
       ),
       title: FlatButton(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              ret["cname"].toString(),
+              "资金变动：" + ret["amount"].toString(),
               style: Config.Text_Style_default,
             ),
             Text(
-              ret["bot"].toString(),
+              ret["remark"].toString(),
               style: Config.Text_Style_default,
             )
           ],
