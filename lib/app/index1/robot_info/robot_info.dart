@@ -41,10 +41,10 @@ class _robot_info_index extends State<Robot_info_index> {
   Future<void> get_robot_info() async {
     Map post = await AuthAction().LoginObject();
     post["bot"] = this._page_param["bot"].toString();
-    String ret = await Net().Post(Config.Url, Url_robot_info.Robot_info, null, post, null);
+    String ret = await Net.Post(Config.Url, Url_robot_info.Robot_info, null, post, null);
     Map json = jsonDecode(ret);
-    if (Auth().Return_login_check(context, json)) {
-      if (Ret().Check_isok(context, json)) {
+    if (Auth.Return_login_check(context, json)) {
+      if (Ret.Check_isok(context, json)) {
         setState(() {
           _robot_info = json["data"];
         });
@@ -105,7 +105,7 @@ class _robot_info_index extends State<Robot_info_index> {
               style: Config.Text_style_notimportant_auto,
             ),
             onLongPress: () async {
-              Toasts().Show("已经将账号复制到剪贴板");
+              Toasts.Show("已经将账号复制到剪贴板");
               Clipboard.setData(
                 ClipboardData(
                   text: _robot_info["bot"].toString(),
@@ -126,7 +126,7 @@ class _robot_info_index extends State<Robot_info_index> {
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),
             onTap: () async {
-              Alert().Confirm(context, "title", "content", () {});
+              Alert.Confirm(context, "title", "content", () {});
             },
           ),
           ListTile(
@@ -142,7 +142,7 @@ class _robot_info_index extends State<Robot_info_index> {
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),
             onTap: () async {
-              Alert().Confirm(context, "title", "content", () {});
+              Alert.Confirm(context, "title", "content", () {});
             },
           ),
           ListTile(
@@ -160,7 +160,7 @@ class _robot_info_index extends State<Robot_info_index> {
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),
             onTap: () async {
-              Windows().Open(context, BotGroupList("已加入的群", this._page_param));
+              Windows.Open(context, BotGroupList("已加入的群", this._page_param));
             },
           ),
           ListTile(
@@ -178,7 +178,7 @@ class _robot_info_index extends State<Robot_info_index> {
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),
             onTap: () async {
-              Windows().Open(context, BotWhiteList("可加入的群", this._page_param));
+              Windows.Open(context, BotWhiteList("可加入的群", this._page_param));
             },
           ),
           ListTile(
@@ -196,7 +196,7 @@ class _robot_info_index extends State<Robot_info_index> {
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),
             onTap: () async {
-              Windows().Open(context, BotFriendList("机器人好友列表", this._page_param));
+              Windows.Open(context, BotFriendList("机器人好友列表", this._page_param));
             },
           ),
           ListTile(
@@ -214,7 +214,7 @@ class _robot_info_index extends State<Robot_info_index> {
             trailing: Icon(Icons.chevron_right),
             // trailing: Icon(Icons.chevron_right),
             onTap: () async {
-              Windows().Open(context, FriendWhiteList("可被添加的白名单", this._page_param));
+              Windows.Open(context, FriendWhiteList("可被添加的白名单", this._page_param));
             },
           ),
         ],

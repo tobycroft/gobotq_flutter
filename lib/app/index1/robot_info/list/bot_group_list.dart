@@ -40,10 +40,10 @@ class _BotGroupList extends State<BotGroupList> {
     Map post = await AuthAction().LoginObject();
     post["bot"] = bot;
 
-    String ret = await Net().Post(Config.Url, Url_List.group_list, null, post, null);
+    String ret = await Net.Post(Config.Url, Url_List.group_list, null, post, null);
     Map json = jsonDecode(ret);
-    if (Auth().Return_login_check(context, json)) {
-      if (Ret().Check_isok(context, json)) {
+    if (Auth.Return_login_check(context, json)) {
+      if (Ret.Check_isok(context, json)) {
         _white_group = json["data"];
         setState(() {
           _white_group = json["data"];
@@ -63,7 +63,7 @@ class _BotGroupList extends State<BotGroupList> {
         actions: [
           FlatButton(
             onPressed: () async {
-              Windows().Open(context, Bot_group_list_add(this._title, this._pageparam));
+              Windows.Open(context, Bot_group_list_add(this._title, this._pageparam));
             },
             child: Icon(
               Icons.add_circle_outline,
@@ -120,11 +120,11 @@ Future<bool> delete_data(BuildContext context, String bot, gid) async {
   post["bot"] = bot;
   post["gid"] = gid;
 
-  String ret = await Net().Post(Config.Url, Url_List.group_exit, null, post, null);
+  String ret = await Net.Post(Config.Url, Url_List.group_exit, null, post, null);
   Map json = jsonDecode(ret);
-  if (Auth().Return_login_check(context, json)) {
-    if (Ret().Check_isok(context, json)) {
-      Alert().Confirm(context, json["echo"], json["echo"], () {});
+  if (Auth.Return_login_check(context, json)) {
+    if (Ret.Check_isok(context, json)) {
+      Alert.Confirm(context, json["echo"], json["echo"], () {});
       return true;
     }
   }

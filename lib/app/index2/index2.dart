@@ -35,10 +35,10 @@ class _Index2 extends State<Index2> {
 
   Future<void> group_control(BuildContext context) async {
     Map post = await AuthAction().LoginObject();
-    String ret = await Net().Post(Config.Url, Url_Index2.Group_list_control, null, post, null);
+    String ret = await Net.Post(Config.Url, Url_Index2.Group_list_control, null, post, null);
     Map json = jsonDecode(ret);
-    if (Auth().Return_login_check(context, json)) {
-      if (Ret().Check_isok(context, json)) {
+    if (Auth.Return_login_check(context, json)) {
+      if (Ret.Check_isok(context, json)) {
         setState(() {
           _group_control = json["data"];
         });
@@ -48,10 +48,10 @@ class _Index2 extends State<Index2> {
 
   Future<void> group_joined(BuildContext context) async {
     Map post = await AuthAction().LoginObject();
-    String ret = await Net().Post(Config.Url, Url_Index2.Group_list_joined, null, post, null);
+    String ret = await Net.Post(Config.Url, Url_Index2.Group_list_joined, null, post, null);
     Map json = jsonDecode(ret);
-    if (Auth().Return_login_check(context, json)) {
-      if (Ret().Check_isok(context, json)) {
+    if (Auth.Return_login_check(context, json)) {
+      if (Ret.Check_isok(context, json)) {
         setState(() {
           _group_joined = json["data"];
         });
@@ -140,9 +140,9 @@ class _group_list_widget extends StatelessWidget {
       ),
       onTap: () {
         if (this._wgtype == _widget_type.get) {
-          Windows().Open(this._context, GroupSettingGet("查看本群设定", this._pageparam));
+          Windows.Open(this._context, GroupSettingGet("查看本群设定", this._pageparam));
         } else if (this._wgtype == _widget_type.set) {
-          Windows().Open(this._context, GroupSettingSet("群机器人设定", this._pageparam));
+          Windows.Open(this._context, GroupSettingSet("群机器人设定", this._pageparam));
         }
       },
       trailing: Icon(Icons.keyboard_arrow_right),

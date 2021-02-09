@@ -72,16 +72,16 @@ class _FriendWhiteListAdd extends State<FriendWhiteListAdd> {
           SizedBox(
             height: 50,
           ),
-          UI_button().Button_submit(context, () async {
+          UI_button.Button_submit(context, () async {
             Map post = await AuthAction().LoginObject();
             post["qq"] = this.qq.toString();
             post["bot"] = this._pageparam["bot"].toString();
-            String ret = await Net().Post(Config.Url, Url_friend.white_add, null, post, null);
+            String ret = await Net.Post(Config.Url, Url_friend.white_add, null, post, null);
             Map json = jsonDecode(ret);
-            if (Auth().Return_login_check(context, json)) {
-              if (Ret().Check_isok(context, json)) {
-                Alert().Confirm(context, json["echo"], json["echo"], () {
-                  Windows().Close(this.context);
+            if (Auth.Return_login_check(context, json)) {
+              if (Ret.Check_isok(context, json)) {
+                Alert.Confirm(context, json["echo"], json["echo"], () {
+                  Windows.Close(this.context);
                 });
               }
             }

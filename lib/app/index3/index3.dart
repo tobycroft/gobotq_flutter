@@ -47,7 +47,7 @@ class _Index3 extends State<Index3> {
               ],
             ),
             onPressed: () async {
-              Windows().Open(context, Upload_robot("提交机器人"));
+              Windows.Open(context, Upload_robot("提交机器人"));
             },
           ),
         ],

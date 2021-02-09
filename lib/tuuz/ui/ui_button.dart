@@ -3,7 +3,7 @@ import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/tuuz/ui/ui.dart';
 
 class UI_button extends UI {
-  RaisedButton Button_submit(BuildContext context, VoidCallback func) {
+  static RaisedButton Button_submit(BuildContext context, VoidCallback func) {
     return RaisedButton(
       padding: EdgeInsets.all(10),
       color: Colors.lightGreen,
@@ -16,7 +16,7 @@ class UI_button extends UI {
     );
   }
 
-  RaisedButton Button_raised(BuildContext context, String text, VoidCallback func) {
+  static RaisedButton Button_raised(BuildContext context, String text, VoidCallback func) {
     return RaisedButton(
       padding: EdgeInsets.all(10),
       color: Colors.lightGreen,

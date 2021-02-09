@@ -1,8 +1,8 @@
 class Url {
   //login
-  String login = "/v1/index/login/login";
+  static String login = "/v1/index/login/login";
 
-  String Update_path = "/v1/index/system/version";
+  static String Update_path = "/v1/index/system/version";
 
 //index1
 

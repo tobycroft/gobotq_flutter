@@ -34,9 +34,9 @@ class _login extends State<Login> {
       this.password = password_controller.text;
     });
     void initold() async {
-      uid_controller.text = await Storage().Get("__uid__");
+      uid_controller.text = await Storage.Get("__uid__");
 
-      password_controller.text = await Storage().Get("__password__");
+      password_controller.text = await Storage.Get("__password__");
     }
 
     initold();
@@ -59,7 +59,7 @@ class _login extends State<Login> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        leading: Tuuz_Button().BackWithWord(context),
+        leading: Tuuz_Button.BackWithWord(context),
         actions: [
           IconButton(
               icon: Icon(
@@ -68,7 +68,7 @@ class _login extends State<Login> {
               ),
               color: Colors.white,
               onPressed: () {
-                Windows().Open(context, Help());
+                Windows.Open(context, Help());
               })
         ],
       ),
@@ -78,7 +78,7 @@ class _login extends State<Login> {
           accentColor: Colors.amber,
         ),
         child: Container(
-          decoration: BoxDecoration(image: DecorationImage(image: AssetImage(Res().Login_BG), fit: BoxFit.cover)),
+          decoration: BoxDecoration(image: DecorationImage(image: AssetImage(Res.Login_BG), fit: BoxFit.cover)),
           // width: MediaQuery.of(context).size.width,
           // height: MediaQuery.of(context).size.height,
           child: ListView(
@@ -196,15 +196,15 @@ class _login extends State<Login> {
                     "qq": this.qq,
                     "password": this.password,
                   };
-                  String ret = await Net().Post(Config.Url, Url().login, null, post, null);
+                  String ret = await Net.Post(Config.Url, Url.login, null, post, null);
                   var json = jsonDecode(ret);
                   if (json["code"] == 0) {
-                    Storage().Set("__uid__", json["data"]["uid"].toString());
-                    Storage().Set("__password__", this.password.toString());
-                    Storage().Set("__token__", json["data"]["token"].toString());
-                    Alert().Confirm(context, "登录成功", json["data"]["uid"].toString() + "欢迎回来！", Windows().Close(context));
+                    Storage.Set("__uid__", json["data"]["uid"].toString());
+                    Storage.Set("__password__", this.password.toString());
+                    Storage.Set("__token__", json["data"]["token"].toString());
+                    Alert.Confirm(context, "登录成功", json["data"]["uid"].toString() + "欢迎回来！", Windows.Close(context));
                   } else {
-                    Alert().Confirm(context, "登录失败", json["echo"], null);
+                    Alert.Confirm(context, "登录失败", json["echo"], null);
                   }
                 },
               ),

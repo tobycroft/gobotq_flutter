@@ -36,7 +36,7 @@ class UI_Friendlist extends StatelessWidget {
         ),
         onPressed: () {
           //Todo：短按进入机器人信息
-          Windows().Open(this._context, this.open_win(this._pageparam));
+          Windows.Open(this._context, this.open_win(this._pageparam));
         },
         onLongPress: this.onlongpress,
       ),
@@ -82,7 +82,7 @@ class UI_Friendlist_without_img extends StatelessWidget {
         ),
         onPressed: () {
           //Todo：短按进入机器人信息
-          Windows().Open(this._context, this.open_win(this._pageparam));
+          Windows.Open(this._context, this.open_win(this._pageparam));
         },
         onLongPress: this.onlongpress,
       ),

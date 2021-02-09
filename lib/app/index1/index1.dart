@@ -38,12 +38,12 @@ class _Index1 extends State<Index1> {
   @override
   Future<void> get_data() async {
     Map<String, String> post = {};
-    post["uid"] = await Storage().Get("__uid__");
-    post["token"] = await Storage().Get("__token__");
-    var ret = await Net().Post(Config.Url, "/v1/bot/list/owned", null, post, null);
+    post["uid"] = await Storage.Get("__uid__");
+    post["token"] = await Storage.Get("__token__");
+    var ret = await Net.Post(Config.Url, "/v1/bot/list/owned", null, post, null);
 
     var json = jsonDecode(ret);
-    if (Auth().Return_login_check_and_Goto(context, json)) {
+    if (Auth.Return_login_check_and_Goto(context, json)) {
       if (json["code"] == 0) {
         setState(() {
           bot_datas = [];
@@ -77,7 +77,7 @@ class _Index1 extends State<Index1> {
             itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
               // Tuuz_Popup().MenuItem(Icons.login, "登录", "login"),
               // Tuuz_Popup().MenuItem(Icons.logout, "退出登录", "logout"),
-              Tuuz_Popup().MenuItem(Icons.help_center, "首页帮助", "index_help"),
+              Tuuz_Popup.MenuItem(Icons.help_center, "首页帮助", "index_help"),
               // Tuuz_Popup().MenuItem(Icons.qr_code, "扫码", "scanner"),
             ],
             onSelected: (String value) {
@@ -85,32 +85,32 @@ class _Index1 extends State<Index1> {
               switch (value) {
                 case "login":
                   {
-                    Windows().Open(context, Login());
+                    Windows.Open(context, Login());
                     break;
                   }
                 case "logout":
                   {
-                    Alert().Simple(context, "是否退出？", "点击确认后退出", () {
-                      // Storage().Delete("__uid__");
-                      Storage().Delete("__token__");
+                    Alert.Simple(context, "是否退出？", "点击确认后退出", () {
+                      // Storage.Delete("__uid__");
+                      Storage.Delete("__token__");
                     });
                     break;
                   }
                 case "index_help":
                   {
-                    Windows().Open(context, Index_Help());
+                    Windows.Open(context, Index_Help());
                     break;
                   }
 
                 case "scanner":
                   {
-                    Alert().Simple(context, "扫码测试", "Scanner", () {});
+                    Alert.Simple(context, "扫码测试", "Scanner", () {});
                     break;
                   }
 
                 default:
                   {
-                    Alert().Simple(context, "SS", value, () {});
+                    Alert.Simple(context, "SS", value, () {});
                     break;
                   }
               }
@@ -167,7 +167,7 @@ class BotItem extends StatelessWidget {
         style: Config.Text_Style_default,
       ),
       onTap: () async {
-        Windows().Open(this._context, Robot_info_index(this.item));
+        Windows.Open(this._context, Robot_info_index(this.item));
       },
     );
   }

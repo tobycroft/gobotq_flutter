@@ -82,14 +82,14 @@ class _Index4_about extends State<Index4_about> {
             child: Text("点击复制群号"),
             onPressed: () async {
               Clipboard.setData(ClipboardData(text: "542749156"));
-              Toasts().Show("群号已经复制");
+              Toasts.Show("群号已经复制");
             },
           ),
           RaisedButton(
             color: Colors.blue,
             child: Text("点击我加入反馈群"),
             onPressed: () async {
-              Windows().Open_url(context, "https://qm.qq.com/cgi-bin/qm/qr?k=spNoTiw49InkjrJgvWFT6zBShx6MdREw&jump_from=webapi");
+              Windows.Open_url(context, "https://qm.qq.com/cgi-bin/qm/qr?k=spNoTiw49InkjrJgvWFT6zBShx6MdREw&jump_from=webapi");
             },
           ),
         ],

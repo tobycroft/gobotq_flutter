@@ -43,7 +43,7 @@ class _Upload_robot extends State<Upload_robot> {
         actions: [
           FlatButton(
               onPressed: () async {
-                Windows().Open(context, Upload_list("机器人提交记录"));
+                Windows.Open(context, Upload_list("机器人提交记录"));
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -149,18 +149,18 @@ class _Upload_robot extends State<Upload_robot> {
           SizedBox(
             height: 80,
           ),
-          UI_button().Button_submit(context, () async {
+          UI_button.Button_submit(context, () async {
             Map post = await AuthAction().LoginObject();
             post["bot"] = this.qq.toString();
             post["password"] = this.password.toString();
             post["secret"] = this.secret.toString();
             post["month"] = month.round().toString();
-            String ret = await Net().Post(Config.Url, Url_upload_robot.Upload_robot, null, post, null);
+            String ret = await Net.Post(Config.Url, Url_upload_robot.Upload_robot, null, post, null);
             Map json = jsonDecode(ret);
-            if (Auth().Return_login_check(context, json)) {
-              if (Ret().Check_isok(context, json)) {
-                Alert().Confirm(context, json["echo"], json["echo"], () {
-                  Windows().Close(this.context);
+            if (Auth.Return_login_check(context, json)) {
+              if (Ret.Check_isok(context, json)) {
+                Alert.Confirm(context, json["echo"], json["echo"], () {
+                  Windows.Close(this.context);
                 });
               }
             }

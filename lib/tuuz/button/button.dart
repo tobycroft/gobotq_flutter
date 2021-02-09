@@ -3,15 +3,15 @@ import 'package:gobotq_flutter/tuuz/win/close.dart';
 
 class Tuuz_Button {
   @override
-  Closebutton() {
+  static Closebutton() {
     return CloseButton();
   }
 
-  BackButton() {
+  static BackButton() {
     return BackButton();
   }
 
-  BackWithWord(BuildContext context) {
+  static BackWithWord(BuildContext context) {
     return FlatButton(
       padding: EdgeInsets.only(right: 40),
       child: Text(
@@ -20,12 +20,12 @@ class Tuuz_Button {
         textAlign: TextAlign.start,
       ),
       onPressed: () {
-        Windows().Close(context);
+        Windows.Close(context);
       },
     );
   }
 
-  CloseWithWord(BuildContext context) {
+  static CloseWithWord(BuildContext context) {
     return FlatButton(
       padding: EdgeInsets.only(right: 40),
       child: Text(
@@ -33,7 +33,7 @@ class Tuuz_Button {
         style: TextStyle(color: Colors.white, fontSize: 19),
       ),
       onPressed: () {
-        Windows().Close(context);
+        Windows.Close(context);
       },
     );
   }

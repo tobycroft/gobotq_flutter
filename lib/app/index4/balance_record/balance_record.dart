@@ -34,15 +34,15 @@ class _Balance_record extends State<Balance_record> {
   @override
   Future<void> get_balance_record() async {
     Map<String, String> post = await AuthAction().LoginObject();
-    var ret = await Net().Post(Config.Url, Url_balance_record.User_balance_record, null, post, null);
+    var ret = await Net.Post(Config.Url, Url_balance_record.User_balance_record, null, post, null);
     Map json = jsonDecode(ret);
-    if (Auth().Return_login_check(context, json)) {
+    if (Auth.Return_login_check(context, json)) {
       if (json["code"] == 0) {
         _balance_record = json["data"];
         setState(() {});
         print(_balance_record);
       } else {
-        Alert().Error(context, json["data"], () {});
+        Alert.Error(context, json["data"], () {});
       }
     }
   }
@@ -96,7 +96,7 @@ class BotItem extends StatelessWidget {
         ),
         onPressed: () {
           //Todo：短按进入机器人信息
-          // Windows().Open(this._context, Robot_info_index(this.item));
+          // Windows.Open(this._context, Robot_info_index(this.item));
         },
         onLongPress: () {
           //Todo：长按弹出菜单

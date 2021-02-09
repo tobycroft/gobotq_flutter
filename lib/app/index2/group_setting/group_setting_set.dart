@@ -44,10 +44,10 @@ class _GroupSettingSet extends State<GroupSettingSet> {
   Future<void> get_setting(BuildContext context) async {
     Map<String, String> post = await AuthAction().LoginObject();
     post["gid"] = this._pageparam["gid"].toString();
-    String ret = await Net().Post(Config.Url, Url_group_setting.Group_Setting_Get, null, post, null);
+    String ret = await Net.Post(Config.Url, Url_group_setting.Group_Setting_Get, null, post, null);
     Map json = jsonDecode(ret);
-    if (Auth().Return_login_check(context, json)) {
-      if (Ret().Check_isok(context, json)) {
+    if (Auth.Return_login_check(context, json)) {
+      if (Ret.Check_isok(context, json)) {
         _data = json["data"];
         _setting.clear();
         int i = 0;
@@ -167,11 +167,11 @@ class _GroupSettingSet extends State<GroupSettingSet> {
     post["gid"] = this._pageparam["gid"].toString();
     post["key"] = key.toString();
     post["value"] = value.toString();
-    String ret = await Net().Post(Config.Url, Url_group_setting.Group_Setting_Set, null, post, null);
+    String ret = await Net.Post(Config.Url, Url_group_setting.Group_Setting_Set, null, post, null);
     Map json = jsonDecode(ret);
-    if (Auth().Return_login_check(context, json)) {
-      if (Ret().Check_isok(context, json)) {
-        Toasts().Show(json["echo"].toString());
+    if (Auth.Return_login_check(context, json)) {
+      if (Ret.Check_isok(context, json)) {
+        Toasts.Show(json["echo"].toString());
       }
     }
   }

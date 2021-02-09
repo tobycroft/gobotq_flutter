@@ -53,14 +53,14 @@ class _Index4 extends State<Index4> {
   @override
   Future<void> get_user_info() async {
     Map<String, String> post = await AuthAction().LoginObject();
-    var ret = await Net().Post(Config.Url, Url_Index4.User_info, null, post, null);
+    var ret = await Net.Post(Config.Url, Url_Index4.User_info, null, post, null);
     Map json = jsonDecode(ret);
-    if (Auth().Return_login_check(context, json)) {
+    if (Auth.Return_login_check(context, json)) {
       if (json["code"] == 0) {
         _user_info = json["data"];
         setState(() {});
       } else {
-        Alert().Error(context, json["data"], () {});
+        Alert.Error(context, json["data"], () {});
       }
     } else {
       setState(() {
@@ -74,14 +74,14 @@ class _Index4 extends State<Index4> {
 
   Future<void> get_user_balance() async {
     Map<String, String> post = await AuthAction().LoginObject();
-    var ret = await Net().Post(Config.Url, Url_Index4.User_balance, null, post, null);
+    var ret = await Net.Post(Config.Url, Url_Index4.User_balance, null, post, null);
     Map json = jsonDecode(ret);
-    if (Auth().Return_login_check(context, json)) {
+    if (Auth.Return_login_check(context, json)) {
       if (json["code"] == 0) {
         _user_balance = json["data"];
         setState(() {});
       } else {
-        Alert().Error(context, json["data"], () {});
+        Alert.Error(context, json["data"], () {});
       }
     } else {
       setState(() {
@@ -124,7 +124,7 @@ class _Index4 extends State<Index4> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.network(
-                      Res().Index4_head_img,
+                      Res.Index4_head_img,
                       width: 90,
                       height: 90,
                       fit: BoxFit.cover,
@@ -153,7 +153,7 @@ class _Index4 extends State<Index4> {
                 ),
                 FlatButton(
                   onPressed: () {
-                    Auth().Check_and_goto_login(context);
+                    Auth.Check_and_goto_login(context);
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: 20),
@@ -231,7 +231,7 @@ class _Index4 extends State<Index4> {
                       "appname": info.appName,
                     };
 
-                    String ret = await Net().Post(Config.Url, Url().Update_path, null, post, null);
+                    String ret = await Net.Post(Config.Url, Url.Update_path, null, post, null);
                     Map json = jsonDecode(ret);
                     if (json["code"] == 0) {
                       Map data = json["data"];
@@ -245,7 +245,7 @@ class _Index4 extends State<Index4> {
                           useDownloadManager: false,
                         );
                       } else {
-                        Alert().Confirm(context, "没有新的更新了", "", () {});
+                        Alert.Confirm(context, "没有新的更新了", "", () {});
                       }
                     }
                   },
@@ -266,7 +266,7 @@ class _Index4 extends State<Index4> {
                     ],
                   ),
                   onPressed: () async {
-                    Windows().Open(context, Index4_about());
+                    Windows.Open(context, Index4_about());
                   },
                 ),
               ]),
@@ -296,7 +296,7 @@ class _Index4 extends State<Index4> {
                 title: Text("积分"),
                 subtitle: Text(_user_balance["balance"].toString()),
                 onTap: () {
-                  Windows().Open(context, Balance_record("积分记录"));
+                  Windows.Open(context, Balance_record("积分记录"));
                 },
               ),
             ],

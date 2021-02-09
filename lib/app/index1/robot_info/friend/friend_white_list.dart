@@ -38,11 +38,11 @@ class _FriendWhiteList extends State<FriendWhiteList> {
     Map post = await AuthAction().LoginObject();
     post["bot"] = bot;
 
-    String ret = await Net().Post(Config.Url, Url_friend.white_list, null, post, null);
+    String ret = await Net.Post(Config.Url, Url_friend.white_list, null, post, null);
     Map json = jsonDecode(ret);
 
-    if (Auth().Return_login_check(context, json)) {
-      if (Ret().Check_isok(context, json)) {
+    if (Auth.Return_login_check(context, json)) {
+      if (Ret.Check_isok(context, json)) {
         setState(() {
           if (json["data"] != null) {
             _white_list = json["data"];
@@ -65,7 +65,7 @@ class _FriendWhiteList extends State<FriendWhiteList> {
         actions: [
           FlatButton(
             onPressed: () async {
-              Windows().Open(context, FriendWhiteListAdd(this._title, this._pageparam));
+              Windows.Open(context, FriendWhiteListAdd(this._title, this._pageparam));
             },
             child: Icon(
               Icons.add_circle_outline,
@@ -128,11 +128,11 @@ Future<bool> delete_data(BuildContext context, String bot, qq) async {
   post["bot"] = bot;
   post["qq"] = qq;
 
-  String ret = await Net().Post(Config.Url, Url_friend.white_delete, null, post, null);
+  String ret = await Net.Post(Config.Url, Url_friend.white_delete, null, post, null);
   Map json = jsonDecode(ret);
-  if (Auth().Return_login_check(context, json)) {
-    if (Ret().Check_isok(context, json)) {
-      Alert().Confirm(context, json["echo"], json["echo"], () {});
+  if (Auth.Return_login_check(context, json)) {
+    if (Ret.Check_isok(context, json)) {
+      Alert.Confirm(context, json["echo"], json["echo"], () {});
       return true;
     }
   }

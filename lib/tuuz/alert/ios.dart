@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
 
 class Alert {
-  All(BuildContext context, String title, String content, List<Widget> ButtonBuilder) {
+  static All(BuildContext context, String title, String content, List<Widget> ButtonBuilder) {
     showCupertinoDialog(
         context: context,
         builder: (context) => new CupertinoAlertDialog(
@@ -13,7 +13,7 @@ class Alert {
             ));
   }
 
-  Simple(BuildContext context, String title, String content, VoidCallback onPressed_yes) {
+  static Simple(BuildContext context, String title, String content, VoidCallback onPressed_yes) {
     showCupertinoDialog(
         context: context,
         builder: (context) => new CupertinoAlertDialog(
@@ -35,7 +35,7 @@ class Alert {
             ));
   }
 
-  Error(BuildContext context, String error_text, VoidCallback on_press) {
+  static Error(BuildContext context, String error_text, VoidCallback on_press) {
     showCupertinoDialog(
         context: context,
         builder: (context) => new CupertinoAlertDialog(
@@ -45,9 +45,9 @@ class Alert {
                 CupertinoButton(
                     onPressed: () {
                       if (on_press == null) {
-                        Windows().Close(context);
+                        Windows.Close(context);
                       } else {
-                        Windows().Close(context);
+                        Windows.Close(context);
                         on_press();
                       }
                     },
@@ -56,7 +56,7 @@ class Alert {
             ));
   }
 
-  Confirm(BuildContext context, String title, String content, VoidCallback on_press) {
+  static Confirm(BuildContext context, String title, String content, VoidCallback on_press) {
     showCupertinoDialog(
         context: context,
         builder: (context) => new CupertinoAlertDialog(
@@ -66,9 +66,9 @@ class Alert {
                 CupertinoButton(
                     onPressed: () {
                       if (on_press == null) {
-                        Windows().Close(context);
+                        Windows.Close(context);
                       } else {
-                        Windows().Close(context);
+                        Windows.Close(context);
                         on_press();
                       }
                     },
@@ -77,7 +77,7 @@ class Alert {
             ));
   }
 
-  ButtonBuilder(VoidCallback on_pressed, Text text) {
+  static ButtonBuilder(VoidCallback on_pressed, Text text) {
     return CupertinoButton(onPressed: on_pressed, child: text);
   }
 }
