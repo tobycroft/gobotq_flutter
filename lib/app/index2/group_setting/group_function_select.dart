@@ -78,17 +78,35 @@ class _GroupFunctionSelect extends State<GroupFunctionSelect> {
               },
             ),
             FlatButton(
-              color: Colors.red,
+              color: Colors.amber,
               textColor: Colors.white,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    Icons.weekend,
+                    Icons.reply,
                     size: 80,
                   ),
                   Text(
-                    "关于我们",
+                    "关键词回复",
+                    style: Config.Text_style_main_page,
+                  )
+                ],
+              ),
+              onPressed: () async {},
+            ),
+            FlatButton(
+              color: Colors.lime,
+              textColor: Colors.white,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.reply_all,
+                    size: 80,
+                  ),
+                  Text(
+                    "全字匹配回复",
                     style: Config.Text_style_main_page,
                   )
                 ],
