@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:gobotq_flutter/app/index2/group_setting/group_function_select.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/group_setting_get.dart';
-import 'package:gobotq_flutter/app/index2/group_setting/group_setting_set.dart';
 import 'package:gobotq_flutter/app/index2/url_index2.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
@@ -146,7 +146,7 @@ class _group_list_widget extends StatelessWidget {
         if (this._wgtype == _widget_type.get) {
           Windows.Open(this._context, GroupSettingGet("查看本群设定", this._pageparam));
         } else if (this._wgtype == _widget_type.set) {
-          Windows.Open(this._context, GroupSettingSet("群机器人设定", this._pageparam));
+          Windows.Open(this._context, GroupFunctionSelect("群机器人设定", this._pageparam));
         }
       },
       trailing: Icon(Icons.keyboard_arrow_right),

@@ -1,46 +1,45 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:gobotq_flutter/app/index1/robot_info/white/bot_white_list_add.dart';
-import 'package:gobotq_flutter/app/index1/robot_info/white/url_white.dart';
+import 'package:gobotq_flutter/app/index2/group_setting/url_group_setting.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/extend/authaction/authaction.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/net/ret.dart';
-import 'package:gobotq_flutter/tuuz/win/close.dart';
 
-class BotWhiteList extends StatefulWidget {
+class GroupBlackList extends StatefulWidget {
   String _title;
   var _pageparam;
 
-  BotWhiteList(this._title, this._pageparam);
+  GroupBlackList(this._title, this._pageparam);
 
-  _BotWhiteList createState() => _BotWhiteList(this._title, this._pageparam);
+  _GroupBlackList createState() => _GroupBlackList(this._title, this._pageparam);
 }
 
-class _BotWhiteList extends State<BotWhiteList> {
+class _GroupBlackList extends State<GroupBlackList> {
   String _title;
   var _pageparam;
 
-  _BotWhiteList(this._title, this._pageparam);
+  _GroupBlackList(this._title, this._pageparam);
 
   @override
   void initState() {
     setState(() {
-      get_data(context, this._pageparam["bot"].toString());
+      get_data(context, this._pageparam["gid"].toString());
     });
     super.initState();
   }
 
-  Future<void> get_data(BuildContext context, String bot) async {
+  Future<void> get_data(BuildContext context, String gid) async {
     Map post = await AuthAction().LoginObject();
-    post["bot"] = bot;
+    post["gid"] = gid;
 
-    String ret = await Net.Post(Config.Url, Url_white.white_list, null, post, null);
+    String ret = await Net.Post(Config.Url, Url_group_setting.Group_black_list, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth.Return_login_check(context, json)) {
       if (Ret.Check_isok(context, json)) {
@@ -62,9 +61,7 @@ class _BotWhiteList extends State<BotWhiteList> {
         ),
         actions: [
           FlatButton(
-            onPressed: () async {
-              Windows.Open(context, Bot_white_list_add(this._title, this._pageparam));
-            },
+            onPressed: () async {},
             child: Icon(
               Icons.add_circle_outline,
               color: Colors.white,
@@ -75,13 +72,7 @@ class _BotWhiteList extends State<BotWhiteList> {
       body: EasyRefresh(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            String groupname = "";
             var _data = _white_group[index];
-            if (_data["group_info"] != null) {
-              groupname = _data["group_info"]["group_name"].toString();
-            } else {
-              groupname = "暂时还未拉入这个群";
-            }
 
             return new Slidable(
               actionPane: SlidableScrollActionPane(),
@@ -89,9 +80,9 @@ class _BotWhiteList extends State<BotWhiteList> {
               actionExtentRatio: 0.25,
               child: ListTile(
                 leading: null,
-                title: Text(groupname),
-                subtitle: Text(_data["gid"].toString()),
-                trailing: null,
+                title: Text(_data["uid"].toString()),
+                subtitle: Text("操作人：" + _data["operator"].toString()),
+                trailing: Text(_data["date"].toString()),
                 onTap: () async {},
               ),
               secondaryActions: [
@@ -100,7 +91,7 @@ class _BotWhiteList extends State<BotWhiteList> {
                   color: Colors.red,
                   icon: Icons.delete_forever,
                   onTap: () async {
-                    bool ret = await delete_data(context, _data["bot"].toString(), _data["gid"].toString());
+                    bool ret = await delete_data(context, _data["uid"].toString(), _data["gid"].toString());
                     if (ret) {
                       setState(() {
                         _white_group.removeAt(index);
@@ -114,19 +105,19 @@ class _BotWhiteList extends State<BotWhiteList> {
           itemCount: _white_group.length,
         ),
         onRefresh: () async {
-          get_data(context, this._pageparam["bot"].toString());
+          get_data(context, this._pageparam["gid"].toString());
         },
       ),
     );
   }
 }
 
-Future<bool> delete_data(BuildContext context, String bot, gid) async {
+Future<bool> delete_data(BuildContext context, String uid, gid) async {
   Map post = await AuthAction().LoginObject();
-  post["bot"] = bot;
+  post["qq"] = uid;
   post["gid"] = gid;
 
-  String ret = await Net.Post(Config.Url, Url_white.white_delete, null, post, null);
+  String ret = await Net.Post(Config.Url, Url_group_setting.Group_black_delete, null, post, null);
   Map json = jsonDecode(ret);
   if (Auth.Return_login_check(context, json)) {
     if (Ret.Check_isok(context, json)) {
