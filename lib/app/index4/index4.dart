@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gobotq_flutter/app/index4/about/about.dart';
 import 'package:gobotq_flutter/app/index4/balance_record/balance_record.dart';
+import 'package:gobotq_flutter/app/index4/login_record/login_record_list.dart';
 import 'package:gobotq_flutter/app/index4/url_index4.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
@@ -192,12 +193,14 @@ class _Index4 extends State<Index4> {
                         size: 80,
                       ),
                       Text(
-                        "编写中",
+                        "登录记录",
                         style: Config.Text_Style_default,
                       )
                     ],
                   ),
-                  onPressed: () async {},
+                  onPressed: () async {
+                    Windows.Open(context, LoginRecordList("登录记录", _user_info));
+                  },
                 ),
                 FlatButton(
                   color: Colors.green,
