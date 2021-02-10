@@ -10,7 +10,5 @@ class Url_group_setting extends Url_Index2 {
   static String Group_Autoreply_add = "/v1/group/autoreply/add";
   static String Group_Autoreply_delete = "/v1/group/autoreply/delete";
 
-  static String Group_Autoreply_all_list = "/v1/group/autoreply/list";
-  static String Group_Autoreply_all_add = "/v1/group/autoreply/add";
-  static String Group_Autoreply_all_delete = "/v1/group/autoreply/delete";
+  static String Group_Autoreply_full_list = "/v1/group/autoreply/full_list";
 }

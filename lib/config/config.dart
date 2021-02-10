@@ -29,7 +29,7 @@ class Config {
   );
 
   static TextStyle Text_style_input_box = TextStyle(
-    fontSize: 24,
+    fontSize: 22,
   );
 
   static TextStyle Text_button_default = TextStyle(
