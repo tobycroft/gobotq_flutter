@@ -62,7 +62,7 @@ class _GroupBlackList extends State<GroupBlackList> {
         actions: [
           FlatButton(
             onPressed: () async {},
-            child: Icon(
+            child: const Icon(
               Icons.add_circle_outline,
               color: Colors.white,
             ),

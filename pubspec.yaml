@@ -31,7 +31,6 @@ dependencies:
   upgrader: ^2.8.2
   package_info: ^0.4.3+4
   permission_handler: ^5.1.0+2
-  device_info: ^1.0.0
   r_upgrade: ^0.3.2+3
   liquid_progress_indicator: ^0.3.2
   jpush_flutter: ^0.6.3

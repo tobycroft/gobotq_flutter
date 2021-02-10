@@ -64,7 +64,7 @@ class _BotFriendList extends State<BotFriendList> {
             onPressed: () async {
               Windows.Open(context, BotFriendListAdd(this._title, this._pageparam));
             },
-            child: Icon(
+            child: const Icon(
               Icons.add_circle_outline,
               color: Colors.white,
             ),

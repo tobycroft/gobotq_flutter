@@ -67,7 +67,7 @@ class _FriendWhiteList extends State<FriendWhiteList> {
             onPressed: () async {
               Windows.Open(context, FriendWhiteListAdd(this._title, this._pageparam));
             },
-            child: Icon(
+            child: const Icon(
               Icons.add_circle_outline,
               color: Colors.white,
             ),

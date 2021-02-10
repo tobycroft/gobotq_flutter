@@ -52,7 +52,14 @@ class _AutoReplyUpload extends State<AutoReplyUpload> {
             keyboardType: TextInputType.number,
             style: Theme.of(context).textTheme.headline4,
             maxLength: 64,
-            decoration: Config.Inputdecoration_default_input_box(Icons.account_circle, "输入触发词", false, "请输入数字"),
+            decoration: Config.Inputdecoration_default_input_box(
+                const Icon(
+                  Icons.account_circle,
+                  size: 32,
+                ),
+                "输入触发词",
+                false,
+                "请输入数字"),
             onChanged: (String val) {
               this.key = val.toString();
             },
@@ -65,7 +72,14 @@ class _AutoReplyUpload extends State<AutoReplyUpload> {
             style: Theme.of(context).textTheme.headline4,
             maxLines: 3,
             maxLength: 500,
-            decoration: Config.Inputdecoration_default_input_box(Icons.security, "输入触发后回复内容", false, "请输入数字"),
+            decoration: Config.Inputdecoration_default_input_box(
+                const Icon(
+                  Icons.security,
+                  size: 32,
+                ),
+                "输入触发后回复内容",
+                false,
+                "请输入数字"),
             onChanged: (String val) {
               this.value = val.toString();
             },

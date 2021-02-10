@@ -58,7 +58,7 @@ packages:
     source: hosted
     version: "1.0.0"
   device_info:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: device_info
       url: "https://pub.dartlang.org"

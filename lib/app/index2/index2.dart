@@ -88,8 +88,8 @@ class _Index2 extends State<Index2> {
       ),
     ];
     final _kTabs = <Tab>[
-      const Tab(icon: Icon(Icons.check_box), text: '可控制'),
-      const Tab(icon: Icon(Icons.check_box_outline_blank), text: '仅查看'),
+      const Tab(icon: const Icon(Icons.check_box), text: '可控制'),
+      const Tab(icon: const Icon(Icons.check_box_outline_blank), text: '仅查看'),
     ];
 
     return DefaultTabController(
@@ -129,7 +129,7 @@ class _group_list_widget extends StatelessWidget {
   Widget _buildTiles(Map ret) {
     if (ret == null) return ListTile();
     return ListTile(
-      leading: Icon(
+      leading: const Icon(
         Icons.group,
         size: 32,
       ),
@@ -149,7 +149,7 @@ class _group_list_widget extends StatelessWidget {
           Windows.Open(this._context, GroupFunctionSelect("群机器人设定", this._pageparam));
         }
       },
-      trailing: Icon(Icons.keyboard_arrow_right),
+      trailing: const Icon(Icons.keyboard_arrow_right),
     );
   }
 

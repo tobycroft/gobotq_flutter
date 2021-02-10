@@ -22,7 +22,7 @@ class GroupSettingGet extends StatefulWidget {
 
 List<Widget> _setting = [
   ListTile(
-    leading: Icon(Icons.build),
+    leading: const Icon(Icons.build),
     title: Text("等待数据载入"),
   )
 ];
@@ -57,7 +57,7 @@ class _GroupSettingGet extends State<GroupSettingGet> {
                   str = "是";
                 }
                 _setting.add(ListTile(
-                  leading: Icon(Icons.build),
+                  leading: const Icon(Icons.build),
                   title: Text(value["name"].toString()),
                   subtitle: Text(str),
                 ));
@@ -67,7 +67,7 @@ class _GroupSettingGet extends State<GroupSettingGet> {
             case "int":
               {
                 _setting.add(ListTile(
-                  leading: Icon(Icons.build),
+                  leading: const Icon(Icons.build),
                   title: Text(value["name"].toString()),
                   subtitle: Text(value["value"].toString()),
                 ));
@@ -77,7 +77,7 @@ class _GroupSettingGet extends State<GroupSettingGet> {
             case "string":
               {
                 _setting.add(ListTile(
-                  leading: Icon(Icons.build),
+                  leading: const Icon(Icons.build),
                   title: Text(value["name"].toString()),
                   subtitle: Text(value["value"].toString()),
                 ));
@@ -87,7 +87,7 @@ class _GroupSettingGet extends State<GroupSettingGet> {
             default:
               {
                 _setting.add(ListTile(
-                  leading: Icon(Icons.build),
+                  leading: const Icon(Icons.build),
                   title: Text(value["name"].toString()),
                   subtitle: Text(value["value"].toString()),
                 ));

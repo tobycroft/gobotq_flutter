@@ -22,7 +22,7 @@ class GroupSettingSet extends StatefulWidget {
 
 List<Widget> _setting = [
   ListTile(
-    leading: Icon(Icons.build),
+    leading: const Icon(Icons.build),
     title: Text("等待数据载入"),
   )
 ];
@@ -63,7 +63,7 @@ class _GroupSettingSet extends State<GroupSettingSet> {
                   _data[key]["value"] = false;
                 }
                 _setting.add(ListTile(
-                  leading: Icon(Icons.offline_pin),
+                  leading: const Icon(Icons.offline_pin),
                   title: Text(_data[key]["name"].toString()),
                   subtitle: Text(str),
                   trailing: Switch(
@@ -85,7 +85,7 @@ class _GroupSettingSet extends State<GroupSettingSet> {
               {
                 _setting.add(
                   ListTile(
-                    leading: Icon(Icons.confirmation_number),
+                    leading: const Icon(Icons.confirmation_number),
                     title: Text(_data[key]["name"].toString()),
                     subtitle: TextField(
                       keyboardType: TextInputType.number,
@@ -115,7 +115,7 @@ class _GroupSettingSet extends State<GroupSettingSet> {
             case "string":
               {
                 _setting.add(ListTile(
-                  leading: Icon(Icons.textsms),
+                  leading: const Icon(Icons.textsms),
                   title: Text(_data[key]["name"].toString()),
                   subtitle: TextField(
                     maxLines: 3,
@@ -149,7 +149,7 @@ class _GroupSettingSet extends State<GroupSettingSet> {
             default:
               {
                 _setting.add(ListTile(
-                  leading: Icon(Icons.build),
+                  leading: const Icon(Icons.build),
                   title: Text(_data[key]["name"].toString()),
                   subtitle: Text(_data[key]["value"].toString()),
                 ));

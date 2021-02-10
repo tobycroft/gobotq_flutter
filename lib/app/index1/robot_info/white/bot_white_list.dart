@@ -65,7 +65,7 @@ class _BotWhiteList extends State<BotWhiteList> {
             onPressed: () async {
               Windows.Open(context, Bot_white_list_add(this._title, this._pageparam));
             },
-            child: Icon(
+            child: const Icon(
               Icons.add_circle_outline,
               color: Colors.white,
             ),

@@ -65,7 +65,7 @@ class _LoginRecordList extends State<LoginRecordList> {
             onPressed: () async {
               Windows.Open(context, AutoReplyUpload("新增自动回复", this._pageparam));
             },
-            child: Icon(
+            child: const Icon(
               Icons.add_circle_outline,
               color: Colors.white,
             ),

@@ -43,13 +43,10 @@ class Config {
     ),
   );
 
-  static InputDecoration Inputdecoration_default_input_box(IconData icon, String labelText, bool error, String errorText) {
+  static InputDecoration Inputdecoration_default_input_box(Icon icon, String labelText, bool error, String errorText) {
     return InputDecoration(
       contentPadding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
-      prefixIcon: Icon(
-        icon,
-        size: 32,
-      ),
+      prefixIcon: icon,
       labelText: labelText,
       labelStyle: Text_style_input_box,
       errorText: error ? errorText : null,

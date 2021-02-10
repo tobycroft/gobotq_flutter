@@ -55,7 +55,7 @@ class _Upload_robot extends State<Upload_robot> {
                       fontSize: 17,
                     ),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.format_list_bulleted,
                     color: Colors.white,
                     size: 22,
@@ -82,7 +82,14 @@ class _Upload_robot extends State<Upload_robot> {
           TextField(
             keyboardType: TextInputType.number,
             style: Theme.of(context).textTheme.headline4,
-            decoration: Config.Inputdecoration_default_input_box(Icons.account_circle, "输入机器人的QQ号码", this._qq, "请输入数字"),
+            decoration: Config.Inputdecoration_default_input_box(
+              const Icon(
+                  Icons.account_circle,
+                  size: 32,
+                ),
+                "输入机器人的QQ号码",
+                this._qq,
+                "请输入数字"),
             onChanged: (String val) {
               setState(() {
                 if (int.tryParse(val) == null) {
@@ -100,7 +107,14 @@ class _Upload_robot extends State<Upload_robot> {
           TextField(
             keyboardType: TextInputType.text,
             style: Theme.of(context).textTheme.headline4,
-            decoration: Config.Inputdecoration_default_input_box(Icons.security, "输入机器人QQ密码", false, "请输入数字"),
+            decoration: Config.Inputdecoration_default_input_box(
+              const Icon(
+                  Icons.security,
+                  size: 32,
+                ),
+                "输入机器人QQ密码",
+                false,
+                "请输入数字"),
             onChanged: (String val) {
               this.password = val.toString();
             },
@@ -117,7 +131,14 @@ class _Upload_robot extends State<Upload_robot> {
           TextField(
             keyboardType: TextInputType.text,
             style: Theme.of(context).textTheme.headline4,
-            decoration: Config.Inputdecoration_default_input_box(Icons.security_outlined, "设定绑定密钥", false, ""),
+            decoration: Config.Inputdecoration_default_input_box(
+              const Icon(
+                  Icons.security_outlined,
+                  size: 32,
+                ),
+                "设定绑定密钥",
+                false,
+                ""),
             onChanged: (String val) {
               this.secret = val.toString();
             },

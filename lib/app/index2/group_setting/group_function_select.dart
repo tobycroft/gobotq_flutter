@@ -45,7 +45,7 @@ class _GroupFunctionSelect extends State<GroupFunctionSelect> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.settings,
                     size: 80,
                   ),
@@ -65,7 +65,7 @@ class _GroupFunctionSelect extends State<GroupFunctionSelect> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.nature_people,
                     size: 80,
                   ),
@@ -85,7 +85,7 @@ class _GroupFunctionSelect extends State<GroupFunctionSelect> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.reply,
                     size: 80,
                   ),
@@ -105,7 +105,7 @@ class _GroupFunctionSelect extends State<GroupFunctionSelect> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.reply_all,
                     size: 80,
                   ),
