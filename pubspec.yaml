@@ -30,6 +30,7 @@ dependencies:
   url_launcher: ^5.7.10
   upgrader: ^2.8.2
   package_info: ^0.4.3+4
+  device_info: ^1.0.0
   permission_handler: ^5.1.0+2
   r_upgrade: ^0.3.2+3
   liquid_progress_indicator: ^0.3.2

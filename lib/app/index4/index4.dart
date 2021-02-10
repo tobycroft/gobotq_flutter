@@ -169,7 +169,7 @@ class _Index4 extends State<Index4> {
                   child: Container(
                     margin: EdgeInsets.only(right: 20),
                     alignment: Alignment.centerRight,
-                    child: const Icon(Icons.keyboard_arrow_right),
+                    child: Icon(Icons.keyboard_arrow_right),
                   ),
                 ),
               ],
@@ -188,7 +188,7 @@ class _Index4 extends State<Index4> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.settings,
                         size: 80,
                       ),
@@ -207,7 +207,7 @@ class _Index4 extends State<Index4> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.restore_page,
                         size: 80,
                       ),
@@ -267,7 +267,7 @@ class _Index4 extends State<Index4> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.weekend,
                         size: 80,
                       ),
@@ -299,12 +299,12 @@ class _Index4 extends State<Index4> {
                 center: Text(_percent.toString()),
               ),
               ListTile(
-                leading: const Icon(
+                leading: Icon(
                   Icons.account_balance_wallet,
                   color: Colors.black,
                   size: 48,
                 ),
-                trailing: const Icon(Icons.keyboard_arrow_right),
+                trailing: Icon(Icons.keyboard_arrow_right),
                 title: Text("积分"),
                 subtitle: Text(_user_balance["balance"].toString()),
                 onTap: () {

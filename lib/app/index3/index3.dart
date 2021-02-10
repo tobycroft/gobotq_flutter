@@ -36,7 +36,7 @@ class _Index3 extends State<Index3> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(
+                Icon(
                   Icons.person_add_alt,
                   size: 80,
                 ),

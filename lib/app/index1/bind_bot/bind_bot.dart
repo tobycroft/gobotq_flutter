@@ -58,14 +58,7 @@ class _BindBot extends State<BindBot> {
           TextField(
             keyboardType: TextInputType.number,
             style: Theme.of(context).textTheme.headline4,
-            decoration: Config.Inputdecoration_default_input_box(
-              const Icon(
-                  Icons.account_circle,
-                  size: 32,
-                ),
-                "输入机器人QQ",
-                this._bot,
-                "请输入数字"),
+            decoration: Config.Inputdecoration_default_input_box(Icons.account_circle, "输入机器人QQ", this._bot, "请输入数字"),
             onChanged: (String val) {
               setState(() {
                 if (int.tryParse(val) == null) {
@@ -83,14 +76,7 @@ class _BindBot extends State<BindBot> {
           TextField(
             keyboardType: TextInputType.number,
             style: Theme.of(context).textTheme.headline4,
-            decoration: Config.Inputdecoration_default_input_box(
-                const Icon(
-                    Icons.account_circle,
-                    size: 32,
-                  ),
-                "输入机器人的密钥",
-                false,
-                "请输入数字"),
+            decoration: Config.Inputdecoration_default_input_box(Icons.account_circle, "输入机器人的密钥", false, "请输入数字"),
             onChanged: (String val) {
               this.secret = val.toString();
             },

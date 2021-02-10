@@ -65,7 +65,7 @@ class _BotGroupList extends State<BotGroupList> {
             onPressed: () async {
               Windows.Open(context, Bot_group_list_add(this._title, this._pageparam));
             },
-            child: const Icon(
+            child: Icon(
               Icons.add_circle_outline,
               color: Colors.white,
             ),

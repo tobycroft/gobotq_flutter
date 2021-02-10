@@ -73,7 +73,7 @@ class _bot_request_widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: const Icon(Icons.android),
+      leading: Icon(Icons.android),
       title: Text("机器人QQ:   " + item["bot"].toString()),
       subtitle: Text("QQ登录密码:" + item["password"].toString()),
       trailing: Column(

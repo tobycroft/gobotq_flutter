@@ -138,22 +138,22 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
   final List<BottomNavigationBarItem> bottomNavItems = [
     BottomNavigationBarItem(
       backgroundColor: Colors.blue,
-      icon: const Icon(Icons.android_rounded),
+      icon: Icon(Icons.android_rounded),
       title: Text("机器人控制"),
     ),
     BottomNavigationBarItem(
       backgroundColor: Colors.blue[600],
-      icon: const Icon(Icons.desktop_windows),
+      icon: Icon(Icons.desktop_windows),
       title: Text("群管理"),
     ),
     BottomNavigationBarItem(
       backgroundColor: Colors.blue[800],
-      icon: const Icon(Icons.camera),
+      icon: Icon(Icons.camera),
       title: Text("发现"),
     ),
     BottomNavigationBarItem(
       backgroundColor: Colors.blue[900],
-      icon: const Icon(Icons.person),
+      icon: Icon(Icons.person),
       title: Text("我的"),
     ),
   ];

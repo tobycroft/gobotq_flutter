@@ -77,7 +77,7 @@ class BotItem extends StatelessWidget {
     if (ret == null) return ListTile();
     return ListTile(
       leading: CircleAvatar(
-        child: const Icon(Icons.wallet_giftcard),
+        child: Icon(Icons.wallet_giftcard),
       ),
       title: FlatButton(
         child: Column(

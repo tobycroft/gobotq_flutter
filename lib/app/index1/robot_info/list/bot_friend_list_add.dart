@@ -61,14 +61,7 @@ class _BotFriendListAdd extends State<BotFriendListAdd> {
           TextField(
             keyboardType: TextInputType.number,
             style: Theme.of(context).textTheme.headline4,
-            decoration: Config.Inputdecoration_default_input_box(
-                const Icon(
-                  Icons.account_circle,
-                  size: 32,
-                ),
-                "输入可以添加机器人的QQ号",
-                this._qq,
-                "请输入数字"),
+            decoration: Config.Inputdecoration_default_input_box(Icons.account_circle, "输入可以添加机器人的QQ号", this._qq, "请输入数字"),
             onChanged: (String val) {
               setState(() {
                 if (int.tryParse(val) == null) {
@@ -86,14 +79,7 @@ class _BotFriendListAdd extends State<BotFriendListAdd> {
           TextField(
             keyboardType: TextInputType.number,
             style: Theme.of(context).textTheme.headline4,
-            decoration: Config.Inputdecoration_default_input_box(
-                Icon(
-                  Icons.account_circle,
-                  size: 32,
-                ),
-                "添加好友的验证问题",
-                false,
-                "请输入数字"),
+            decoration: Config.Inputdecoration_default_input_box(Icons.account_circle, "添加好友的验证问题", false, "请输入数字"),
             onChanged: (String val) {
               this.text = val.toString();
             },

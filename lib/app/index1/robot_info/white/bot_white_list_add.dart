@@ -57,10 +57,7 @@ class _Bot_white_list_add extends State<Bot_white_list_add> {
           TextField(
             keyboardType: TextInputType.number,
             style: Theme.of(context).textTheme.headline4,
-            decoration: Config.Inputdecoration_default_input_box(const Icon(
-              Icons.account_circle,
-              size: 32,
-            ), "输入机器人可以加入的群", this._gid, "请输入数字"),
+            decoration: Config.Inputdecoration_default_input_box(Icons.account_circle, "输入机器人可以加入的群", this._gid, "请输入数字"),
             onChanged: (String val) {
               setState(() {
                 if (int.tryParse(val) == null) {

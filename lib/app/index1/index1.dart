@@ -77,8 +77,8 @@ class _Index1 extends State<Index1> {
             offset: Offset(100, 100),
             itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
               // Tuuz_Popup.MenuItem(Icons.login, "登录", "login"),
-              Tuuz_Popup.MenuItem(const Icon(Icons.add_box, color: Colors.blue), "绑定机器人", "bind_bot"),
-              Tuuz_Popup.MenuItem(const Icon(Icons.help_center, color: Colors.blue), "首页帮助", "index_help"),
+              Tuuz_Popup.MenuItem(Icons.add_box, "绑定机器人", "bind_bot"),
+              Tuuz_Popup.MenuItem(Icons.help_center, "首页帮助", "index_help"),
               // Tuuz_Popup.MenuItem(Icons.qr_code, "扫码", "scanner"),
             ],
             onSelected: (String value) {

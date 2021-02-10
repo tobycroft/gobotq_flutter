@@ -114,7 +114,7 @@ class _robot_info_index extends State<Robot_info_index> {
             },
           ),
           ListTile(
-            leading: const Icon(
+            leading: Icon(
               Icons.timer_off,
               size: 40,
             ),
@@ -123,14 +123,14 @@ class _robot_info_index extends State<Robot_info_index> {
               DateTime.fromMillisecondsSinceEpoch(double.parse((_robot_info["end_time"] * 1000).toString()).round()).toString(),
               style: Config.Text_style_notimportant_auto,
             ),
-            trailing: const Icon(Icons.chevron_right),
-            // trailing: const Icon(Icons.chevron_right),
+            trailing: Icon(Icons.chevron_right),
+            // trailing: Icon(Icons.chevron_right),
             onTap: () async {
               Alert.Confirm(context, "title", "content", () {});
             },
           ),
           ListTile(
-            leading: const Icon(
+            leading: Icon(
               Icons.drive_file_rename_outline,
               size: 40,
             ),
@@ -139,14 +139,14 @@ class _robot_info_index extends State<Robot_info_index> {
               _robot_info["cname"].toString(),
               style: Config.Text_style_notimportant_auto,
             ),
-            trailing: const Icon(Icons.chevron_right),
-            // trailing: const Icon(Icons.chevron_right),
+            trailing: Icon(Icons.chevron_right),
+            // trailing: Icon(Icons.chevron_right),
             onTap: () async {
               Alert.Confirm(context, "title", "content", () {});
             },
           ),
           ListTile(
-            leading: const Icon(
+            leading: Icon(
               Icons.format_list_bulleted,
               size: 40,
             ),
@@ -157,14 +157,14 @@ class _robot_info_index extends State<Robot_info_index> {
               "你可以在这里加群或者退群",
               style: Config.Text_style_notimportant_auto,
             ),
-            trailing: const Icon(Icons.chevron_right),
-            // trailing: const Icon(Icons.chevron_right),
+            trailing: Icon(Icons.chevron_right),
+            // trailing: Icon(Icons.chevron_right),
             onTap: () async {
               Windows.Open(context, BotGroupList("已加入的群", this._page_param));
             },
           ),
           ListTile(
-            leading: const Icon(
+            leading: Icon(
               Icons.playlist_add_check,
               size: 40,
             ),
@@ -175,14 +175,14 @@ class _robot_info_index extends State<Robot_info_index> {
               "机器人只能被邀请进入白名单中的群",
               style: Config.Text_style_notimportant_auto,
             ),
-            trailing: const Icon(Icons.chevron_right),
-            // trailing: const Icon(Icons.chevron_right),
+            trailing: Icon(Icons.chevron_right),
+            // trailing: Icon(Icons.chevron_right),
             onTap: () async {
               Windows.Open(context, BotWhiteList("可加入的群", this._page_param));
             },
           ),
           ListTile(
-            leading: const Icon(
+            leading: Icon(
               Icons.person,
               size: 40,
             ),
@@ -193,14 +193,14 @@ class _robot_info_index extends State<Robot_info_index> {
               "你可以在这里让机器人删除某个好友",
               style: Config.Text_style_notimportant_auto,
             ),
-            trailing: const Icon(Icons.chevron_right),
-            // trailing: const Icon(Icons.chevron_right),
+            trailing: Icon(Icons.chevron_right),
+            // trailing: Icon(Icons.chevron_right),
             onTap: () async {
               Windows.Open(context, BotFriendList("机器人好友列表", this._page_param));
             },
           ),
           ListTile(
-            leading: const Icon(
+            leading: Icon(
               Icons.person_pin,
               size: 40,
             ),
@@ -211,8 +211,8 @@ class _robot_info_index extends State<Robot_info_index> {
               "允许添加机器人的账号",
               style: Config.Text_style_notimportant_auto,
             ),
-            trailing: const Icon(Icons.chevron_right),
-            // trailing: const Icon(Icons.chevron_right),
+            trailing: Icon(Icons.chevron_right),
+            // trailing: Icon(Icons.chevron_right),
             onTap: () async {
               Windows.Open(context, FriendWhiteList("可被添加的白名单", this._page_param));
             },

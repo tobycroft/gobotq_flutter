@@ -66,7 +66,7 @@ class _AutoReplyFullList extends State<AutoReplyFullList> {
             onPressed: () async {
               Windows.Open(context, AutoReplyUpload("新增自动回复", this._pageparam));
             },
-            child: const Icon(
+            child: Icon(
               Icons.add_circle_outline,
               color: Colors.white,
             ),
