@@ -6,6 +6,7 @@ import 'package:gobotq_flutter/app/index2/index2.dart';
 import 'package:gobotq_flutter/app/index3/index3.dart';
 import 'package:gobotq_flutter/app/index4/index4.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
+import 'package:gobotq_flutter/config/style.dart';
 
 void main() {
   runApp(MyApp());
