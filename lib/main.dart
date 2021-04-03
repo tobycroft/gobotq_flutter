@@ -29,13 +29,33 @@ class MyApp extends StatelessWidget {
         ),
       ),
       theme: ThemeData(
-        backgroundColor: Colors.black,
+        // primaryColor: Colors.grey,
+        brightness: Brightness.light,
+        scaffoldBackgroundColor: Style.LightGrey,
         appBarTheme: AppBarTheme(
-          color: Colors.black,
+          brightness: Brightness.light,
+          color: Colors.white54,
+          shadowColor: Colors.transparent,
+          actionsIconTheme: IconThemeData(color: Colors.black),
+          textTheme: TextTheme(
+            title: TextStyle(
+              color: Colors.black,
+              fontSize: 22,
+            ),
+          ),
+          iconTheme: IconThemeData(color: Colors.black),
           centerTitle: true,
         ),
+        iconTheme: IconThemeData(color: Colors.black),
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: Style.LightGrey),
+        dividerTheme: DividerThemeData(
+          color: Style.LightGrey,
+          thickness: 0.3,
+          space: 0.5,
+        ),
+        backgroundColor: Colors.white,
       ),
       home: BotomeMenumPage(),
     );
