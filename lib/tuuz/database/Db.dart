@@ -1,5 +1,4 @@
 import 'package:sqflite/sqflite.dart';
-import 'package:gobotq_flutter/model/BaseModel.dart';
 
 class TuuzDb {
   Future<Database> _db;
@@ -24,14 +23,14 @@ class TuuzDb {
 
   Future<void> _onCreate(Database db, int version) async {
     // Database is created, create the table
-    await BaseModel().create(db);
+    // await BaseModel().create(db);
     // populate data
   }
 
   Future<void> _onUpdate(Database db, int oldVersion, int newVersion) async {
     // Database is created, create the table
     // await db.execute("CREATE TABLE Test (id INTEGER PRIMARY KEY, value TEXT)");
-    await BaseModel().update(db);
+    // await BaseModel().update(db);
     // populate data
   }
 }

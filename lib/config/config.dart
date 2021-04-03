@@ -5,6 +5,8 @@ class Config {
   static double Font_Size = 24;
   static double Font_size_text = 16;
 
+  static String default_image = "images/logo.png";
+
   static TextStyle Text_Style_default = TextStyle(
     fontSize: 16,
     color: Colors.black,
@@ -66,4 +68,7 @@ class Config {
   //
   static bool Proxy_debug = false;
   static String Url = "api.tuuz.cn:15088";
+
+  static String Upload = "http://upload.tuuz.cc:81/upfull?token=" + Upload_token;
+  static String Upload_token = "gochat";
 }

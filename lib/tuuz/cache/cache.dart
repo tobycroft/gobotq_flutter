@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:full_screen_image/full_screen_image.dart';
+import 'package:gobotq_flutter/tuuz/cache/widget_video.dart';
 import 'package:ok_image/ok_image.dart';
 import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/tuuz/time/time.dart';
