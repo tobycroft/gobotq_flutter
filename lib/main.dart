@@ -8,7 +8,6 @@ import 'package:gobotq_flutter/app/index4/index4.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
 
 void main() {
-  Init().init();
   runApp(MyApp());
 }
 
@@ -23,7 +22,6 @@ class Init {
 }
 
 final EventHub eventhub = EventHub();
-
 
 class MyApp extends StatelessWidget {
   @override
@@ -70,8 +68,11 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
   @override
   void initState() {
     ///初始化，这个函数在生命周期中只调用一次
-    super.initState();
     initPlatformState();
+
+    Init().init();
+
+    super.initState();
   }
 
   Future<void> initPlatformState() async {
