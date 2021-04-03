@@ -119,6 +119,26 @@ class _GroupFunctionSelect extends State<GroupFunctionSelect> {
                 Windows.Open(context, AutoReplyFullList("全字匹配回复", _pageparam));
               },
             ),
+            FlatButton(
+              color: Colors.teal,
+              textColor: Colors.white,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.timer,
+                    size: 80,
+                  ),
+                  Text(
+                    "定时消息",
+                    style: Config.Text_style_main_page,
+                  )
+                ],
+              ),
+              onPressed: () async {
+                Windows.Open(context, AutoReplyFullList("定时消息", _pageparam));
+              },
+            ),
           ]),
     );
   }
