@@ -11,16 +11,6 @@ void main() {
   runApp(MyApp());
 }
 
-class Init {
-  void init() async {
-    // PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    // print(packageInfo.appName);
-    // print(packageInfo.version);
-  }
-
-  void is_login() async {}
-}
-
 final EventHub eventhub = EventHub();
 
 class MyApp extends StatelessWidget {
@@ -72,8 +62,6 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
     pages..add(Index1("机器人列表"))..add(Index2("群列表"))..add(Index3("发现"))..add(Index4("我的"));
 
     initPlatformState();
-
-    Init().init();
 
     super.initState();
   }
