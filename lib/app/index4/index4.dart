@@ -10,9 +10,11 @@ import 'package:gobotq_flutter/app/index4/login_record/login_record_list.dart';
 import 'package:gobotq_flutter/app/index4/url_index4.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
+import 'package:gobotq_flutter/config/event.dart';
 import 'package:gobotq_flutter/config/res.dart';
 import 'package:gobotq_flutter/config/url.dart';
 import 'package:gobotq_flutter/extend/authaction/authaction.dart';
+import 'package:gobotq_flutter/main.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/storage/storage.dart';
@@ -41,6 +43,11 @@ class _Index4 extends State<Index4> {
   void initState() {
     get_user_info();
     get_user_balance();
+
+    eventhub.on(EventType.Login, (_) {
+      get_user_info();
+      get_user_balance();
+    });
 
     super.initState();
     RUpgrade.stream.listen((DownloadInfo info) {

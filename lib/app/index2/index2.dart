@@ -7,7 +7,9 @@ import 'package:gobotq_flutter/app/index2/group_setting/group_setting_get.dart';
 import 'package:gobotq_flutter/app/index2/url_index2.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
+import 'package:gobotq_flutter/config/event.dart';
 import 'package:gobotq_flutter/extend/authaction/authaction.dart';
+import 'package:gobotq_flutter/main.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/net/ret.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
@@ -31,6 +33,10 @@ class _Index2 extends State<Index2> {
     group_control(context);
     group_joined(context);
     super.initState();
+    eventhub.on(EventType.Login, (_) {
+      group_control(context);
+      group_joined(context);
+    });
   }
 
   Future<void> group_control(BuildContext context) async {
