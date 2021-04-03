@@ -12,7 +12,19 @@ void main() {
   runApp(MyApp());
 }
 
+final JPush jpush = new JPush();
+
 final EventHub eventhub = EventHub();
+
+class Init {
+  void init() async {
+    // PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    // print(packageInfo.appName);
+    // print(packageInfo.version);
+  }
+
+  void is_login() async {}
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -75,8 +87,6 @@ class BotomeMenumPage extends StatefulWidget {
   BotomeMenumPageState createState() => BotomeMenumPageState();
 }
 
-final JPush jpush = new JPush();
-
 /**
  * 在 State 中,可以动态改变数据
  * 在 setState 之后，改变的数据会触发 Widget 重新构建刷新
@@ -89,10 +99,9 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
   @override
   void initState() {
     ///初始化，这个函数在生命周期中只调用一次
-    ///Index2("群列表"), Index3("发现"), Index4("我的")
-    pages..add(Index1("机器人列表"))..add(Index2("群列表"))..add(Index3("发现"))..add(Index4("我的"));
-
     initPlatformState();
+
+    Init().init();
 
     super.initState();
   }
@@ -184,7 +193,9 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
       title: Text("我的"),
     ),
   ];
-  List<Widget> pages = List();
+
+  //点击导航项是要显示的页面
+  final pages = [Index1("机器人列表"), Index2("群列表"), Index3("发现"), Index4("我的")];
 
   Widget buildBottomTabScaffold() {
     return Scaffold(
@@ -200,7 +211,10 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
         },
       ),
       //对应的页面
-      body: pages[currentIndex],
+      body: IndexedStack(
+        index: currentIndex,
+        children: pages,
+      ),
     );
   }
 

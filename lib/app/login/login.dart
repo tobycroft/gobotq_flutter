@@ -24,7 +24,7 @@ class _login extends State<Login> {
   String password;
 
   @override
-  close_win() async {}
+  Future<bool> close_win() async {}
 
   Widget build(BuildContext context) {
     var uid_controller = new TextEditingController(text: "");

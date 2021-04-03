@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gobotq_flutter/app/login/login.dart';
+import 'package:gobotq_flutter/config/event.dart';
+import 'package:gobotq_flutter/main.dart';
 import 'package:gobotq_flutter/tuuz/storage/storage.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
 
@@ -27,6 +29,7 @@ class Auth {
 
   static bool Return_login_check_and_Goto(BuildContext context, Map json) {
     if (json["code"] == -1) {
+      Clear_Login();
       Windows.Open(context, Login());
       return false;
     } else {
@@ -36,13 +39,20 @@ class Auth {
 
   static bool Return_login_check(BuildContext context, Map json) {
     if (json["code"] == -1) {
+      Clear_Login();
       return false;
     } else {
       return true;
     }
   }
 
-  static void Goto_Login(BuildContext context) {
-    Windows.Open(context, Login());
+  static void Goto_Login(BuildContext context) async {
+    await Windows.Open(context, Login());
+  }
+
+  static void Clear_Login() async {
+    await Storage.Delete("__uid__");
+    await Storage.Delete("__token__");
+    eventhub.fire(EventType.Logout);
   }
 }
