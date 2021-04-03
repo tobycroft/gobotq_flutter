@@ -3,4 +3,5 @@ class EventType {
   static String Register = "register";
   static String Logout = "logout";
 
+  static String Auto_Reply = "auto_reply";
 }

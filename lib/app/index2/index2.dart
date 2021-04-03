@@ -28,6 +28,9 @@ class _Index2 extends State<Index2> {
 
   _Index2(this._title);
 
+  List _group_control = [];
+  List _group_joined = [];
+
   @override
   void initState() {
     group_control(context);
@@ -47,7 +50,7 @@ class _Index2 extends State<Index2> {
       if (Ret.Check_isok(context, json)) {
         setState(() {
           if (json["data"] != null) {
-            _group_control = json["data"];
+            this._group_control = json["data"];
           }
         });
       }
@@ -62,7 +65,7 @@ class _Index2 extends State<Index2> {
       if (Ret.Check_isok(context, json)) {
         setState(() {
           if (json["data"] != null) {
-            _group_joined = json["data"];
+            this._group_joined = json["data"];
           }
         });
       }
@@ -74,8 +77,8 @@ class _Index2 extends State<Index2> {
     final _kTabPages = <Widget>[
       EasyRefresh(
         child: ListView.builder(
-          itemBuilder: (BuildContext con, int index) => _group_list_widget(context, _group_control[index], _widget_type.set),
-          itemCount: _group_control.length,
+          itemBuilder: (BuildContext con, int index) => _group_list_widget(context, this._group_control[index], _widget_type.set),
+          itemCount: this._group_control.length,
         ),
         onRefresh: () async {
           group_control(this.context);
@@ -84,8 +87,8 @@ class _Index2 extends State<Index2> {
       ),
       EasyRefresh(
         child: ListView.builder(
-          itemBuilder: (BuildContext con, int index) => _group_list_widget(context, _group_joined[index], _widget_type.get),
-          itemCount: _group_joined.length,
+          itemBuilder: (BuildContext con, int index) => _group_list_widget(context, this._group_joined[index], _widget_type.get),
+          itemCount: this._group_joined.length,
         ),
         onRefresh: () async {
           group_joined(this.context);
@@ -119,9 +122,6 @@ class _Index2 extends State<Index2> {
     );
   }
 }
-
-List _group_control = [];
-List _group_joined = [];
 
 enum _widget_type { set, get }
 

@@ -34,6 +34,7 @@ class _AutoReplyFullList extends State<AutoReplyFullList> {
     setState(() {
       get_data(context, this._pageparam["gid"].toString());
     });
+
     super.initState();
   }
 
