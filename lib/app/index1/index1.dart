@@ -10,6 +10,8 @@ import 'package:gobotq_flutter/app/index1/robot_info/robot_info.dart';
 import 'package:gobotq_flutter/app/login/login.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
+import 'package:gobotq_flutter/config/event.dart';
+import 'package:gobotq_flutter/main.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/popup/popupmenu.dart';
@@ -33,6 +35,9 @@ class _Index1 extends State<Index1> {
   @override
   void initState() {
     get_data();
+    eventhub.on(EventType.Login, (msg) async {
+      get_data();
+    });
     super.initState();
   }
 

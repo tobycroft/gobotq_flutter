@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gobotq_flutter/app/login/help/help.dart';
 import 'package:gobotq_flutter/config/config.dart';
+import 'package:gobotq_flutter/config/event.dart';
 import 'package:gobotq_flutter/config/res.dart';
 import 'package:gobotq_flutter/config/url.dart';
+import 'package:gobotq_flutter/main.dart';
 import 'package:gobotq_flutter/tuuz/alert/ios.dart';
 import 'package:gobotq_flutter/tuuz/button/button.dart';
 import 'package:gobotq_flutter/tuuz/net/net.dart';
@@ -202,6 +204,7 @@ class _login extends State<Login> {
                     Storage.Set("__uid__", json["data"]["uid"].toString());
                     Storage.Set("__password__", this.password.toString());
                     Storage.Set("__token__", json["data"]["token"].toString());
+                    eventhub.fire(EventType.Login);
                     Alert.Confirm(context, "登录成功", json["data"]["uid"].toString() + "欢迎回来！", Windows.Close(context));
                   } else {
                     Alert.Confirm(context, "登录失败", json["echo"], null);
