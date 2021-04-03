@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'file:///E:/MyDoc/IdeaProject/gobotq_flutter/lib/app/index2/group_setting/auto_reply/auto_reply_full_list.dart';
-import 'file:///E:/MyDoc/IdeaProject/gobotq_flutter/lib/app/index2/group_setting/auto_reply/auto_reply_list.dart';
-import 'file:///E:/MyDoc/IdeaProject/gobotq_flutter/lib/app/index2/group_setting/black_list/group_black_list.dart';
-import 'file:///E:/MyDoc/IdeaProject/gobotq_flutter/lib/app/index2/group_setting/group_setting/group_setting_set.dart';
+import 'package:gobotq_flutter/app/index2/group_setting/auto_reply/auto_reply_full_list.dart';
+import 'package:gobotq_flutter/app/index2/group_setting/auto_reply/auto_reply_list.dart';
+import 'package:gobotq_flutter/app/index2/group_setting/black_list/group_black_list.dart';
+import 'package:gobotq_flutter/app/index2/group_setting/group_setting/group_setting_set.dart';
 import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
 

@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'file:///E:/MyDoc/IdeaProject/gobotq_flutter/lib/app/index2/group_setting/auto_reply/auto_reply_upload.dart';
+import 'package:gobotq_flutter/app/index2/group_setting/auto_reply/auto_reply_upload.dart';
 import 'package:gobotq_flutter/app/index4/login_record/url_login_record.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';

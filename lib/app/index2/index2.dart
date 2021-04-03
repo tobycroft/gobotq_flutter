@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'file:///E:/MyDoc/IdeaProject/gobotq_flutter/lib/app/index2/group_setting/group_function_select.dart';
-import 'file:///E:/MyDoc/IdeaProject/gobotq_flutter/lib/app/index2/group_setting/group_setting/group_setting_get.dart';
+import 'package:gobotq_flutter/app/index2/group_setting/group_function_select.dart';
+import 'package:gobotq_flutter/app/index2/group_setting/group_setting/group_setting_get.dart';
 import 'package:gobotq_flutter/app/index2/url_index2.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
