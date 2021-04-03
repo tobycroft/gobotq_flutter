@@ -1,3 +1,4 @@
+import 'package:event_hub/event_hub.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gobotq_flutter/app/index1/index1.dart';
@@ -20,6 +21,9 @@ class Init {
 
   void is_login() async {}
 }
+
+final EventHub eventhub = EventHub();
+
 
 class MyApp extends StatelessWidget {
   @override
