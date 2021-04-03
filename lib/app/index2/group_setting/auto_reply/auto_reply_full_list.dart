@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:gobotq_flutter/app/index2/group_setting/auto_reply_upload.dart';
+import 'file:///E:/MyDoc/IdeaProject/gobotq_flutter/lib/app/index2/group_setting/auto_reply/auto_reply_upload.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/url_group_setting.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
@@ -14,20 +14,20 @@ import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/net/ret.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
 
-class AutoReplyList extends StatefulWidget {
+class AutoReplyFullList extends StatefulWidget {
   String _title;
   var _pageparam;
 
-  AutoReplyList(this._title, this._pageparam);
+  AutoReplyFullList(this._title, this._pageparam);
 
-  _AutoReplyList createState() => _AutoReplyList(this._title, this._pageparam);
+  _AutoReplyFullList createState() => _AutoReplyFullList(this._title, this._pageparam);
 }
 
-class _AutoReplyList extends State<AutoReplyList> {
+class _AutoReplyFullList extends State<AutoReplyFullList> {
   String _title;
   var _pageparam;
 
-  _AutoReplyList(this._title, this._pageparam);
+  _AutoReplyFullList(this._title, this._pageparam);
 
   @override
   void initState() {
@@ -41,7 +41,7 @@ class _AutoReplyList extends State<AutoReplyList> {
     Map post = await AuthAction().LoginObject();
     post["gid"] = gid;
 
-    String ret = await Net.Post(Config.Url, Url_group_setting.Group_Autoreply_list, null, post, null);
+    String ret = await Net.Post(Config.Url, Url_group_setting.Group_Autoreply_full_list, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth.Return_login_check(context, json)) {
       if (Ret.Check_isok(context, json)) {
