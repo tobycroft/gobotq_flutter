@@ -163,8 +163,10 @@ class _Index4 extends State<Index4> {
                     Auth.Check_and_goto_login(context);
                   },
                   onLongPress: () async {
-                    Storage.Delete("__token__");
-                    Alert.Confirm(context, "成功退出", "", () {});
+                    await Storage.Delete("__token__");
+                    Alert.Confirm(context, "成功退出", "", () async {
+                      await Auth.Check_and_goto_login(context);
+                    });
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: 20),
