@@ -91,10 +91,13 @@ class _AutoSendList extends State<AutoSendList> {
               //滑出选项的面板 动画
               actionExtentRatio: 0.25,
               child: ListTile(
-                title: Text("类型：" + type),
+                title: Row(children: [
+                  Text("类型：" + type),
+                ]),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text("是否启用：" + (_data["active"].toString()=="1"?"启用中":"已禁用")),
                     Text("间隔时间：" + _data["sep"].toString()),
                     Text("剩余执行次数：" + _data["count"].toString()),
                     Text("设定群：" + _data["gid"].toString()),
@@ -103,13 +106,15 @@ class _AutoSendList extends State<AutoSendList> {
                   ],
                 ),
                 trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text("开始时间：" + _data["date"].toString()),
                     Text("上次执行：" + _data["change_date"].toString()),
                   ],
                 ),
                 onTap: () async {
-                  Windows.Open(context, AutoSendSet("修改自动发送", _data));
+                  // Windows.Open(context, AutoSendSet("修改自动发送", _data));
                 },
               ),
               secondaryActions: [
