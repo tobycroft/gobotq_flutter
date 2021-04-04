@@ -78,25 +78,32 @@ class _AutoSendList extends State<AutoSendList> {
         child: ListView.builder(
           itemBuilder: (context, index) {
             var _data = _data_list[index];
-
+            String type = "";
+            if (_data["type"].toString() == "sep") {
+              type = "时间间隔模式";
+            } else {
+              type = "一次性触发模式";
+            }
             return new Slidable(
               actionPane: SlidableScrollActionPane(),
               //滑出选项的面板 动画
               actionExtentRatio: 0.25,
               child: ListTile(
-                leading: null,
-                title: Text("关键词：" + _data["key"].toString()),
+                title: Text("类型：" + type),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("回复：" + _data["value"].toString()),
+                    Text("间隔时间：" + _data["sep"].toString()),
+                    Text("剩余执行次数：" + _data["count"].toString()),
+                    Text("设定群：" + _data["gid"].toString()),
                     Text("设定人：" + _data["uid"].toString()),
+                    Text("发送文字内容：\n" + _data["msg"].toString())
                   ],
                 ),
                 trailing: Column(
                   children: [
-                    Text("添加日期"),
-                    Text(_data["date"].toString()),
+                    Text("开始时间：" + _data["date"].toString()),
+                    Text("上次执行：" + _data["change_date"].toString()),
                   ],
                 ),
                 onTap: () async {},
@@ -133,7 +140,7 @@ Future<bool> delete_data(BuildContext context, String id, gid) async {
   post["id"] = id;
   post["gid"] = gid;
 
-  String ret = await Net.Post(Config.Url, Url_group_setting.Group_Autoreply_delete, null, post, null);
+  String ret = await Net.Post(Config.Url, Url_group_setting.Group_AutoSend_delete, null, post, null);
   Map json = jsonDecode(ret);
   if (Auth.Return_login_check(context, json)) {
     if (Ret.Check_isok(context, json)) {
