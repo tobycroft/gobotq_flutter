@@ -84,6 +84,7 @@ android {
 
             minifyEnabled false  //资源压缩设置
             useProguard false    //代码压缩设置
+            shrinkResources false
 
             //读取代码压缩配置文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
