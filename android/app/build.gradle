@@ -52,7 +52,7 @@ android {
 
         ndk {
             //选择要添加的对应 cpu 类型的 .so 库。
-            abiFilters 'armeabi', 'armeabi-v7a',  'arm64-v8a'
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
         }
 
         manifestPlaceholders = [
@@ -60,7 +60,7 @@ android {
                 JPUSH_APPKEY : "f7ec188c8df31cdca3d50b22", // NOTE: JPush 上注册的包名对应的 Appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
-//        multiDexEnabled true
+        multiDexEnabled true
         minSdkVersion 19
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
@@ -84,7 +84,7 @@ android {
 
 //            minifyEnabled false  //资源压缩设置
 //            useProguard false    //代码压缩设置
-//            shrinkResources false
+            shrinkResources true
 
             //读取代码压缩配置文件
 //            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
