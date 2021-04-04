@@ -60,7 +60,7 @@ android {
                 JPUSH_APPKEY : "f7ec188c8df31cdca3d50b22", // NOTE: JPush 上注册的包名对应的 Appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
-        multiDexEnabled true
+//        multiDexEnabled true
         minSdkVersion 19
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
@@ -82,12 +82,12 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.release
 
-            minifyEnabled false  //资源压缩设置
-            useProguard false    //代码压缩设置
-            shrinkResources false
+//            minifyEnabled false  //资源压缩设置
+//            useProguard false    //代码压缩设置
+//            shrinkResources false
 
             //读取代码压缩配置文件
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
