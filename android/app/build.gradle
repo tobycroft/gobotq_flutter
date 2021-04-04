@@ -82,8 +82,8 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.release
 
-            minifyEnabled false  //资源压缩设置
-            useProguard false    //代码压缩设置
+            minifyEnabled true  //资源压缩设置
+            useProguard true    //代码压缩设置
             shrinkResources true
 
             //读取代码压缩配置文件
