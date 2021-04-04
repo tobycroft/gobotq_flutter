@@ -44,7 +44,8 @@ class _AutoSendSet extends State<AutoSendSet> {
   Future<void> get_setting(BuildContext context) async {
     Map<String, String> post = await AuthAction().LoginObject();
     post["gid"] = this._pageparam["gid"].toString();
-    String ret = await Net.Post(Config.Url, Url_group_setting.Group_Setting_Get, null, post, null);
+    post["id"] = this._pageparam["id"].toString();
+    String ret = await Net.Post(Config.Url, Url_group_setting.Group_AutoSend_get, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth.Return_login_check(context, json)) {
       if (Ret.Check_isok(context, json)) {

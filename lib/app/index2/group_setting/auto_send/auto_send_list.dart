@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/auto_reply/auto_reply_upload.dart';
+import 'package:gobotq_flutter/app/index2/group_setting/auto_send/auto_send_set.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/auto_send/auto_send_upload.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/url_group_setting.dart';
 import 'package:gobotq_flutter/config/auth.dart';
@@ -107,7 +108,9 @@ class _AutoSendList extends State<AutoSendList> {
                     Text("上次执行：" + _data["change_date"].toString()),
                   ],
                 ),
-                onTap: () async {},
+                onTap: () async {
+                  Windows.Open(context, AutoSendSet("修改自动发送", _data));
+                },
               ),
               secondaryActions: [
                 IconSlideAction(
