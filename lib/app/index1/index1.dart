@@ -165,7 +165,7 @@ class BotItem extends StatelessWidget {
         style: Config.Text_Style_default,
       ),
       subtitle: Text(
-        ret["bot"].toString(),
+        ret["self_id"].toString(),
         style: Config.Text_Style_default,
       ),
       trailing: Text(

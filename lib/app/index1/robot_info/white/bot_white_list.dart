@@ -31,14 +31,14 @@ class _BotWhiteList extends State<BotWhiteList> {
   @override
   void initState() {
     setState(() {
-      get_data(context, this._pageparam["bot"].toString());
+      get_data(context, this._pageparam["self_id"].toString());
     });
     super.initState();
   }
 
   Future<void> get_data(BuildContext context, String bot) async {
     Map post = await AuthAction().LoginObject();
-    post["bot"] = bot;
+    post["self_id"] = bot;
 
     String ret = await Net.Post(Config.Url, Url_white.white_list, null, post, null);
     Map json = jsonDecode(ret);
@@ -100,7 +100,7 @@ class _BotWhiteList extends State<BotWhiteList> {
                   color: Colors.red,
                   icon: Icons.delete_forever,
                   onTap: () async {
-                    bool ret = await delete_data(context, _data["bot"].toString(), _data["gid"].toString());
+                    bool ret = await delete_data(context, _data["self_id"].toString(), _data["gid"].toString());
                     if (ret) {
                       setState(() {
                         _white_group.removeAt(index);
@@ -114,7 +114,7 @@ class _BotWhiteList extends State<BotWhiteList> {
           itemCount: _white_group.length,
         ),
         onRefresh: () async {
-          get_data(context, this._pageparam["bot"].toString());
+          get_data(context, this._pageparam["self_id"].toString());
         },
       ),
     );
@@ -123,7 +123,7 @@ class _BotWhiteList extends State<BotWhiteList> {
 
 Future<bool> delete_data(BuildContext context, String bot, gid) async {
   Map post = await AuthAction().LoginObject();
-  post["bot"] = bot;
+  post["self_id"] = bot;
   post["gid"] = gid;
 
   String ret = await Net.Post(Config.Url, Url_white.white_delete, null, post, null);

@@ -75,7 +75,7 @@ class _FriendWhiteListAdd extends State<FriendWhiteListAdd> {
           UI_button.Button_submit(context, () async {
             Map post = await AuthAction().LoginObject();
             post["qq"] = this.qq.toString();
-            post["bot"] = this._pageparam["bot"].toString();
+            post["self_id"] = this._pageparam["self_id"].toString();
             String ret = await Net.Post(Config.Url, Url_friend.white_add, null, post, null);
             Map json = jsonDecode(ret);
             if (Auth.Return_login_check(context, json)) {

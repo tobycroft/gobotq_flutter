@@ -88,7 +88,7 @@ class _Bot_group_list_add extends State<Bot_group_list_add> {
             Map post = await AuthAction().LoginObject();
             post["gid"] = this.gid.toString();
             post["text"] = this.text.toString();
-            post["bot"] = this._pageparam["bot"].toString();
+            post["self_id"] = this._pageparam["self_id"].toString();
             String ret = await Net.Post(Config.Url, Url_List.group_add, null, post, null);
             Map json = jsonDecode(ret);
             if (Auth.Return_login_check(context, json)) {

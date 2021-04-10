@@ -60,11 +60,11 @@ class Config {
 
   static String ProxyURL = "10.0.0.100:9000";
 
-  // static bool Proxy_debug = true;
+  static bool Proxy_debug = true;
   // static String Url = "127.0.0.1";
   //
-  static bool Proxy_debug = false;
-  static String Url = "http://api.tuuz.cn:15088";
+  // static bool Proxy_debug = false;
+  static String Url = "http://10.0.0.100:80";
 
   static String Upload = "http://upload.tuuz.cc:81/upfull?token=" + Upload_token;
   static String Upload_token = "gobotq";

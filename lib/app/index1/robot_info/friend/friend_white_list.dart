@@ -30,13 +30,13 @@ class _FriendWhiteList extends State<FriendWhiteList> {
 
   @override
   void initState() {
-    get_data(context, this._pageparam["bot"].toString());
+    get_data(context, this._pageparam["self_id"].toString());
     super.initState();
   }
 
   Future<void> get_data(BuildContext context, String bot) async {
     Map post = await AuthAction().LoginObject();
-    post["bot"] = bot;
+    post["self_id"] = bot;
 
     String ret = await Net.Post(Config.Url, Url_friend.white_list, null, post, null);
     Map json = jsonDecode(ret);
@@ -102,7 +102,7 @@ class _FriendWhiteList extends State<FriendWhiteList> {
                   color: Colors.red,
                   icon: Icons.delete_forever,
                   onTap: () async {
-                    bool ret = await delete_data(context, _data["bot"].toString(), _data["uid"].toString());
+                    bool ret = await delete_data(context, _data["self_id"].toString(), _data["uid"].toString());
                     if (ret) {
                       setState(() {
                         _white_list.removeAt(index);
@@ -116,7 +116,7 @@ class _FriendWhiteList extends State<FriendWhiteList> {
           itemCount: _white_list.length,
         ),
         onRefresh: () async {
-          get_data(context, this._pageparam["bot"].toString());
+          get_data(context, this._pageparam["self_id"].toString());
         },
       ),
     );
@@ -125,7 +125,7 @@ class _FriendWhiteList extends State<FriendWhiteList> {
 
 Future<bool> delete_data(BuildContext context, String bot, qq) async {
   Map post = await AuthAction().LoginObject();
-  post["bot"] = bot;
+  post["self_id"] = bot;
   post["qq"] = qq;
 
   String ret = await Net.Post(Config.Url, Url_friend.white_delete, null, post, null);

@@ -74,7 +74,7 @@ class _bot_request_widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(Icons.android),
-      title: Text("机器人QQ:   " + item["bot"].toString()),
+      title: Text("机器人QQ:   " + item["self_id"].toString()),
       subtitle: Text("QQ登录密码:" + item["password"].toString()),
       trailing: Column(
         mainAxisAlignment: MainAxisAlignment.center,

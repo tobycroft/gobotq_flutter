@@ -151,7 +151,7 @@ class _Upload_robot extends State<Upload_robot> {
           ),
           UI_button.Button_submit(context, () async {
             Map post = await AuthAction().LoginObject();
-            post["bot"] = this.qq.toString();
+            post["self_id"] = this.qq.toString();
             post["password"] = this.password.toString();
             post["secret"] = this.secret.toString();
             post["month"] = month.round().toString();

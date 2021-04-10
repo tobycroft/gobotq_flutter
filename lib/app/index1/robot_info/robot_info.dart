@@ -40,7 +40,7 @@ class _robot_info_index extends State<Robot_info_index> {
 
   Future<void> get_robot_info() async {
     Map post = await AuthAction().LoginObject();
-    post["bot"] = this._page_param["bot"].toString();
+    post["self_id"] = this._page_param["self_id"].toString();
     String ret = await Net.Post(Config.Url, Url_robot_info.Robot_info, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth.Return_login_check(context, json)) {
@@ -101,14 +101,14 @@ class _robot_info_index extends State<Robot_info_index> {
             ),
             title: Text("机器人账号"),
             subtitle: Text(
-              _robot_info["bot"].toString(),
+              _robot_info["self_id"].toString(),
               style: Config.Text_style_notimportant_auto,
             ),
             onLongPress: () async {
               Toasts.Show("已经将账号复制到剪贴板");
               Clipboard.setData(
                 ClipboardData(
-                  text: _robot_info["bot"].toString(),
+                  text: _robot_info["self_id"].toString(),
                 ),
               );
             },

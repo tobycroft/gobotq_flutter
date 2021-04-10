@@ -75,7 +75,7 @@ class _Bot_white_list_add extends State<Bot_white_list_add> {
           UI_button.Button_submit(context, () async {
             Map post = await AuthAction().LoginObject();
             post["gid"] = this.gid.toString();
-            post["bot"] = this._pageparam["bot"].toString();
+            post["self_id"] = this._pageparam["self_id"].toString();
             String ret = await Net.Post(Config.Url, Url_white.white_add, null, post, null);
             Map json = jsonDecode(ret);
             if (Auth.Return_login_check(context, json)) {

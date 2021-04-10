@@ -91,7 +91,7 @@ class _BotFriendListAdd extends State<BotFriendListAdd> {
             Map post = await AuthAction().LoginObject();
             post["qq"] = this.qq.toString();
             post["text"] = this.text.toString();
-            post["bot"] = this._pageparam["bot"].toString();
+            post["self_id"] = this._pageparam["self_id"].toString();
             String ret = await Net.Post(Config.Url, Url_List.friend_add, null, post, null);
             Map json = jsonDecode(ret);
             if (Auth.Return_login_check(context, json)) {

@@ -86,7 +86,7 @@ class _BindBot extends State<BindBot> {
           ),
           UI_button.Button_submit(context, () async {
             Map post = await AuthAction().LoginObject();
-            post["bot"] = this.bot.toString();
+            post["self_id"] = this.bot.toString();
             post["secret"] = this.secret.toString();
             String ret = await Net.Post(Config.Url, Url_bind_bot.bind_bot, null, post, null);
             Map json = jsonDecode(ret);
