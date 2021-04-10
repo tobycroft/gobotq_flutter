@@ -134,10 +134,10 @@ class _group_list_widget extends StatelessWidget {
 
   Widget _buildTiles(Map ret) {
     if (ret == null) return ListTile();
+    String img = "https://p.qlogo.cn/gh/" + ret["group_id"].toString() + "/" + ret["group_id"].toString() + "/100";
     return ListTile(
-      leading: Icon(
-        Icons.group,
-        size: 32,
+      leading: CircleAvatar(
+        child: Image(image: NetworkImage(img)),
       ),
       contentPadding: EdgeInsets.only(left: 20),
       title: Text(
@@ -145,7 +145,7 @@ class _group_list_widget extends StatelessWidget {
         style: Config.Text_Style_default,
       ),
       subtitle: Text(
-        ret["gid"].toString(),
+        ret["group_id"].toString(),
         style: Config.Text_Style_default,
       ),
       onTap: () {

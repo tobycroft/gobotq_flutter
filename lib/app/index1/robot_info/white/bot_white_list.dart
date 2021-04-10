@@ -90,7 +90,7 @@ class _BotWhiteList extends State<BotWhiteList> {
               child: ListTile(
                 leading: null,
                 title: Text(groupname),
-                subtitle: Text(_data["gid"].toString()),
+                subtitle: Text(_data["group_id"].toString()),
                 trailing: null,
                 onTap: () async {},
               ),
@@ -100,7 +100,7 @@ class _BotWhiteList extends State<BotWhiteList> {
                   color: Colors.red,
                   icon: Icons.delete_forever,
                   onTap: () async {
-                    bool ret = await delete_data(context, _data["self_id"].toString(), _data["gid"].toString());
+                    bool ret = await delete_data(context, _data["self_id"].toString(), _data["group_id"].toString());
                     if (ret) {
                       setState(() {
                         _white_group.removeAt(index);
@@ -124,7 +124,7 @@ class _BotWhiteList extends State<BotWhiteList> {
 Future<bool> delete_data(BuildContext context, String bot, gid) async {
   Map post = await AuthAction().LoginObject();
   post["self_id"] = bot;
-  post["gid"] = gid;
+  post["group_id"] = gid;
 
   String ret = await Net.Post(Config.Url, Url_white.white_delete, null, post, null);
   Map json = jsonDecode(ret);

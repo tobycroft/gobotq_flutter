@@ -34,7 +34,7 @@ class _AutoSendList extends State<AutoSendList> {
   @override
   void initState() {
     setState(() {
-      get_data(context, this._pageparam["gid"].toString());
+      get_data(context, this._pageparam["group_id"].toString());
     });
 
     super.initState();
@@ -42,7 +42,7 @@ class _AutoSendList extends State<AutoSendList> {
 
   Future<void> get_data(BuildContext context, String gid) async {
     Map post = await AuthAction().LoginObject();
-    post["gid"] = gid;
+    post["group_id"] = gid;
 
     String ret = await Net.Post(Config.Url, Url_group_setting.Group_AutoSend_list, null, post, null);
     Map json = jsonDecode(ret);
@@ -100,7 +100,7 @@ class _AutoSendList extends State<AutoSendList> {
                     Text("是否启用：" + (_data["active"].toString()=="1"?"启用中":"已禁用")),
                     Text("间隔时间：" + _data["sep"].toString()),
                     Text("剩余执行次数：" + _data["count"].toString()),
-                    Text("设定群：" + _data["gid"].toString()),
+                    Text("设定群：" + _data["group_id"].toString()),
                     Text("设定人：" + _data["uid"].toString()),
                     Text("发送文字内容：\n" + _data["msg"].toString())
                   ],
@@ -123,7 +123,7 @@ class _AutoSendList extends State<AutoSendList> {
                   color: Colors.red,
                   icon: Icons.delete_forever,
                   onTap: () async {
-                    bool ret = await delete_data(context, _data["id"].toString(), _data["gid"].toString());
+                    bool ret = await delete_data(context, _data["id"].toString(), _data["group_id"].toString());
                     if (ret) {
                       setState(() {
                         _data_list.removeAt(index);
@@ -137,7 +137,7 @@ class _AutoSendList extends State<AutoSendList> {
           itemCount: _data_list.length,
         ),
         onRefresh: () async {
-          get_data(context, this._pageparam["gid"].toString());
+          get_data(context, this._pageparam["group_id"].toString());
         },
       ),
     );
@@ -147,7 +147,7 @@ class _AutoSendList extends State<AutoSendList> {
 Future<bool> delete_data(BuildContext context, String id, gid) async {
   Map post = await AuthAction().LoginObject();
   post["id"] = id;
-  post["gid"] = gid;
+  post["group_id"] = gid;
 
   String ret = await Net.Post(Config.Url, Url_group_setting.Group_AutoSend_delete, null, post, null);
   Map json = jsonDecode(ret);

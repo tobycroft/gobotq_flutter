@@ -84,17 +84,17 @@ class _BotGroupList extends State<BotGroupList> {
               child: ListTile(
                 leading: null,
                 title: Text(_data["group_name"].toString()),
-                subtitle: Text(_data["gid"].toString()),
+                subtitle: Text(_data["group_id"].toString()),
                 trailing: null,
                 onTap: () async {},
               ),
               secondaryActions: [
                 IconSlideAction(
-                  caption: '删除',
+                  caption: '退群',
                   color: Colors.red,
                   icon: Icons.delete_forever,
                   onTap: () async {
-                    bool ret = await delete_data(context, _data["self_id"].toString(), _data["gid"].toString());
+                    bool ret = await delete_data(context, _data["self_id"].toString(), _data["group_id"].toString());
                     if (ret) {
                       setState(() {
                         _white_group.removeAt(index);
@@ -118,7 +118,7 @@ class _BotGroupList extends State<BotGroupList> {
 Future<bool> delete_data(BuildContext context, String bot, gid) async {
   Map post = await AuthAction().LoginObject();
   post["self_id"] = bot;
-  post["gid"] = gid;
+  post["group_id"] = gid;
 
   String ret = await Net.Post(Config.Url, Url_List.group_exit, null, post, null);
   Map json = jsonDecode(ret);

@@ -43,7 +43,7 @@ class _AutoSendSet extends State<AutoSendSet> {
 
   Future<void> get_setting(BuildContext context) async {
     Map<String, String> post = await AuthAction().LoginObject();
-    post["gid"] = this._pageparam["gid"].toString();
+    post["group_id"] = this._pageparam["group_id"].toString();
     post["id"] = this._pageparam["id"].toString();
     String ret = await Net.Post(Config.Url, Url_group_setting.Group_AutoSend_get, null, post, null);
     Map json = jsonDecode(ret);
@@ -165,7 +165,7 @@ class _AutoSendSet extends State<AutoSendSet> {
 
   Future<void> set_setting(BuildContext context, String key, dynamic value) async {
     Map<String, String> post = await AuthAction().LoginObject();
-    post["gid"] = this._pageparam["gid"].toString();
+    post["group_id"] = this._pageparam["group_id"].toString();
     post["key"] = key.toString();
     post["value"] = value.toString();
     String ret = await Net.Post(Config.Url, Url_group_setting.Group_Setting_Set, null, post, null);

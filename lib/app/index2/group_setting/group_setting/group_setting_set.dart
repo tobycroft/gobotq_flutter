@@ -43,7 +43,7 @@ class _GroupSettingSet extends State<GroupSettingSet> {
 
   Future<void> get_setting(BuildContext context) async {
     Map<String, String> post = await AuthAction().LoginObject();
-    post["gid"] = this._pageparam["gid"].toString();
+    post["group_id"] = this._pageparam["group_id"].toString();
     String ret = await Net.Post(Config.Url, Url_group_setting.Group_Setting_Get, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth.Return_login_check(context, json)) {
@@ -164,7 +164,7 @@ class _GroupSettingSet extends State<GroupSettingSet> {
 
   Future<void> set_setting(BuildContext context, String key, dynamic value) async {
     Map<String, String> post = await AuthAction().LoginObject();
-    post["gid"] = this._pageparam["gid"].toString();
+    post["group_id"] = this._pageparam["group_id"].toString();
     post["key"] = key.toString();
     post["value"] = value.toString();
     String ret = await Net.Post(Config.Url, Url_group_setting.Group_Setting_Set, null, post, null);

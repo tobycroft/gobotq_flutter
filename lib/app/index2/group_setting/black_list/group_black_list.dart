@@ -30,14 +30,14 @@ class _GroupBlackList extends State<GroupBlackList> {
   @override
   void initState() {
     setState(() {
-      get_data(context, this._pageparam["gid"].toString());
+      get_data(context, this._pageparam["group_id"].toString());
     });
     super.initState();
   }
 
   Future<void> get_data(BuildContext context, String gid) async {
     Map post = await AuthAction().LoginObject();
-    post["gid"] = gid;
+    post["group_id"] = gid;
 
     String ret = await Net.Post(Config.Url, Url_group_setting.Group_black_list, null, post, null);
     Map json = jsonDecode(ret);
@@ -91,7 +91,7 @@ class _GroupBlackList extends State<GroupBlackList> {
                   color: Colors.red,
                   icon: Icons.delete_forever,
                   onTap: () async {
-                    bool ret = await delete_data(context, _data["uid"].toString(), _data["gid"].toString());
+                    bool ret = await delete_data(context, _data["uid"].toString(), _data["group_id"].toString());
                     if (ret) {
                       setState(() {
                         _white_group.removeAt(index);
@@ -105,7 +105,7 @@ class _GroupBlackList extends State<GroupBlackList> {
           itemCount: _white_group.length,
         ),
         onRefresh: () async {
-          get_data(context, this._pageparam["gid"].toString());
+          get_data(context, this._pageparam["group_id"].toString());
         },
       ),
     );
@@ -115,7 +115,7 @@ class _GroupBlackList extends State<GroupBlackList> {
 Future<bool> delete_data(BuildContext context, String uid, gid) async {
   Map post = await AuthAction().LoginObject();
   post["qq"] = uid;
-  post["gid"] = gid;
+  post["group_id"] = gid;
 
   String ret = await Net.Post(Config.Url, Url_group_setting.Group_black_delete, null, post, null);
   Map json = jsonDecode(ret);

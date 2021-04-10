@@ -132,7 +132,7 @@ class _AutoReplyUpload extends State<AutoReplyUpload> {
           ),
           UI_button.Button_submit(context, () async {
             Map post = await AuthAction().LoginObject();
-            post["gid"] = this._pageparam["gid"].toString();
+            post["group_id"] = this._pageparam["group_id"].toString();
             post["key"] = this.key.toString();
             post["value"] = this.value.toString();
             post["type"] = this.type.toString();

@@ -170,7 +170,7 @@ class _AutoSendUpload extends State<AutoSendUpload> {
           ),
           UI_button.Button_submit(context, () async {
             Map post = await AuthAction().LoginObject();
-            post["gid"] = this._pageparam["gid"].toString();
+            post["group_id"] = this._pageparam["group_id"].toString();
             post["ident"] = this.ident.toString();
             post["msg"] = this.msg.toString();
             post["sep"] = this.sep.toString();

@@ -86,7 +86,7 @@ class _Bot_group_list_add extends State<Bot_group_list_add> {
           ),
           UI_button.Button_submit(context, () async {
             Map post = await AuthAction().LoginObject();
-            post["gid"] = this.gid.toString();
+            post["group_id"] = this.gid.toString();
             post["text"] = this.text.toString();
             post["self_id"] = this._pageparam["self_id"].toString();
             String ret = await Net.Post(Config.Url, Url_List.group_add, null, post, null);

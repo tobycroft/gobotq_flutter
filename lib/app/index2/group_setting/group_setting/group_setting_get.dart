@@ -41,7 +41,7 @@ class _GroupSettingGet extends State<GroupSettingGet> {
 
   Future<void> get_setting(BuildContext context) async {
     Map<String, dynamic> post = await AuthAction().LoginObject();
-    post["gid"] = this._pageparam["gid"].toString();
+    post["group_id"] = this._pageparam["group_id"].toString();
     String ret = await Net.Post(Config.Url, Url_group_setting.Group_Setting_Get, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth.Return_login_check(context, json)) {
