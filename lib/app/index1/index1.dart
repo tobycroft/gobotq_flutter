@@ -155,7 +155,7 @@ class BotItem extends StatelessWidget {
 
   Widget _buildTiles(Map ret) {
     if (ret == null) return ListTile();
-    String img = "http://qlogo4.store.qq.com/qzone/" + ret["self_id"].toString() + "/" + ret["self_id"].toString() + "/100";
+    String img = "http://q1.qlogo.cn/g?b=qq&nk=" + ret["self_id"].toString() + "&s=640";
     return ListTile(
       leading: CircleAvatar(
         child: Image(image: NetworkImage(img)),
