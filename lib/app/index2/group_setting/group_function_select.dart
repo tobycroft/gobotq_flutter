@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/auto_reply/auto_reply_full_list.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/auto_reply/auto_reply_list.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/auto_send/auto_send_list.dart';
+import 'package:gobotq_flutter/app/index2/group_setting/ban_permenent/group_ban_permenent_list.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/black_list/group_black_list.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/group_setting/group_setting_set.dart';
 import 'package:gobotq_flutter/config/config.dart';
@@ -138,6 +139,26 @@ class _GroupFunctionSelect extends State<GroupFunctionSelect> {
               ),
               onPressed: () async {
                 Windows.Open(context, AutoSendList("定时消息", _pageparam));
+              },
+            ),
+            FlatButton(
+              color: Colors.indigoAccent,
+              textColor: Colors.white,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.timer,
+                    size: 80,
+                  ),
+                  Text(
+                    "永久小黑屋",
+                    style: Config.Text_style_main_page,
+                  )
+                ],
+              ),
+              onPressed: () async {
+                Windows.Open(context, GroupBanPermenentList("永久小黑屋", _pageparam));
               },
             ),
           ]),
