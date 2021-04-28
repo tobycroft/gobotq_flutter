@@ -27,7 +27,7 @@ dependencies:
   dio: ^3.0.10
   flutter_slidable: ^0.5.7
   shared_preferences: ^0.5.12+4
-  flutter_easyrefresh: ^2.1.8
+  flutter_easyrefresh: ^2.2.1
   fluttertoast: ^7.1.6
   url_launcher: ^5.7.10
   package_info: ^0.4.3+4
@@ -47,7 +47,7 @@ dependencies:
   image_picker: ^0.6.7+22
   flutter_uploader: ^1.2.1
   thumbnailer: ^1.1.0
-  video_player: ^2.1.0
+  video_player: ^2.1.1
   cached_video_player: ^1.0.3
   flutter_sound: ^7.7.0
   video_thumbnail: ^0.3.3
