@@ -74,7 +74,7 @@ class _Upload_server extends State<Upload_server> {
             child: Text("接口基于CoolQ，你可以使用go-cqhttp，为了让大家可以避免出现一些奇怪的问题，你可以直接使用群共享中已经编译好的程序，使用方法，请参考官方github"),
           ),
           Container(
-            child: Text("请先设定您的cq_http客户端的远程提交地址为:http://api.tuuz.cc:15081"),
+            child: Text("请先设定您的cq_http客户端的远程上报地址为:api.tuuz.cc:15081，本地址一定要正确填写，GobotQ将无法接收到您的Event"),
           ),
           Container(
             child: Text("每个管理账号，只可提交一次，提交后无法删除"),
