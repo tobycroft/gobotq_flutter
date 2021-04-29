@@ -41,13 +41,34 @@ class _Index3 extends State<Index3> {
                   size: 80,
                 ),
                 Text(
-                  "提交一个机器人",
+                  "申请官方服务器",
                   style: Config.Text_style_main_page,
                 ),
               ],
             ),
             onPressed: () async {
-              Windows.Open(context, Upload_robot("提交机器人"));
+              Windows.Open(context, Upload_robot("提交私有机器人账号"));
+            },
+          ),
+          FlatButton(
+            color: Colors.black87,
+            splashColor: Colors.white,
+            textColor: Colors.white,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.person_add_alt,
+                  size: 80,
+                ),
+                Text(
+                  "提交你的服务器",
+                  style: Config.Text_style_main_page,
+                ),
+              ],
+            ),
+            onPressed: () async {
+              Windows.Open(context, Upload_robot("加入主网"));
             },
           ),
         ],
