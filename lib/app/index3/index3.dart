@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gobotq_flutter/app/index3/upload_robot/upload_robot.dart';
+import 'package:gobotq_flutter/app/index3/upload_server/upload_server.dart';
 import 'package:gobotq_flutter/config/config.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
 
@@ -68,7 +69,7 @@ class _Index3 extends State<Index3> {
               ],
             ),
             onPressed: () async {
-              Windows.Open(context, Upload_robot("加入主网"));
+              Windows.Open(context, Upload_server("加入主网"));
             },
           ),
         ],

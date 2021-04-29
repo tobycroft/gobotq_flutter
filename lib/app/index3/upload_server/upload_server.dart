@@ -68,13 +68,16 @@ class _Upload_server extends State<Upload_server> {
         padding: EdgeInsets.only(top: 20, left: 20, right: 20),
         children: [
           Container(
-            child: Text("可以自助提交机器人，提交后请在开发群542749156中联系管理告知"),
+            child: Text("可以自助提交主网，提交后请在开发群542749156中联系管理告知"),
           ),
           Container(
-            child: Text("每个用于允许一次性提交3个机器人，如果需要更大量，请联系管理"),
+            child: Text("接口基于CoolQ，你可以使用go-cqhttp，为了让大家可以避免出现一些奇怪的问题，你可以直接使用群共享中已经编译好的程序，使用方法，请参考官方github"),
           ),
           Container(
-            child: Text("如果需要清除提交记录，请联系管理员"),
+            child: Text("每个管理账号，只可提交一次，提交后无法删除"),
+          ),
+          Container(
+            child: Text("更换接口操作可以在APP中完成"),
           ),
           SizedBox(
             height: 25,
