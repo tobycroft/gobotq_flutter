@@ -68,37 +68,35 @@ class _Upload_server extends State<Upload_server> {
         padding: EdgeInsets.only(top: 20, left: 20, right: 20),
         children: [
           Container(
-            child: Text("注意事项："),
+            child: Text("使用反馈：可以自助提交主网，提交后请在开发群542749156中联系管理告知"),
           ),
           Container(
-            child: Text("可以自助提交主网，提交后请在开发群542749156中联系管理告知"),
+            child: Text("技术说明：接口基于CoolQ，你可以使用go-cqhttp，为了让大家可以避免出现一些奇怪的问题，你可以直接使用群共享中已经编译好的程序，使用方法，请参考官方github"),
           ),
           Container(
-            child: Text("接口基于CoolQ，你可以使用go-cqhttp，为了让大家可以避免出现一些奇怪的问题，你可以直接使用群共享中已经编译好的程序，使用方法，请参考官方github"),
+            child: Text(
+              "使用必知：请先设定您的cq_http客户端的远程上报地址为:api.tuuz.cc:15081，本地址一定要正确填写，GobotQ将无法接收到您的Event，如果你不知道怎么编译，你也可以在群共享中找到机器人文件",
+              style: TextStyle(color: Colors.red),
+            ),
           ),
           Container(
-            child: Text("请先设定您的cq_http客户端的远程上报地址为:api.tuuz.cc:15081，本地址一定要正确填写，GobotQ将无法接收到您的Event"),
-          ),
-          Container(
-            child: Text("每个管理账号，只可提交一次，提交后无法删除"),
+            child: Text("操作须知：每个管理账号，只可提交一次，提交后无法换号，如因自己设定的回复词碰红线导致机器人被冻结，GobotQ概不负责"),
           ),
           Container(
             child: Text("更换接口操作可以在APP中完成"),
           ),
           Container(
-            child: Text("因为没有使用秘钥，所以请不要将你的cqhttp的api对外暴露避免造成风险，GobotQ官方已经对接口做了安全处理，你的服务器不会被泄露给第三方，可以放心使用！"),
-          ),
-          Container(
-            child: Text("我们将在未来的版本中，支持远程服务器的秘钥功能"),
+            child: Text("安全说明：因为没有使用秘钥，所以请不要将你的cqhttp的api对外暴露避免造成风险，GobotQ官方已经对接口做了安全处理，"
+                "你的服务器不会被泄露给第三方，可以放心使用！我们也将在未来的版本中，支持远程服务器的秘钥功能！"),
           ),
           Container(
             child: Text("使用时长：你可以无限续签你的服务器，但是每次续签时间在1年以内"),
           ),
           Container(
             child: Text(
-              "使用敬告：请不要在使用GobotQ远程版的过程中将你的外网端口封闭，如果每一次远程接口访问失败都会累积故障阈值，如果您封闭了您的外网端口，在错误值累积到一定数量后，"
-                  "GobotQ将会把您的账号拉黑，您就需要换一个机器人账号使用了！\r\n"
-                  "如果您是使用动态IP+域名映射的方式连入GoBotQ，请您务必在域名TTL过期后再连入GoBotQ",
+              "使用敬告：绝对不要在使用GobotQ远程版的过程中关闭你的外网端口！！！如果连续访问多次都是失败，您的账号服务将被收回24小时，如果24小时之后还是访问失败\r\n"
+              "GobotQ将会把您的账号拉黑，届时您这个APP账号以及机器人账号都将无法使用！\r\n"
+              "如果您是使用动态IP+域名映射的方式连入GoBotQ，请您务必在域名TTL过期后再连入GoBotQ",
               style: TextStyle(color: Colors.red),
             ),
           ),
@@ -134,7 +132,7 @@ class _Upload_server extends State<Upload_server> {
             height: 25,
           ),
           Container(
-            child: Text("你可以设定一个密钥，用于后期使用acfur绑定功能"),
+            child: Text("你可以设定一个密钥，用于后期使用acfur绑定功能，请务必牢记，在你提交后，机器人默认会直接绑定在你当前的管理账号下"),
           ),
           TextField(
             keyboardType: TextInputType.phone,
@@ -163,6 +161,16 @@ class _Upload_server extends State<Upload_server> {
               }
             }
           }),
+          SizedBox(
+            height: 40,
+          ),
+          Container(
+            child: Text("服务协议：请放心，GobotQ对远程机器人的最严重惩罚为拒绝提供服务，如果您的账号在注册GobotQ后出现发垃圾消息的情况，请您务必检测您的服务器环境！\r\n"
+                "GobotQ无广告永久免费，不会出现发广告的情况"),
+          ),
+          SizedBox(
+            height: 40,
+          ),
         ],
       ),
     );
