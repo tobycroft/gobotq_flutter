@@ -59,7 +59,7 @@ class _Index3 extends State<Index3> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.person_add_alt,
+                  Icons.device_hub,
                   size: 80,
                 ),
                 Text(
