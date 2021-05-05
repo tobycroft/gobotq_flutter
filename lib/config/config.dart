@@ -58,13 +58,13 @@ class Config {
     );
   }
 
-  static String ProxyURL = "10.0.0.100:9000";
+  static String ProxyURL = "192.168.1.10:9000";
 
-  // static bool Proxy_debug = true;
-  // static String Url = "127.0.0.1";
+  static bool Proxy_debug = true;
+  static String Url = "http://192.168.1.10:81";
 
-  static bool Proxy_debug = false;
-  static String Url = "http://api.tuuz.cc:15081";
+  // static bool Proxy_debug = false;
+  // static String Url = "http://api.tuuz.cc:15081";
 
   static String Upload = "http://upload.tuuz.cc:81/upfull?token=" + Upload_token;
   static String Upload_token = "gobotq";
