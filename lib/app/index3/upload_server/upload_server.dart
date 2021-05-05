@@ -28,9 +28,9 @@ class _Upload_server extends State<Upload_server> {
 
   String qq;
   bool _qq = false;
-  String password;
+  String address;
+  String port;
   String secret;
-  double month = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +68,9 @@ class _Upload_server extends State<Upload_server> {
         padding: EdgeInsets.only(top: 20, left: 20, right: 20),
         children: [
           Container(
+            child: Text("注意事项："),
+          ),
+          Container(
             child: Text("可以自助提交主网，提交后请在开发群542749156中联系管理告知"),
           ),
           Container(
@@ -82,33 +85,49 @@ class _Upload_server extends State<Upload_server> {
           Container(
             child: Text("更换接口操作可以在APP中完成"),
           ),
+          Container(
+            child: Text("因为没有使用秘钥，所以请不要将你的cqhttp的api对外暴露避免造成风险，GobotQ官方已经对接口做了安全处理，你的服务器不会被泄露给第三方，可以放心使用！"),
+          ),
+          Container(
+            child: Text("我们将在未来的版本中，支持远程服务器的秘钥功能"),
+          ),
+          Container(
+            child: Text("使用时长：你可以无限续签你的服务器，但是每次续签时间在1年以内"),
+          ),
+          Container(
+            child: Text(
+              "使用敬告：请不要在使用GobotQ远程版的过程中将你的外网端口封闭，如果每一次远程接口访问失败都会累积故障阈值，如果您封闭了您的外网端口，在错误值累积到一定数量后，"
+                  "GobotQ将会把您的账号拉黑，您就需要换一个机器人账号使用了！\r\n"
+                  "如果您是使用动态IP+域名映射的方式连入GoBotQ，请您务必在域名TTL过期后再连入GoBotQ",
+              style: TextStyle(color: Colors.red),
+            ),
+          ),
           SizedBox(
-            height: 25,
+            height: 40,
+          ),
+          Container(
+            child: Text("这里填写内容例如：robot.你的域名.com，或者如果你没有域名也可以使用ip,不要在前面加http或加斜杠等任何多余的内容"),
           ),
           TextField(
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.phone,
             style: Theme.of(context).textTheme.headline4,
-            decoration: Config.Inputdecoration_default_input_box(Icons.account_circle, "输入机器人的QQ号码", this._qq, "请输入数字"),
+            decoration: Config.Inputdecoration_default_input_box(Icons.security_outlined, "输入机器人服务器地址", false, ""),
             onChanged: (String val) {
-              setState(() {
-                if (int.tryParse(val) == null) {
-                  this._qq = true;
-                } else {
-                  this._qq = false;
-                }
-              });
-              this.qq = val.toString();
+              this.address = val.toString();
             },
           ),
           SizedBox(
             height: 25,
           ),
+          Container(
+            child: Text("输入cq_http对外暴露的端口"),
+          ),
           TextField(
-            keyboardType: TextInputType.text,
+            keyboardType: TextInputType.phone,
             style: Theme.of(context).textTheme.headline4,
-            decoration: Config.Inputdecoration_default_input_box(Icons.security, "输入机器人QQ密码", false, "请输入数字"),
+            decoration: Config.Inputdecoration_default_input_box(Icons.security_outlined, "输入服务器端口", false, ""),
             onChanged: (String val) {
-              this.password = val.toString();
+              this.port = val.toString();
             },
           ),
           SizedBox(
@@ -117,11 +136,8 @@ class _Upload_server extends State<Upload_server> {
           Container(
             child: Text("你可以设定一个密钥，用于后期使用acfur绑定功能"),
           ),
-          SizedBox(
-            height: 25,
-          ),
           TextField(
-            keyboardType: TextInputType.text,
+            keyboardType: TextInputType.phone,
             style: Theme.of(context).textTheme.headline4,
             decoration: Config.Inputdecoration_default_input_box(Icons.security_outlined, "设定绑定密钥", false, ""),
             onChanged: (String val) {
@@ -131,36 +147,12 @@ class _Upload_server extends State<Upload_server> {
           SizedBox(
             height: 40,
           ),
-          Text(
-            "预定时长:${month.round()}个月",
-            style: Config.Text_style_main_page,
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Slider(
-            min: 1,
-            max: 12,
-            divisions: 11,
-            label: '${month.round()}个月',
-            value: month,
-            onChanged: (double val) {
-              setState(() {
-                month = val;
-                // month = double.parse(val.round().toString());
-                // print(month);
-              });
-            },
-          ),
-          SizedBox(
-            height: 80,
-          ),
           UI_button.Button_submit(context, () async {
             Map post = await AuthAction().LoginObject();
             post["self_id"] = this.qq.toString();
-            post["password"] = this.password.toString();
+            post["address"] = this.address.toString();
+            post["port"] = this.port.toString();
             post["secret"] = this.secret.toString();
-            post["month"] = month.round().toString();
             String ret = await Net.Post(Config.Url, Url_upload_server.Upload_server, null, post, null);
             Map json = jsonDecode(ret);
             if (Auth.Return_login_check(context, json)) {
