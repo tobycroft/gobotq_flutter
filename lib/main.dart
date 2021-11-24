@@ -31,48 +31,48 @@ class Init {
     // PackageInfo packageInfo = await PackageInfo.fromPlatform();
     // print(packageInfo.appName);
     // print(packageInfo.version);
-      PackageInfo info = await PackageInfo.fromPlatform();
-      int version_code = int.tryParse(info.buildNumber);
-      Map<String, String> post = {
-        "platform": Platform.operatingSystem.toString(),
-        "dart": Platform.version.toString(),
-        "system": Platform.operatingSystemVersion.toString(),
-        "version": info.version,
-        "version_code": version_code.toString(),
-        "package_name": info.packageName,
-        "appname": info.appName,
-      };
+    PackageInfo info = await PackageInfo.fromPlatform();
+    int version_code = int.tryParse(info.buildNumber);
+    Map<String, String> post = {
+      "platform": Platform.operatingSystem.toString(),
+      "dart": Platform.version.toString(),
+      "system": Platform.operatingSystemVersion.toString(),
+      "version": info.version,
+      "version_code": version_code.toString(),
+      "package_name": info.packageName,
+      "appname": info.appName,
+    };
 
-      String ret = await Net.Post(Config.Url, Url.Update_path, null, post, null);
-      Map json = jsonDecode(ret);
-      if (json["code"] == 0) {
-        Map data = json["data"];
+    String ret = await Net.Post(Config.Url, Url.Update_path, null, post, null);
+    Map json = jsonDecode(ret);
+    if (json["code"] == 0) {
+      Map data = json["data"];
 
-        if (version_code < int.parse(data["version"])) {
-          String upgrade_text = "";
-          upgrade_text += "当权版本：";
-          upgrade_text += info.version.toString() + "\r\n";
-          upgrade_text += "有新版本：";
-          upgrade_text += data["show_ver"].toString() + "\r\n";
+      if (version_code < int.parse(data["version"])) {
+        String upgrade_text = "";
+        upgrade_text += "当权版本：";
+        upgrade_text += info.version.toString() + "\r\n";
+        upgrade_text += "有新版本：";
+        upgrade_text += data["show_ver"].toString() + "\r\n";
 
-          upgrade_text += "更新内容：\r\n";
-          upgrade_text += data["upgrade_text"].toString() + "\r\n";
+        upgrade_text += "更新内容：\r\n";
+        upgrade_text += data["upgrade_text"].toString() + "\r\n";
 
-          upgrade_text += "更新日期:" + data["date"].toString();
+        upgrade_text += "更新日期:" + data["date"].toString();
 
-          Alert.Simple(context, "有新的更新", upgrade_text, () {
-            RUpgrade.upgrade(
-              data["url"].toString(),
-              fileName: data["file"].toString(),
-              isAutoRequestInstall: true,
-              notificationStyle: NotificationStyle.speechAndPlanTime,
-              useDownloadManager: false,
-            );
-          });
-        } else {
-          // Alert.Confirm(context, "没有新的更新了", "", () {});
-        }
+        Alert.Simple(context, "有新的更新", upgrade_text, () {
+          RUpgrade.upgrade(
+            data["url"].toString(),
+            fileName: data["file"].toString(),
+            isAutoRequestInstall: true,
+            notificationStyle: NotificationStyle.speechAndPlanTime,
+            useDownloadManager: false,
+          );
+        });
+      } else {
+        // Alert.Confirm(context, "没有新的更新了", "", () {});
       }
+    }
   }
 
   void is_login() async {}
@@ -103,7 +103,7 @@ class MyApp extends StatelessWidget {
           shadowColor: Colors.transparent,
           actionsIconTheme: IconThemeData(color: Colors.black),
           textTheme: TextTheme(
-            title: TextStyle(
+            subtitle1: TextStyle(
               color: Colors.black,
               fontSize: 22,
             ),
@@ -114,7 +114,8 @@ class MyApp extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.black),
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: st.Style.LightGrey),
+        bottomNavigationBarTheme:
+            BottomNavigationBarThemeData(backgroundColor: st.Style.LightGrey),
         dividerTheme: DividerThemeData(
           color: st.Style.LightGrey,
           thickness: 0.3,
@@ -162,7 +163,8 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
     String platformVersion;
 
     try {
-      jpush.addEventHandler(onReceiveNotification: (Map<String, dynamic> message) async {
+      jpush.addEventHandler(
+          onReceiveNotification: (Map<String, dynamic> message) async {
         print("flutter onReceiveNotification: $message");
         setState(() {
           debugLable = "flutter onReceiveNotification: $message";
@@ -177,7 +179,8 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
         setState(() {
           debugLable = "flutter onReceiveMessage: $message";
         });
-      }, onReceiveNotificationAuthorization: (Map<String, dynamic> message) async {
+      }, onReceiveNotificationAuthorization:
+              (Map<String, dynamic> message) async {
         print("flutter onReceiveNotificationAuthorization: $message");
         setState(() {
           debugLable = "flutter onReceiveNotificationAuthorization: $message";
@@ -193,7 +196,8 @@ class BotomeMenumPageState extends State<BotomeMenumPage> {
       production: true,
       debug: true,
     );
-    jpush.applyPushAuthority(new NotificationSettingsIOS(sound: true, alert: true, badge: true));
+    jpush.applyPushAuthority(
+        new NotificationSettingsIOS(sound: true, alert: true, badge: true));
 
     // Platform messages may fail, so we use a try/catch PlatformException.
     jpush.getRegistrationID().then((rid) {
