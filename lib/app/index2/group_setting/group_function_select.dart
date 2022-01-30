@@ -4,6 +4,7 @@ import 'package:gobotq_flutter/app/index2/group_setting/auto_reply/auto_reply_fu
 import 'package:gobotq_flutter/app/index2/group_setting/auto_reply/auto_reply_list.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/auto_send/auto_send_list.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/ban_permenent/group_ban_permenent_list.dart';
+import 'package:gobotq_flutter/app/index2/group_setting/ban_word/ban_word_list.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/black_list/group_black_list.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/group_setting/group_setting_set.dart';
 import 'package:gobotq_flutter/config/config.dart';
@@ -39,7 +40,7 @@ class _GroupFunctionSelect extends State<GroupFunctionSelect> {
           //增加
           shrinkWrap: true,
           //增加
-          crossAxisCount: 2,
+          crossAxisCount: 3,
           children: <Widget>[
             FlatButton(
               color: Colors.blue,
@@ -162,7 +163,7 @@ class _GroupFunctionSelect extends State<GroupFunctionSelect> {
               },
             ),
             FlatButton(
-              color: Colors.redAccent,
+              color: Colors.blueGrey,
               textColor: Colors.white,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -178,7 +179,7 @@ class _GroupFunctionSelect extends State<GroupFunctionSelect> {
                 ],
               ),
               onPressed: () async {
-                Windows.Open(context, GroupBanPermenentList("永久小黑屋", _pageparam));
+                Windows.Open(context, BanWord("屏蔽词设定", _pageparam));
               },
             ),
           ]),
