@@ -49,7 +49,7 @@ dependencies:
   thumbnailer: ^1.1.0
   video_player: ^2.1.1
   cached_video_player: ^1.0.3
-  flutter_sound: ^7.7.0
+#  flutter_sound: ^7.7.0
   video_thumbnail: ^0.3.3
   image_pickers: ^1.0.8+7
 
