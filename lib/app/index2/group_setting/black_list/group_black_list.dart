@@ -80,7 +80,7 @@ class _GroupBlackList extends State<GroupBlackList> {
               actionExtentRatio: 0.25,
               child: ListTile(
                 leading: null,
-                title: Text(_data["uid"].toString()),
+                title: Text(_data["user_id"].toString()),
                 subtitle: Text("操作人：" + _data["operator"].toString()),
                 trailing: Text(_data["date"].toString()),
                 onTap: () async {},
