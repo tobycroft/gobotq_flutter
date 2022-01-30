@@ -37,7 +37,7 @@ class _GroupFunctionSelect extends State<GroupFunctionSelect> {
           padding: EdgeInsets.all(0),
           physics: new NeverScrollableScrollPhysics(),
           //增加
-          shrinkWrap: false,
+          shrinkWrap: true,
           //增加
           crossAxisCount: 2,
           children: <Widget>[
@@ -153,6 +153,26 @@ class _GroupFunctionSelect extends State<GroupFunctionSelect> {
                   ),
                   Text(
                     "永久小黑屋",
+                    style: Config.Text_style_main_page,
+                  )
+                ],
+              ),
+              onPressed: () async {
+                Windows.Open(context, GroupBanPermenentList("永久小黑屋", _pageparam));
+              },
+            ),
+            FlatButton(
+              color: Colors.redAccent,
+              textColor: Colors.white,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.timer,
+                    size: 80,
+                  ),
+                  Text(
+                    "屏蔽词设定",
                     style: Config.Text_style_main_page,
                   )
                 ],
