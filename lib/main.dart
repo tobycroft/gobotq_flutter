@@ -103,7 +103,7 @@ class MyApp extends StatelessWidget {
           shadowColor: Colors.transparent,
           actionsIconTheme: IconThemeData(color: Colors.black),
           textTheme: TextTheme(
-            title: TextStyle(
+            subtitle1: TextStyle(
               color: Colors.black,
               fontSize: 22,
             ),
