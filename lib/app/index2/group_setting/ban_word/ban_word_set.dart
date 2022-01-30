@@ -10,14 +10,14 @@ import 'package:gobotq_flutter/tuuz/net/net.dart';
 import 'package:gobotq_flutter/tuuz/net/ret.dart';
 import 'package:gobotq_flutter/tuuz/toasts/toast.dart';
 
-class AutoSendSet extends StatefulWidget {
+class BanWordSet extends StatefulWidget {
   var _pageparam;
   String _title;
 
-  AutoSendSet(this._title, this._pageparam);
+  BanWordSet(this._title, this._pageparam);
 
   @override
-  _AutoSendSet createState() => _AutoSendSet(this._title, this._pageparam);
+  _BanWordSet createState() => _BanWordSet(this._title, this._pageparam);
 }
 
 List<Widget> _setting = [
@@ -29,11 +29,11 @@ List<Widget> _setting = [
 
 Map _data = {};
 
-class _AutoSendSet extends State<AutoSendSet> {
+class _BanWordSet extends State<BanWordSet> {
   var _pageparam;
   String _title;
 
-  _AutoSendSet(this._title, this._pageparam);
+  _BanWordSet(this._title, this._pageparam);
 
   @override
   void initState() {

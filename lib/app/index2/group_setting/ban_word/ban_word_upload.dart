@@ -12,20 +12,20 @@ import 'package:gobotq_flutter/tuuz/net/ret.dart';
 import 'package:gobotq_flutter/tuuz/ui/ui_button.dart';
 import 'package:gobotq_flutter/tuuz/win/close.dart';
 
-class AutoSendUpload extends StatefulWidget {
+class BanWordUpload extends StatefulWidget {
   String _title;
   var _pageparam;
 
-  AutoSendUpload(this._title, this._pageparam);
+  BanWordUpload(this._title, this._pageparam);
 
-  _AutoSendUpload createState() => _AutoSendUpload(this._title, this._pageparam);
+  _BanWordUpload createState() => _BanWordUpload(this._title, this._pageparam);
 }
 
-class _AutoSendUpload extends State<AutoSendUpload> {
+class _BanWordUpload extends State<BanWordUpload> {
   String _title;
   var _pageparam;
 
-  _AutoSendUpload(this._title, this._pageparam);
+  _BanWordUpload(this._title, this._pageparam);
 
   String ident;
   String msg;
