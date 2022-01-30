@@ -7,6 +7,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/auto_reply/auto_reply_upload.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/auto_send/auto_send_set.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/auto_send/auto_send_upload.dart';
+import 'package:gobotq_flutter/app/index2/group_setting/ban_word/ban_word_upload.dart';
 import 'package:gobotq_flutter/app/index2/group_setting/url_group_setting.dart';
 import 'package:gobotq_flutter/config/auth.dart';
 import 'package:gobotq_flutter/config/config.dart';
@@ -44,7 +45,7 @@ class _BanWord extends State<BanWord> {
     Map post = await AuthAction().LoginObject();
     post["group_id"] = gid;
 
-    String ret = await Net.Post(Config.Url, Url_group_setting.Group_AutoSend_list, null, post, null);
+    String ret = await Net.Post(Config.Url, Url_group_setting.Group_word_list, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth.Return_login_check(context, json)) {
       if (Ret.Check_isok(context, json)) {
@@ -67,7 +68,7 @@ class _BanWord extends State<BanWord> {
         actions: [
           FlatButton(
             onPressed: () async {
-              Windows.Open(context, AutoSendUpload("新增自动发送", this._pageparam));
+              Windows.Open(context, BanWordUpload("新增屏蔽", this._pageparam));
             },
             child: Icon(
               Icons.add_circle_outline,
@@ -97,20 +98,21 @@ class _BanWord extends State<BanWord> {
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("是否启用：" + (_data["active"].toString()=="1"?"启用中":"已禁用")),
-                    Text("间隔时间：" + _data["sep"].toString()),
-                    Text("剩余执行次数：" + _data["count"].toString()),
-                    Text("设定群：" + _data["group_id"].toString()),
-                    Text("设定人：" + _data["uid"].toString()),
-                    Text("发送文字内容：\n" + _data["msg"].toString())
+                    Text("模式：" + (_data["mode"].toString() == "1" ? "部分匹配" : "全部匹配")),
+                    Text("触发后禁言（或扣分）：" + (_data["mode"].toString() == "1" ? "是" : "否")),
+                    Text("触发后T出：" + (_data["mode"].toString() == "1" ? "是" : "否")),
+                    Text("出发后撤回：" + (_data["mode"].toString() == "1" ? "是" : "否")),
+                    Text("可与其他人共享：" + (_data["mode"].toString() == "1" ? "是" : "否")),
+                    Text("设定人（QQ）：" + _data["user_id"].toString()),
+                    Text("屏蔽词：\n" + _data["word"].toString())
                   ],
                 ),
                 trailing: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("开始时间：" + _data["date"].toString()),
-                    Text("上次执行：" + _data["change_date"].toString()),
+                    Text("设定时间：" + _data["date"].toString()),
+                    Text("修改时间：" + _data["change_date"].toString()),
                   ],
                 ),
                 onTap: () async {
@@ -149,7 +151,7 @@ Future<bool> delete_data(BuildContext context, String id, gid) async {
   post["id"] = id;
   post["group_id"] = gid;
 
-  String ret = await Net.Post(Config.Url, Url_group_setting.Group_AutoSend_delete, null, post, null);
+  String ret = await Net.Post(Config.Url, Url_group_setting.Group_word_delete, null, post, null);
   Map json = jsonDecode(ret);
   if (Auth.Return_login_check(context, json)) {
     if (Ret.Check_isok(context, json)) {

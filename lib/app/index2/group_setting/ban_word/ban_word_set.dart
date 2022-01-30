@@ -45,7 +45,7 @@ class _BanWordSet extends State<BanWordSet> {
     Map<String, String> post = await AuthAction().LoginObject();
     post["group_id"] = this._pageparam["group_id"].toString();
     post["id"] = this._pageparam["id"].toString();
-    String ret = await Net.Post(Config.Url, Url_group_setting.Group_AutoSend_get, null, post, null);
+    String ret = await Net.Post(Config.Url, Url_group_setting.Group_word_list, null, post, null);
     Map json = jsonDecode(ret);
     if (Auth.Return_login_check(context, json)) {
       if (Ret.Check_isok(context, json)) {

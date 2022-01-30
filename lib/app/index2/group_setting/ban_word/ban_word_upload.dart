@@ -27,13 +27,12 @@ class _BanWordUpload extends State<BanWordUpload> {
 
   _BanWordUpload(this._title, this._pageparam);
 
-  String ident;
-  String msg;
-  String sep;
-  int count;
-  String type = "sep";
-  bool retract = true;
-  int _radioVal;
+  String word;
+  int mode = 0;
+  bool is_ban = true;
+  bool is_kick = false;
+  bool share = false;
+  bool is_retract = true;
 
   @override
   Widget build(BuildContext context) {
@@ -50,38 +49,167 @@ class _BanWordUpload extends State<BanWordUpload> {
           SizedBox(
             height: 10,
           ),
-          TextField(
-            keyboardType: TextInputType.text,
-            style: Theme.of(context).textTheme.headline4,
-            maxLength: 64,
-            decoration: Config.Inputdecoration_default_input_box(Icons.av_timer, "标识符（相同的自动组合）", false, "任意字符"),
-            onChanged: (String val) {
-              this.ident = val.toString();
-            },
+          Text(
+            "触发模式:",
+            style: Config.Text_style_input_box,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("全字匹配"),
+              Radio(
+                value: 0,
+                groupValue: this.mode,
+                onChanged: (value) {
+                  setState(() {
+                    this.mode = value;
+                  });
+                },
+              ),
+              SizedBox(width: 20),
+              Text("部分匹配"),
+              Radio(
+                value: 1,
+                groupValue: this.mode,
+                onChanged: (value) {
+                  setState(() {
+                    this.mode = value;
+                  });
+                },
+              )
+            ],
           ),
           SizedBox(
             height: 10,
           ),
-          TextField(
-            keyboardType: TextInputType.phone,
-            style: Theme.of(context).textTheme.headline4,
-            maxLength: 64,
-            decoration: Config.Inputdecoration_default_input_box(Icons.av_timer, "间隔时间(分钟)", true, "请输入数字"),
-            onChanged: (String val) {
-              this.sep = val.toString();
-            },
+          Text(
+            "触发后禁言:",
+            style: Config.Text_style_input_box,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("禁言或扣分"),
+              Radio(
+                value: true,
+                groupValue: this.is_ban,
+                onChanged: (value) {
+                  setState(() {
+                    this.is_ban = value;
+                  });
+                },
+              ),
+              SizedBox(width: 20),
+              Text("不禁言"),
+              Radio(
+                value: false,
+                groupValue: this.is_ban,
+                onChanged: (value) {
+                  setState(() {
+                    this.is_ban = value;
+                  });
+                },
+              )
+            ],
           ),
           SizedBox(
             height: 10,
           ),
-          TextField(
-            keyboardType: TextInputType.phone,
-            style: Theme.of(context).textTheme.headline4,
-            maxLength: 64,
-            decoration: Config.Inputdecoration_default_input_box(Icons.av_timer, "重复次数", false, "任意字符"),
-            onChanged: (String val) {
-              this.count = int.parse(val);
-            },
+          Text(
+            "触发后T出:",
+            style: Config.Text_style_input_box,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("T出群成员"),
+              Radio(
+                value: true,
+                groupValue: this.is_kick,
+                onChanged: (value) {
+                  setState(() {
+                    this.is_kick = value;
+                  });
+                },
+              ),
+              SizedBox(width: 20),
+              Text("不T出群成员"),
+              Radio(
+                value: false,
+                groupValue: this.is_kick,
+                onChanged: (value) {
+                  setState(() {
+                    this.is_kick = value;
+                  });
+                },
+              )
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            "触发后T撤回:",
+            style: Config.Text_style_input_box,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("撤回该条消息"),
+              Radio(
+                value: true,
+                groupValue: this.is_retract,
+                onChanged: (value) {
+                  setState(() {
+                    this.is_retract = value;
+                  });
+                },
+              ),
+              SizedBox(width: 20),
+              Text("不撤回"),
+              Radio(
+                value: false,
+                groupValue: this.is_retract,
+                onChanged: (value) {
+                  setState(() {
+                    this.is_retract = value;
+                  });
+                },
+              )
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            "分享本条设定:",
+            style: Config.Text_style_input_box,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("分享给其他用户"),
+              Radio(
+                value: true,
+                groupValue: this.share,
+                onChanged: (value) {
+                  setState(() {
+                    this.share = value;
+                  });
+                },
+              ),
+              SizedBox(width: 20),
+              Text("不分享"),
+              Radio(
+                value: false,
+                groupValue: this.share,
+                onChanged: (value) {
+                  setState(() {
+                    this.share = value;
+                  });
+                },
+              )
+            ],
           ),
           SizedBox(
             height: 10,
@@ -91,43 +219,13 @@ class _BanWordUpload extends State<BanWordUpload> {
             style: Theme.of(context).textTheme.headline4,
             maxLines: 6,
             maxLength: 1000,
-            decoration: Config.Inputdecoration_default_input_box(Icons.text_fields, "输入自动发送的内容", false, "请输入文字"),
+            decoration: Config.Inputdecoration_default_input_box(Icons.text_fields, "在这里输入你需要屏蔽的词句", false, "请输入文字"),
             onChanged: (String val) {
-              this.msg = val.toString();
+              this.word = val.toString();
             },
           ),
           SizedBox(
             height: 20,
-          ),
-          Text(
-            "触发模式:",
-            style: Config.Text_style_input_box,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text("间隔模式"),
-              Radio(
-                value: "sep",
-                groupValue: this.type,
-                onChanged: (value) {
-                  setState(() {
-                    this.type = value;
-                  });
-                },
-              ),
-              SizedBox(width: 20),
-              Text("一次性模式"),
-              Radio(
-                value: "fix",
-                groupValue: this.type,
-                onChanged: (value) {
-                  setState(() {
-                    this.type = value;
-                  });
-                },
-              )
-            ],
           ),
           SizedBox(
             height: 40,
@@ -139,45 +237,19 @@ class _BanWordUpload extends State<BanWordUpload> {
             "自动撤回:",
             style: Config.Text_style_input_box,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text("自动撤回"),
-              Radio(
-                value: true,
-                groupValue: this.retract,
-                onChanged: (value) {
-                  setState(() {
-                    this.retract = value;
-                  });
-                },
-              ),
-              SizedBox(width: 20),
-              Text("不自动撤回"),
-              Radio(
-                value: false,
-                groupValue: this.retract,
-                onChanged: (value) {
-                  setState(() {
-                    this.retract = value;
-                  });
-                },
-              )
-            ],
-          ),
           SizedBox(
             height: 40,
           ),
           UI_button.Button_submit(context, () async {
             Map post = await AuthAction().LoginObject();
             post["group_id"] = this._pageparam["group_id"].toString();
-            post["ident"] = this.ident.toString();
-            post["msg"] = this.msg.toString();
-            post["sep"] = this.sep.toString();
-            post["count"] = this.count.toString();
-            post["type"] = this.type.toString();
-            post["retract"] = this.retract.toString();
-            String ret = await Net.Post(Config.Url, Url_group_setting.Group_AutoSend_add, null, post, null);
+            post["share"] = this.share.toString();
+            post["is_retract"] = this.is_retract.toString();
+            post["is_kick"] = this.is_kick.toString();
+            post["is_ban"] = this.is_ban.toString();
+            post["mode"] = this.mode.toString();
+            post["word"] = this.word.toString();
+            String ret = await Net.Post(Config.Url, Url_group_setting.Group_word_add, null, post, null);
             Map json = jsonDecode(ret);
             if (Auth.Return_login_check(context, json)) {
               if (Ret.Check_isok(context, json)) {

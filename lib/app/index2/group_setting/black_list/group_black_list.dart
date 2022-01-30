@@ -91,7 +91,7 @@ class _GroupBlackList extends State<GroupBlackList> {
                   color: Colors.red,
                   icon: Icons.delete_forever,
                   onTap: () async {
-                    bool ret = await delete_data(context, _data["uid"].toString(), _data["group_id"].toString());
+                    bool ret = await delete_data(context, _data["user_id"].toString(), _data["group_id"].toString());
                     if (ret) {
                       setState(() {
                         _white_group.removeAt(index);

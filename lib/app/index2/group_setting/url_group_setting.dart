@@ -18,4 +18,8 @@ class Url_group_setting extends Url_Index2 {
 
   static String Group_ban_list = "/v1/group/ban/list";
   static String Group_ban_delete = "/v1/group/ban/delete";
+
+  static String Group_word_list = "/v1/group/word/list";
+  static String Group_word_add = "/v1/group/word/add";
+  static String Group_word_delete = "/v1/group/word/delete";
 }
